@@ -1,6 +1,6 @@
-package com.insightfullogic.java8.examples.chapter8.lambdabehave;
+package com.insightfullogic.lambdabehave;
 
-import com.insightfullogic.java8.examples.chapter8.lambdabehave.expectations.Expect;
+import com.insightfullogic.lambdabehave.expectations.Expect;
 
 // BEGIN Specification
 public interface Specification {

@@ -1,7 +1,7 @@
-package com.insightfullogic.java8.examples.chapter8.lambdabehave;
+package com.insightfullogic.lambdabehave;
 
-import com.insightfullogic.java8.examples.chapter8.lambdabehave.example.StackSpec;
-import com.insightfullogic.java8.examples.chapter8.lambdabehave.reporting.*;
+import com.insightfullogic.lambdabehave.example.StackSpec;
+import com.insightfullogic.lambdabehave.reporting.*;
 
 public enum Runner {
 

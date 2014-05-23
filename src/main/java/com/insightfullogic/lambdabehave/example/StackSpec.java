@@ -1,8 +1,8 @@
-package com.insightfullogic.java8.examples.chapter8.lambdabehave.example;
+package com.insightfullogic.lambdabehave.example;
 
 import java.util.Stack;
 
-import static com.insightfullogic.java8.examples.chapter8.lambdabehave.Lets.describe;
+import static com.insightfullogic.lambdabehave.Lets.describe;
 
 // BEGIN StackSpec
 public class StackSpec {{

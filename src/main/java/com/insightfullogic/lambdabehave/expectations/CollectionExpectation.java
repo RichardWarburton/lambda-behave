@@ -1,4 +1,4 @@
-package com.insightfullogic.java8.examples.chapter8.lambdabehave.expectations;
+package com.insightfullogic.lambdabehave.expectations;
 
 import java.util.Collection;
 

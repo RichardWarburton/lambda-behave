@@ -1,4 +1,4 @@
-package com.insightfullogic.java8.examples.chapter8.lambdabehave;
+package com.insightfullogic.lambdabehave;
 
 public final class Lets {
 

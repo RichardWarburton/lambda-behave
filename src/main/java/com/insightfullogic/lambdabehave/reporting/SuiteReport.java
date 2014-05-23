@@ -1,4 +1,4 @@
-package com.insightfullogic.java8.examples.chapter8.lambdabehave.reporting;
+package com.insightfullogic.lambdabehave.reporting;
 
 import java.util.ArrayList;
 import java.util.List;
