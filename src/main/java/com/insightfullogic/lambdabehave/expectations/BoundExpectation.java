@@ -1,7 +1,5 @@
 package com.insightfullogic.lambdabehave.expectations;
 
-import static org.junit.Assert.assertEquals;
-
 public class BoundExpectation {
 
     private final Object objectUnderTest;
@@ -11,7 +9,8 @@ public class BoundExpectation {
     }
     
     public void isEqualTo(Object expected) {
-        assertEquals(expected, objectUnderTest);
+        // TODO:
+        // expected, objectUnderTest;
     }
 
 }

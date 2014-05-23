@@ -2,8 +2,6 @@ package com.insightfullogic.lambdabehave.expectations;
 
 import java.util.Collection;
 
-import static junit.framework.Assert.assertTrue;
-
 public class CollectionExpectation extends BoundExpectation {
 
     private final Collection<?> objectUnderTest;
@@ -14,7 +12,8 @@ public class CollectionExpectation extends BoundExpectation {
     }
 
     public void isEmpty() {
-        assertTrue(objectUnderTest.isEmpty());
+        // TODO
+        // objectUnderTest.isEmpty());
     }
 
 }

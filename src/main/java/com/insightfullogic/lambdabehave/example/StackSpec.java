@@ -4,7 +4,6 @@ import java.util.Stack;
 
 import static com.insightfullogic.lambdabehave.Lets.describe;
 
-// BEGIN StackSpec
 public class StackSpec {{
 
     describe("a stack", it -> {
@@ -31,4 +30,3 @@ public class StackSpec {{
     });
 
 }}
-// END StackSpec

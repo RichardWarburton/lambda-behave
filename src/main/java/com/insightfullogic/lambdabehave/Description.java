@@ -10,7 +10,6 @@ public final class Description {
         this.suite = suite;
     }
 
-    // BEGIN should
 public void should(String description, Specification specification) {
     try {
         Expect expect = new Expect();
@@ -22,6 +21,5 @@ public void should(String description, Specification specification) {
         Runner.current.recordError(suite, description, cause);
     }
 }
-    // END should
 
 }
