@@ -1,6 +1,7 @@
 package com.insightfullogic.lambdabehave;
 
 import com.insightfullogic.lambdabehave.expectations.Expect;
+import com.insightfullogic.lambdabehave.reporting.Reporter;
 
 public final class Description {
 
@@ -14,11 +15,11 @@ public final class Description {
         try {
             Expect expect = new Expect();
             specification.specifyBehaviour(expect);
-            Runner.current.recordSuccess(suite, description);
+            Reporter.current.recordSuccess(suite, description);
         } catch (AssertionError cause) {
-            Runner.current.recordFailure(suite, description, cause);
+            Reporter.current.recordFailure(suite, description, cause);
         } catch (Throwable cause) {
-            Runner.current.recordError(suite, description, cause);
+            Reporter.current.recordError(suite, description, cause);
         }
     }
 

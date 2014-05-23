@@ -1,15 +1,15 @@
-package com.insightfullogic.lambdabehave;
+package com.insightfullogic.lambdabehave.reporting;
 
 import com.insightfullogic.lambdabehave.example.StackSpec;
 import com.insightfullogic.lambdabehave.reporting.*;
 
-public enum Runner {
+public enum Reporter {
 
     current;
 
     private final Report report;
 
-    private Runner() {
+    private Reporter() {
         report = new Report();
     }
 
@@ -26,11 +26,6 @@ public enum Runner {
         cause.printStackTrace();
         SpecificationReport specificationReport = new SpecificationReport(specification, Result.ERROR, cause.getMessage());
         report.newSpecification(suite, specificationReport);
-    }
-
-    public static void main(String[] args) {
-        current.run(StackSpec.class);
-        current.printReport();
     }
 
     private void printReport() {
