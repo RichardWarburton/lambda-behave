@@ -10,16 +10,16 @@ public final class Description {
         this.suite = suite;
     }
 
-public void should(String description, Specification specification) {
-    try {
-        Expect expect = new Expect();
-        specification.specifyBehaviour(expect);
-        Runner.current.recordSuccess(suite, description);
-    } catch (AssertionError cause) {
-        Runner.current.recordFailure(suite, description, cause);
-    } catch (Throwable cause) {
-        Runner.current.recordError(suite, description, cause);
+    public void should(String description, Specification specification) {
+        try {
+            Expect expect = new Expect();
+            specification.specifyBehaviour(expect);
+            Runner.current.recordSuccess(suite, description);
+        } catch (AssertionError cause) {
+            Runner.current.recordFailure(suite, description, cause);
+        } catch (Throwable cause) {
+            Runner.current.recordError(suite, description, cause);
+        }
     }
-}
 
 }
