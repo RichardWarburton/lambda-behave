@@ -1,4 +1,9 @@
-package com.insightfullogic.lambdabehave.reporting;
+package com.insightfullogic.lambdabehave.impl.output;
+
+import com.insightfullogic.lambdabehave.impl.output.ReportFormatter;
+import com.insightfullogic.lambdabehave.impl.reports.Report;
+import com.insightfullogic.lambdabehave.impl.reports.Result;
+import com.insightfullogic.lambdabehave.impl.reports.SpecificationReport;
 
 import java.io.PrintStream;
 

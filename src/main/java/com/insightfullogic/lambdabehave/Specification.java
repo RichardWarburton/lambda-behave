@@ -1,6 +1,6 @@
 package com.insightfullogic.lambdabehave;
 
-import com.insightfullogic.lambdabehave.expectations.Expect;
+import com.insightfullogic.lambdabehave.impl.expectations.Expect;
 
 public interface Specification {
 
