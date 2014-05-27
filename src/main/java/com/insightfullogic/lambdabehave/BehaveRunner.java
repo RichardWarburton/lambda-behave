@@ -12,10 +12,10 @@ import static java.util.stream.Collectors.toList;
 /**
  * .
  */
-public class Runner {
+public class BehaveRunner {
 
     public static void main(String[] args) {
-        Runner runner = new Runner(
+        BehaveRunner behaveRunner = new BehaveRunner(
             Stream.of(args)
                   .map(name -> {
                       try {
@@ -25,13 +25,13 @@ public class Runner {
                       }
                   })
                   .collect(toList()));
-        runner.runSpecifications();
-        runner.printReport();
+        behaveRunner.runSpecifications();
+        behaveRunner.printReport();
     }
 
     private final List<Class<?>> specifications;
 
-    public Runner(List<Class<?>> specifications) {
+    public BehaveRunner(List<Class<?>> specifications) {
         this.specifications = specifications;
         ReportFactory.init();
     }

@@ -1,12 +1,17 @@
 package com.insightfullogic.lambdabehave.example;
 
+import com.insightfullogic.lambdabehave.JunitRunner;
+import org.junit.runner.RunWith;
+
 import java.util.Stack;
 
 import static com.insightfullogic.lambdabehave.Lets.describe;
 
+@RunWith(JunitRunner.class)
 public class StackSpec {{
 
     describe("a stack", it -> {
+        System.out.println("foo");
 
         it.should("be empty when created", expect -> {
             expect.that(new Stack()).isEmpty();
