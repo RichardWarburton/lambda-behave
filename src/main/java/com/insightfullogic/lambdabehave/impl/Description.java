@@ -1,7 +1,7 @@
 package com.insightfullogic.lambdabehave.impl;
 
 import com.insightfullogic.lambdabehave.Specification;
-import com.insightfullogic.lambdabehave.impl.expectations.Expect;
+import com.insightfullogic.lambdabehave.expectations.Expect;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
 
 public final class Description {

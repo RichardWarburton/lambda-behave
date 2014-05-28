@@ -11,7 +11,6 @@ import static com.insightfullogic.lambdabehave.Lets.describe;
 public class StackSpec {{
 
     describe("a stack", it -> {
-        System.out.println("foo");
 
         it.should("be empty when created", expect -> {
             expect.that(new Stack()).isEmpty();
