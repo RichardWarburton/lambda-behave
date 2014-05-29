@@ -1,40 +1,48 @@
 package com.insightfullogic.lambdabehave.expectations;
 
+import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
+
+import static org.junit.Assert.assertThat;
 
 /**
  * .
  */
-public class StringExpectation extends BoundExpectation<String> {
+public final class StringExpectation extends BoundExpectation<String> {
     public StringExpectation(String str) {
         super(str);
     }
 
-    public void isEmptyString() {
-        expect(Matchers.isEmptyString());
+    public StringExpectation isEmptyString() {
+        return matches(Matchers.isEmptyString());
     }
 
-    public void isEmptyOrNullString() {
-        expect(Matchers.isEmptyOrNullString());
+    public StringExpectation isEmptyOrNullString() {
+        return matches(Matchers.isEmptyOrNullString());
     }
 
-    public void equalToIgnoringCase(String expectedString) {
-        expect(Matchers.equalToIgnoringCase(expectedString));
+    public StringExpectation equalToIgnoringCase(String expectedString) {
+        return matches(Matchers.equalToIgnoringCase(expectedString));
     }
 
-    public void equalToIgnoringWhiteSpace(String expectedString) {
-        expect(Matchers.equalToIgnoringWhiteSpace(expectedString));
+    public StringExpectation equalToIgnoringWhiteSpace(String expectedString) {
+        return matches(Matchers.equalToIgnoringWhiteSpace(expectedString));
     }
 
-    public void containsString(String substring) {
-        expect(Matchers.containsString(substring));
+    public StringExpectation containsString(String substring) {
+        return matches(Matchers.containsString(substring));
     }
 
-    public void endsWith(String suffix) {
-        expect(Matchers.endsWith(suffix));
+    public StringExpectation endsWith(String suffix) {
+        return matches(Matchers.endsWith(suffix));
     }
 
-    public void startsWith(String prefix) {
-        expect(Matchers.startsWith(prefix));
+    public StringExpectation startsWith(String prefix) {
+        return matches(Matchers.startsWith(prefix));
+    }
+
+    private StringExpectation matches(Matcher<String> matcher) {
+        assertThat(objectUnderTest, matcher);
+        return this;
     }
 }
