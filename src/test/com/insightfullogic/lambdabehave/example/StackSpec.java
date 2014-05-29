@@ -1,13 +1,13 @@
 package com.insightfullogic.lambdabehave.example;
 
-import com.insightfullogic.lambdabehave.JunitRunner;
+import com.insightfullogic.lambdabehave.JunitBehaveRunner;
 import org.junit.runner.RunWith;
 
 import java.util.Stack;
 
 import static com.insightfullogic.lambdabehave.Lets.describe;
 
-@RunWith(JunitRunner.class)
+@RunWith(JunitBehaveRunner.class)
 public class StackSpec {{
 
     describe("a stack", it -> {

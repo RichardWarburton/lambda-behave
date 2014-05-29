@@ -1,7 +1,6 @@
 package com.insightfullogic.lambdabehave.example;
 
-import com.insightfullogic.lambdabehave.JunitRunner;
-import com.insightfullogic.lambdabehave.Lets;
+import com.insightfullogic.lambdabehave.JunitBehaveRunner;
 import org.junit.runner.RunWith;
 
 import static com.insightfullogic.lambdabehave.Lets.describe;
@@ -9,13 +8,15 @@ import static com.insightfullogic.lambdabehave.Lets.describe;
 /**
  * .
  */
-@RunWith(JunitRunner.class)
+@RunWith(JunitBehaveRunner.class)
 public class DataDrivenSpec {{
 
     describe("a number", it -> {
-        it.should("be even if its divisible by two", (expect, x) -> {
-            expect.that(x % 2).is(0);
-        });
+        it.uses(2)
+          .and(4)
+          .toShow("%i is even if divisible by two", (expect, x) -> {
+              expect.that(x % 2).is(0);
+          });
     });
 
 }}

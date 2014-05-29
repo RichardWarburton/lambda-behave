@@ -1,11 +1,8 @@
 package com.insightfullogic.lambdabehave;
 
 import com.insightfullogic.lambdabehave.impl.Specifier;
-import com.insightfullogic.lambdabehave.specifications.OneColumn;
-import com.insightfullogic.lambdabehave.specifications.OneColumnDataSpecification;
+import com.insightfullogic.lambdabehave.specifications.Column;
 import com.insightfullogic.lambdabehave.specifications.Specification;
-import com.insightfullogic.lambdabehave.expectations.Expect;
-import com.insightfullogic.lambdabehave.impl.reports.Report;
 
 public final class Description {
 
@@ -19,8 +16,8 @@ public final class Description {
         specifier.specifyBehaviour(description, specification);
     }
 
-    public <T> OneColumn<T> should(String description, OneColumnDataSpecification<T> specification) {
-        return new OneColumn<>(specifier, description, specification);
+    public <T> Column<T> uses(T value) {
+        return new Column<>(value, specifier);
     }
 
 }

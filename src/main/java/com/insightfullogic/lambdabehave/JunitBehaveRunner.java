@@ -15,12 +15,12 @@ import static org.junit.runner.Description.createTestDescription;
 /**
  * .
  */
-public class JunitRunner extends Runner {
+public class JunitBehaveRunner extends Runner {
 
     private final Class<?> testClass;
     private final Description suiteDescription;
 
-    public JunitRunner(Class<?> testClass) {
+    public JunitBehaveRunner(Class<?> testClass) {
         this.testClass = testClass;
         suiteDescription = createSuiteDescription(testClass);
     }
