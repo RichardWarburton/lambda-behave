@@ -1,6 +1,5 @@
 package com.insightfullogic.lambdabehave;
 
-import com.insightfullogic.lambdabehave.impl.Description;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
 import com.insightfullogic.lambdabehave.impl.reports.ReportFactory;
 

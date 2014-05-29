@@ -1,4 +1,4 @@
-package com.insightfullogic.lambdabehave;
+package com.insightfullogic.lambdabehave.specifications;
 
 import com.insightfullogic.lambdabehave.expectations.Expect;
 

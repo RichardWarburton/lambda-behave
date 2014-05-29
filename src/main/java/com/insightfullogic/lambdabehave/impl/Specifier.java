@@ -1,20 +1,24 @@
 package com.insightfullogic.lambdabehave.impl;
 
-import com.insightfullogic.lambdabehave.Specification;
 import com.insightfullogic.lambdabehave.expectations.Expect;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
+import com.insightfullogic.lambdabehave.specifications.OneColumnDataSpecification;
+import com.insightfullogic.lambdabehave.specifications.Specification;
 
-public final class Description {
+/**
+ * .
+ */
+public class Specifier {
 
-    private final String suite;
     private final Report report;
+    private final String suite;
 
-    public Description(String suite, Report report) {
-        this.suite = suite;
+    public Specifier(Report report, String suite) {
         this.report = report;
+        this.suite = suite;
     }
 
-    public void should(String description, Specification specification) {
+    public void specifyBehaviour(String description, Specification specification) {
         try {
             Expect expect = new Expect();
             specification.specifyBehaviour(expect);
@@ -26,4 +30,7 @@ public final class Description {
         }
     }
 
+    public void specifyBehaviour(String description, T value, OneColumnDataSpecification<T> specification) {
+        specifyBehaviour(description, expect -> specification.specifyBehaviour(expect, value));
+    }
 }
