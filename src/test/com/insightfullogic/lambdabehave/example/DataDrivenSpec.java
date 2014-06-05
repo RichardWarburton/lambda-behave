@@ -3,7 +3,7 @@ package com.insightfullogic.lambdabehave.example;
 import com.insightfullogic.lambdabehave.JunitBehaveRunner;
 import org.junit.runner.RunWith;
 
-import static com.insightfullogic.lambdabehave.Lets.describe;
+import static com.insightfullogic.lambdabehave.Suite.describe;
 
 /**
  * .

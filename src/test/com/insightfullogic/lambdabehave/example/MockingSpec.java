@@ -2,19 +2,19 @@ package com.insightfullogic.lambdabehave.example;
 
 import com.insightfullogic.lambdabehave.JunitBehaveRunner;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import static com.insightfullogic.lambdabehave.Lets.describe;
+import static com.insightfullogic.lambdabehave.Suite.describe;
+import static org.mockito.Mockito.mock;
 
 /**
  * .
  */
 @RunWith(JunitBehaveRunner.class)
-public class MockingSpec extends Mockito {
+public class MockingSpec {
 
     interface Subscriber extends Consumer<String> {}
 

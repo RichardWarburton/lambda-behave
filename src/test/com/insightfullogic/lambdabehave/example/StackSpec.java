@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 
 import java.util.Stack;
 
-import static com.insightfullogic.lambdabehave.Lets.describe;
+import static com.insightfullogic.lambdabehave.Suite.describe;
 
 @RunWith(JunitBehaveRunner.class)
 public class StackSpec {{
