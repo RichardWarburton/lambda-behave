@@ -31,8 +31,8 @@ public class DataDrivenSpec {{
         it.uses(1, 2, 3)
           .and(4, 5, 6)
           .toShow("%i %i and %i are a sequence", (expect, x, y, z) -> {
-              expect.that(x + 1).is(y);
-              expect.that(y + 1).is(z);
+              expect.that(x + 1).is(y)
+                    .and(y + 1).is(z);
           });
     });
 

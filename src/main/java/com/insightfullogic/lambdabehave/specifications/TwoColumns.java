@@ -1,8 +1,5 @@
 package com.insightfullogic.lambdabehave.specifications;
 
-import com.insightfullogic.lambdabehave.impl.specifications.PairBuilder;
-import com.insightfullogic.lambdabehave.specifications.TwoColumnDataSpecification;
-
 /**
  * .
  */

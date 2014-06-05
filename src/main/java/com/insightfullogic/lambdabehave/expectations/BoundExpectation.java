@@ -6,8 +6,6 @@ import org.hamcrest.Matchers;
 import java.util.Collection;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasProperty;
-import static org.hamcrest.Matchers.hasToString;
 import static org.junit.Assert.assertThat;
 
 public class BoundExpectation<T> {
@@ -16,6 +14,18 @@ public class BoundExpectation<T> {
 
     BoundExpectation(T value) {
         this.objectUnderTest = value;
+    }
+
+    public <T> BoundExpectation<T> and(T value) {
+        return new BoundExpectation<T>(value);
+    }
+
+    public CollectionExpectation and(Collection<?> collection) {
+        return new CollectionExpectation(collection);
+    }
+
+    public StringExpectation and(String str) {
+        return new StringExpectation(str);
     }
 
     public BoundExpectation<T> isEqualTo(T expected) {

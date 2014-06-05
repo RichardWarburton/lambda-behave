@@ -1,8 +1,8 @@
 package com.insightfullogic.lambdabehave;
 
 import com.insightfullogic.lambdabehave.impl.output.ConsoleFormatter;
-import com.insightfullogic.lambdabehave.impl.reports.ReportFactory;
 import com.insightfullogic.lambdabehave.impl.output.ReportFormatter;
+import com.insightfullogic.lambdabehave.impl.reports.ReportFactory;
 
 import java.util.List;
 import java.util.stream.Stream;

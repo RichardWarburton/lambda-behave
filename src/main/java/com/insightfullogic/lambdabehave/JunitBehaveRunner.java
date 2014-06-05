@@ -10,7 +10,6 @@ import org.junit.runner.notification.RunNotifier;
 
 import static java.util.Collections.singletonList;
 import static org.junit.runner.Description.createSuiteDescription;
-import static org.junit.runner.Description.createTestDescription;
 
 /**
  * .
