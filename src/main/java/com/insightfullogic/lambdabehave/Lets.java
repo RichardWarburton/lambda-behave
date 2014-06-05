@@ -11,10 +11,7 @@ public final class Lets {
         Specifier specifier = new Specifier(name, report);
         Description description = new Description(specifier);
         behavior.specifySuite(description);
-    }
-
-    public static void given(Runnable runnable) {
-        // TODO: re-run block for each test
+        specifier.checkSpecifications();
     }
 
 }

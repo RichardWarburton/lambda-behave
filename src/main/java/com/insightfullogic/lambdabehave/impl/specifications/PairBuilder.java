@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * .
  */
-public final class PairBuilder<F, S> implements TwoColumns<F,S> {
+public class PairBuilder<F, S> implements TwoColumns<F,S> {
 
     private final List<Row> values;
     private final Specifier specifier;
@@ -18,7 +18,8 @@ public final class PairBuilder<F, S> implements TwoColumns<F,S> {
     private class Row {
         private final F first;
         private final S second;
-        private Row(F first, S second) {
+
+        public Row(F first, S second) {
             this.first = first;
             this.second = second;
         }

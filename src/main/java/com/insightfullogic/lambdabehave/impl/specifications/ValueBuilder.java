@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * .
  */
-public final class ValueBuilder<T> implements Column<T> {
+public class ValueBuilder<T> implements Column<T> {
 
     private final List<T> values;
     private final Specifier specifier;

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * .
  */
-public final class TripletBuilder<F, S, T> implements ThreeColumns<F,S,T> {
+public class TripletBuilder<F, S, T> implements ThreeColumns<F,S,T> {
 
     private final List<Row> values;
     private final Specifier specifier;

@@ -9,6 +9,10 @@ import com.insightfullogic.lambdabehave.specifications.Specification;
 import com.insightfullogic.lambdabehave.specifications.ThreeColumns;
 import com.insightfullogic.lambdabehave.specifications.TwoColumns;
 
+/**
+ * A Description is a fluent builder to describe a
+ * complete specification.
+ */
 public final class Description {
 
     private final Specifier specifier;
@@ -33,4 +37,11 @@ public final class Description {
         return new TripletBuilder<>(first, second, third, specifier);
     }
 
+    public void setsUp(Runnable block) {
+        specifier.addPrefix(block);
+    }
+
+    public void tearsDown(Runnable block) {
+        specifier.addPostfix(block);
+    }
 }
