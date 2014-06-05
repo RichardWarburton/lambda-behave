@@ -13,4 +13,8 @@ public final class Lets {
         behavior.specifySuite(description);
     }
 
+    public static void given(Runnable runnable) {
+        // TODO: re-run block for each test
+    }
+
 }

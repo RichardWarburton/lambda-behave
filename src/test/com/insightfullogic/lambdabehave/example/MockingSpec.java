@@ -50,6 +50,9 @@ public class MockingSpec extends Mockito {
         then:
         subscriber.accept("hello world");
         subscriber2.accept("hello world");
+
+        never:
+        subscriber3.accept("hello world");
     });
 
 }}

@@ -4,6 +4,8 @@ import com.insightfullogic.lambdabehave.expectations.Expect;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
 import com.insightfullogic.lambdabehave.specifications.ColumnDataSpecification;
 import com.insightfullogic.lambdabehave.specifications.Specification;
+import com.insightfullogic.lambdabehave.specifications.ThreeColumnDataSpecification;
+import com.insightfullogic.lambdabehave.specifications.TwoColumnDataSpecification;
 
 /**
  * .
@@ -32,5 +34,13 @@ public class Specifier {
 
     public <T> void specifyBehaviour(String description, T value, ColumnDataSpecification<T> specification) {
         specifyBehaviour(description, expect -> specification.specifyBehaviour(expect, value));
+    }
+
+    public <F, S> void specifyBehaviour(String description, F first, S second, TwoColumnDataSpecification<F, S> specification) {
+        specifyBehaviour(description, expect -> specification.specifyBehaviour(expect, first, second));
+    }
+
+    public <F, S, T> void specifyBehaviour(String description, F first, S second, T third, ThreeColumnDataSpecification<F, S, T> specification) {
+        specifyBehaviour(description, expect -> specification.specifyBehaviour(expect, first, second, third));
     }
 }

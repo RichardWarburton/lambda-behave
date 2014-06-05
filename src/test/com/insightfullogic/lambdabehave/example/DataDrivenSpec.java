@@ -19,4 +19,21 @@ public class DataDrivenSpec {{
           });
     });
 
+    describe("a pair of numbers", it -> {
+        it.uses(2, 4)
+          .and(4, 8)
+          .toShow("%i / %i is two", (expect, x, y) -> {
+              expect.that(y / x).is(2);
+          });
+    });
+
+    describe("three numbers", it -> {
+        it.uses(1, 2, 3)
+          .and(4, 5, 6)
+          .toShow("%i %i and %i are a sequence", (expect, x, y, z) -> {
+              expect.that(x + 1).is(y);
+              expect.that(y + 1).is(z);
+          });
+    });
+
 }}

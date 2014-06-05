@@ -1,6 +1,15 @@
 Lambda Behave
 =============
 
-A Jasmine style BDD specification framework for Java 8.
+A modern specification and testing framework for Java 8.
+
+Introduction
+------------
+
+Examples
+--------
+
+More Information
+----------------
 
 
