@@ -14,7 +14,7 @@ import static org.junit.runner.Description.createSuiteDescription;
 /**
  * .
  */
-public class JunitBehaveRunner extends Runner {
+public final class JunitBehaveRunner extends Runner {
 
     private final Class<?> testClass;
     private final Description suiteDescription;

@@ -17,7 +17,7 @@ public final class Description {
 
     private final Specifier specifier;
 
-    public Description(Specifier specifier) {
+    Description(Specifier specifier) {
         this.specifier = specifier;
     }
 

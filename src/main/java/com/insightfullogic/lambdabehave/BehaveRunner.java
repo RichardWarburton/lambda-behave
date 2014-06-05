@@ -10,37 +10,41 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 
 /**
- * .
+ * Entrypoint to run the lambda behave specification library.
  */
-public class BehaveRunner {
+public final class BehaveRunner {
 
     public static void main(String[] args) {
-        BehaveRunner behaveRunner = new BehaveRunner(
-            Stream.of(args)
-                  .map(name -> {
-                      try {
-                          return Class.forName(name);
-                      } catch (ClassNotFoundException e) {
-                          throw new IllegalArgumentException(e);
-                      }
-                  })
-                  .collect(toList()));
-        behaveRunner.runSpecifications();
-        behaveRunner.printReport();
+        new BehaveRunner(args)
+                .runSpecifications()
+                .printReport();
     }
 
     private final List<Class<?>> specifications;
+
+    public BehaveRunner(String ... specifications) {
+        this(Stream.of(specifications)
+                   .map(name -> {
+                       try {
+                           return Class.forName(name);
+                       } catch (ClassNotFoundException e) {
+                           throw new IllegalArgumentException(e);
+                       }
+                   })
+                   .collect(toList()));
+    }
 
     public BehaveRunner(List<Class<?>> specifications) {
         this.specifications = specifications;
         ReportFactory.init();
     }
 
-    public void runSpecifications() {
+    public BehaveRunner runSpecifications() {
         specifications.forEach(this::run);
+        return this;
     }
 
-    public void run(Class<?> specification) {
+    public BehaveRunner run(Class<?> specification) {
         try {
             specification.newInstance();
         } catch (InstantiationException e) {
@@ -48,11 +52,13 @@ public class BehaveRunner {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+        return this;
     }
 
-    public void printReport() {
+    public BehaveRunner printReport() {
         ReportFormatter formatter = new ConsoleFormatter();
         formatter.format(ReportFactory.getReport());
+        return this;
     }
 
 }
