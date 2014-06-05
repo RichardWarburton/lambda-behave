@@ -5,9 +5,6 @@ import org.junit.runner.RunWith;
 
 import static com.insightfullogic.lambdabehave.Suite.describe;
 
-/**
- * .
- */
 @RunWith(JunitBehaveRunner.class)
 public class DataDrivenSpec {{
 

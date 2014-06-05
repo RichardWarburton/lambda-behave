@@ -10,9 +10,6 @@ import java.util.function.Consumer;
 import static com.insightfullogic.lambdabehave.Suite.describe;
 import static org.mockito.Mockito.mock;
 
-/**
- * .
- */
 @RunWith(JunitBehaveRunner.class)
 public class MockingSpec {
 

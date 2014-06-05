@@ -12,7 +12,7 @@ import static java.util.Collections.singletonList;
 import static org.junit.runner.Description.createSuiteDescription;
 
 /**
- * .
+ * Wrapper to run lambda behave specifications under junit.
  */
 public final class JunitBehaveRunner extends Runner {
 
