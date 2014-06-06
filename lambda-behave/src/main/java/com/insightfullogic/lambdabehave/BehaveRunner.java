@@ -11,6 +11,7 @@ import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 import org.reflections.util.FilterBuilder;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -69,6 +70,10 @@ public final class BehaveRunner {
                     .setScanners(new SubTypesScanner(false /* don't exclude Object.class */), new ResourcesScanner())
                     .setUrls(ClasspathHelper.forClassLoader(classLoadersList.toArray(new ClassLoader[0])))
                     .filterInputsBy(new FilterBuilder().include(FilterBuilder.prefix(packageName))));
+    }
+
+    public BehaveRunner(Class<?> ... specifications) {
+        this(Arrays.asList(specifications));
     }
 
     public BehaveRunner(List<Class<?>> specifications) {
