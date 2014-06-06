@@ -1,13 +1,15 @@
 
-get mockito integration out of core
 mockito integration with asm
 
-add an event lifecycle, so junit can plugin
-slf4j for logging 
-console printout with colours
-web based runner
-public api javadoc
+0.1:
+    slf4j for logging 
+    public api javadoc
 
-testng integration
-not
+Wishlist:
+    add an event lifecycle for more flexible plugins
+    get mockito integration out of core
+    console printout with colours
+    web based runner
+    testng integration
+    not
 
