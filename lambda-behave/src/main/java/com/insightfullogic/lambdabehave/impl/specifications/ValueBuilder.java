@@ -28,9 +28,10 @@ public class ValueBuilder<T> implements Column<T> {
     }
 
     @Override
-    public void toShow(String description, ColumnDataSpecification<T> specification) {
-        values.forEach(value ->
-            specifier.specifyBehaviour(description, value, specification)
-        );
+    public void toShow(String descriptionFormat, ColumnDataSpecification<T> specification) {
+        values.forEach(value -> {
+            String description = String.format(descriptionFormat, value);
+            specifier.specifyBehaviour(description, value, specification);
+        });
     }
 }

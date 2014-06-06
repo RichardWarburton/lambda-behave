@@ -1,11 +1,13 @@
 package com.insightfullogic.lambdabehave.example;
 
 import com.insightfullogic.lambdabehave.JunitBehaveRunner;
+import org.hamcrest.Matchers;
 import org.junit.runner.RunWith;
 
 import java.util.Stack;
 
 import static com.insightfullogic.lambdabehave.Suite.describe;
+import static org.junit.Assert.assertThat;
 
 @RunWith(JunitBehaveRunner.class)
 public class StackSpec {{

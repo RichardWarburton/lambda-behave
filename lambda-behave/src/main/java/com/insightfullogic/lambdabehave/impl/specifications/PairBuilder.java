@@ -38,9 +38,10 @@ public class PairBuilder<F, S> implements TwoColumns<F,S> {
     }
 
     @Override
-    public void toShow(String description, TwoColumnDataSpecification<F, S> specification) {
-        values.forEach(row ->
-            specifier.specifyBehaviour(description, row.first, row.second, specification)
-        );
+    public void toShow(String descriptionFormat, TwoColumnDataSpecification<F, S> specification) {
+        values.forEach(row -> {
+            String description = String.format(descriptionFormat, row.first, row.second);
+            specifier.specifyBehaviour(description, row.first, row.second, specification);
+        });
     }
 }

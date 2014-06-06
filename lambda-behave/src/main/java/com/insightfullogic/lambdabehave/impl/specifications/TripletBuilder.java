@@ -39,9 +39,10 @@ public class TripletBuilder<F, S, T> implements ThreeColumns<F,S,T> {
     }
 
     @Override
-    public void toShow(String description, ThreeColumnDataSpecification<F, S, T> specification) {
-        values.forEach(row ->
-            specifier.specifyBehaviour(description, row.first, row.second, row.third, specification)
-        );
+    public void toShow(String descriptionFormat, ThreeColumnDataSpecification<F, S, T> specification) {
+        values.forEach(row -> {
+            String description = String.format(descriptionFormat, row.first, row.second, row.third);
+            specifier.specifyBehaviour(description, row.first, row.second, row.third, specification);
+        });
     }
 }

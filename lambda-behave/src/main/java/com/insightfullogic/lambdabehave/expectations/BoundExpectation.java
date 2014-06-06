@@ -44,8 +44,8 @@ public class BoundExpectation<T> {
         return matches(Matchers.instanceOf(type));
     }
 
-    public BoundExpectation<T> toNotBeNull() {
-        return matches(Matchers.notNullValue(getWrappedClass()));
+    public BoundExpectation<T> isNotNull() {
+        return matches(Matchers.<T>notNullValue());
     }
 
     public BoundExpectation<T> toBeNull() {
@@ -64,7 +64,7 @@ public class BoundExpectation<T> {
         return matches(Matchers.hasProperty(propertyName, propertyValue));
     }
 
-    public BoundExpectation<T> is(Matcher<T> matcher) {
+    public BoundExpectation<T> is(Matcher<? super T> matcher) {
         return matches(matcher);
     }
 
@@ -88,7 +88,7 @@ public class BoundExpectation<T> {
         return matches(Matchers.is(Matchers.not(value)));
     }
 
-    private BoundExpectation<T> matches(Matcher<T> matcher) {
+    private BoundExpectation<T> matches(Matcher<? super T> matcher) {
         assertThat(objectUnderTest, matcher);
         return this;
     }

@@ -1,5 +1,5 @@
 
-mockito integration with asm
+fix the test situation
 
 0.1:
     slf4j for logging 
@@ -12,4 +12,5 @@ Wishlist:
     web based runner
     testng integration
     not
+    matchers for arrays
 
