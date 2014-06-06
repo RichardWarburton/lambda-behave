@@ -1,0 +1,13 @@
+
+get mockito integration out of core
+mockito integration with asm
+
+add an event lifecycle, so junit can plugin
+slf4j for logging 
+console printout with colours
+web based runner
+public api javadoc
+
+testng integration
+not
+
