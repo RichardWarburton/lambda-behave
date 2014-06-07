@@ -7,9 +7,6 @@ import com.insightfullogic.lambdabehave.specifications.TwoColumns;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * .
- */
 public class PairBuilder<F, S> implements TwoColumns<F,S> {
 
     private final List<Row> values;
