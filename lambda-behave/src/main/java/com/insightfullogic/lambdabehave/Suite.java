@@ -1,8 +1,7 @@
 package com.insightfullogic.lambdabehave;
 
 import com.insightfullogic.lambdabehave.impl.Specifier;
-import com.insightfullogic.lambdabehave.impl.reports.Report;
-import com.insightfullogic.lambdabehave.impl.reports.ReportStore;
+import com.insightfullogic.lambdabehave.impl.reports.Specifiers;
 
 /**
  * Callback interface to allow you to describe a suite of
@@ -18,11 +17,10 @@ public interface Suite {
      * @param behaviours the suite of behaviours you're specifying.
      */
     public static void describe(String name, Suite behaviours) {
-        Report report = ReportStore.getReport();
-        Specifier specifier = new Specifier(name, report);
+        Specifier specifier = new Specifier(name);
         Description description = new Description(specifier);
         behaviours.specifySuite(description);
-        specifier.checkSpecifications();
+        Specifiers.push(specifier);
     }
 
     public void specifySuite(Description description);

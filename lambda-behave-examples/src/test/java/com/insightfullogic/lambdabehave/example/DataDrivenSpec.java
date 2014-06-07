@@ -3,8 +3,6 @@ package com.insightfullogic.lambdabehave.example;
 import com.insightfullogic.lambdabehave.JunitBehaveRunner;
 import org.junit.runner.RunWith;
 
-import java.util.Arrays;
-
 import static com.insightfullogic.lambdabehave.Suite.describe;
 
 @RunWith(JunitBehaveRunner.class)

@@ -1,9 +1,10 @@
 package com.insightfullogic.lambdabehave;
 
+import com.insightfullogic.lambdabehave.impl.Specifier;
 import com.insightfullogic.lambdabehave.impl.output.ConsoleFormatter;
 import com.insightfullogic.lambdabehave.impl.output.ReportFormatter;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
-import com.insightfullogic.lambdabehave.impl.reports.ReportStore;
+import com.insightfullogic.lambdabehave.impl.reports.Specifiers;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,6 +26,10 @@ public final class BehaveRunner {
 
     public static Report runOnly(Class<?> specClass) {
         return new BehaveRunner().run(specClass).getReport();
+    }
+
+    static Specifier declareOnly(Class<?> specClass) {
+        return new BehaveRunner().declare(specClass);
     }
 
     public BehaveRunner() {
@@ -62,20 +67,19 @@ public final class BehaveRunner {
     }
 
     private BehaveRunner run(Class<?> specification) {
-        ReportStore.pushReport(report);
+        declare(specification).checkSpecifications(report);
+        return this;
+    }
+
+    private Specifier declare(Class<?> specification) {
         try {
             specification.newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
-        } finally {
-            Report poppedReport = ReportStore.popReport();
-            if (poppedReport != report) {
-                throw new IllegalStateException("Different report instances popped, error running nested" + getClass().getSimpleName());
-            }
         }
-        return this;
+        return Specifiers.pop();
     }
 
     public BehaveRunner printReport() {

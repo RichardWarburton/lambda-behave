@@ -8,8 +8,8 @@ public final class Expect {
         return new BoundExpectation<T>(value);
     }
 
-    public CollectionExpectation that(Collection<?> collection) {
-        return new CollectionExpectation(collection);
+    public <T> CollectionExpectation<T> that(Collection<T> collection) {
+        return new CollectionExpectation<>(collection);
     }
 
     public StringExpectation that(String str) {

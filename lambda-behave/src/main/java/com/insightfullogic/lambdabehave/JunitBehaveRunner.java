@@ -1,7 +1,7 @@
 package com.insightfullogic.lambdabehave;
 
+import com.insightfullogic.lambdabehave.impl.Specifier;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
-import com.insightfullogic.lambdabehave.impl.reports.SuiteReport;
 import org.junit.runner.Description;
 import org.junit.runner.Runner;
 import org.junit.runner.notification.Failure;
@@ -15,11 +15,17 @@ import static org.junit.runner.Description.createSuiteDescription;
 public final class JunitBehaveRunner extends Runner {
 
     private final Class<?> testClass;
+    private final Specifier specifier;
     private final Description suiteDescription;
 
     public JunitBehaveRunner(Class<?> testClass) {
         this.testClass = testClass;
-        suiteDescription = createSuiteDescription(testClass);
+        specifier = BehaveRunner.declareOnly(testClass);
+        suiteDescription = makeDescription();
+    }
+
+    private Description makeDescription() {
+        return createSuiteDescription(specifier.getSuiteName(), testClass);
     }
 
     @Override
@@ -30,8 +36,8 @@ public final class JunitBehaveRunner extends Runner {
     @Override
     public void run(RunNotifier notifier) {
         try {
-            notifier.fireTestStarted(suiteDescription);
-            Report report =  BehaveRunner.runOnly(testClass);
+            Report report = new Report();
+            specifier.checkSpecifications(report);
             reportResults(notifier, report);
         } catch (Exception e) {
             notifier.fireTestFailure(new Failure(getDescription(), e));
@@ -42,21 +48,23 @@ public final class JunitBehaveRunner extends Runner {
 
     private void reportResults(RunNotifier notifier, Report report) {
         report.suites()
-              .flatMap(SuiteReport::specifications)
-              .forEach(spec -> {
-                  Description description = Description.createTestDescription(testClass, spec.getDescription());
-                  notifier.fireTestStarted(description);
-                  switch (spec.getResult()) {
-                      case SUCCESS:
-                          notifier.fireTestFinished(description);
-                          return;
-                      case FAILURE:
-                          notifier.fireTestFailure(new Failure(description, new TestFailure(spec.getMessage())));
-                          return;
-                      case ERROR:
-                          throw new SpecificationError(spec.getMessage());
-                  }
-              });
+              .forEach(suite -> {
+                  suite.specifications().forEach(spec -> {
+                      Description test = Description.createTestDescription(testClass, spec.getDescription());
+                      notifier.fireTestStarted(test);
+                      switch (spec.getResult()) {
+                          case SUCCESS:
+                              notifier.fireTestFinished(test);
+                              return;
+                          case FAILURE:
+                              notifier.fireTestFailure(new Failure(test, new TestFailure(spec.getMessage())));
+                              return;
+                          case ERROR:
+                              throw new SpecificationError(spec.getMessage());
+                      }
+                  });
+              }
+          );
     }
 
     public static class SpecificationError extends RuntimeException {

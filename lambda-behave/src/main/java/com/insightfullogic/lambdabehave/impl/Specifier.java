@@ -10,21 +10,21 @@ import com.insightfullogic.lambdabehave.specifications.TwoColumnDataSpecificatio
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 /**
  * A Specifier defines how .
  */
 public class Specifier {
 
-    private final String suite;
-    private final Report report;
+    private final String suiteName;
 
     private final List<Runnable> prefixes;
     private final List<Behaviour> behaviours;
     private final List<Runnable> postfixes;
 
-    public Specifier(String suite, Report report) {
-        this.report = report;
-        this.suite = suite;
+    public Specifier(String suite) {
+        this.suiteName = suite;
 
         prefixes = new ArrayList<>();
         behaviours = new ArrayList<>();
@@ -55,11 +55,11 @@ public class Specifier {
         postfixes.add(block);
     }
 
-    public void checkSpecifications() {
-        report.onSuiteName(suite);
+    public void checkSpecifications(Report report) {
+        report.onSuiteName(suiteName);
         behaviours.forEach(behaviour -> {
             runAll(prefixes);
-            checkBehaviour(behaviour);
+            checkBehaviour(behaviour, report);
             runAll(postfixes);
         });
     }
@@ -68,17 +68,28 @@ public class Specifier {
         blocks.forEach(Runnable::run);
     }
 
-    private void checkBehaviour(Behaviour behaviour) {
+    private void checkBehaviour(Behaviour behaviour, Report report) {
         Specification specification = behaviour.getSpecification();
         String description = behaviour.getDescription();
         try {
             Expect expect = new Expect();
             specification.specifyBehaviour(expect);
-            report.recordSuccess(suite, description);
+            report.recordSuccess(suiteName, description);
         } catch (AssertionError cause) {
-            report.recordFailure(suite, description, cause);
+            report.recordFailure(suiteName, description, cause);
         } catch (Throwable cause) {
-            report.recordError(suite, description, cause);
+            report.recordError(suiteName, description, cause);
         }
     }
+
+    public String getSuiteName() {
+        return suiteName;
+    }
+
+    public List<String> getDescriptions() {
+        return behaviours.stream()
+                         .map(Behaviour::getDescription)
+                         .collect(toList());
+    }
+
 }
