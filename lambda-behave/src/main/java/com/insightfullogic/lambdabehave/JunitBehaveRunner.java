@@ -2,6 +2,7 @@ package com.insightfullogic.lambdabehave;
 
 import com.insightfullogic.lambdabehave.impl.Specifier;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
+import com.insightfullogic.lambdabehave.impl.reports.SuiteReport;
 import org.junit.runner.Description;
 import org.junit.runner.Runner;
 import org.junit.runner.notification.Failure;
@@ -44,23 +45,21 @@ public final class JunitBehaveRunner extends Runner {
 
     private void reportResults(RunNotifier notifier, Report report) {
         report.suites()
-              .forEach(suite -> {
-                  suite.specifications().forEach(spec -> {
-                      Description test = createTestDescription(testClass, spec.getDescription());
-                      notifier.fireTestStarted(test);
-                      switch (spec.getResult()) {
-                          case SUCCESS:
-                              notifier.fireTestFinished(test);
-                              return;
-                          case FAILURE:
-                              notifier.fireTestFailure(new Failure(test, new TestFailure(spec.getMessage())));
-                              return;
-                          case ERROR:
-                              throw new SpecificationError(spec.getMessage());
-                      }
-                  });
-              }
-          );
+              .flatMap(SuiteReport::specifications)
+              .forEach(spec -> {
+                  Description test = createTestDescription(testClass, spec.getDescription());
+                  notifier.fireTestStarted(test);
+                  switch (spec.getResult()) {
+                      case SUCCESS:
+                          notifier.fireTestFinished(test);
+                          return;
+                      case FAILURE:
+                          notifier.fireTestFailure(new Failure(test, new TestFailure(spec.getMessage())));
+                          return;
+                      case ERROR:
+                          throw new SpecificationError(spec.getMessage());
+                  }
+              });
     }
 
     public static class SpecificationError extends RuntimeException {
