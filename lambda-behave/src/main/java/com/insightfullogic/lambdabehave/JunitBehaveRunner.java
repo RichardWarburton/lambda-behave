@@ -7,7 +7,7 @@ import org.junit.runner.Runner;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunNotifier;
 
-import static org.junit.runner.Description.createSuiteDescription;
+import static org.junit.runner.Description.createTestDescription;
 
 /**
  * Wrapper to run lambda behave specifications under junit.
@@ -21,11 +21,7 @@ public final class JunitBehaveRunner extends Runner {
     public JunitBehaveRunner(Class<?> testClass) {
         this.testClass = testClass;
         specifier = BehaveRunner.declareOnly(testClass);
-        suiteDescription = makeDescription();
-    }
-
-    private Description makeDescription() {
-        return createSuiteDescription(specifier.getSuiteName(), testClass);
+        suiteDescription = createTestDescription(this.testClass, specifier.getSuiteName());
     }
 
     @Override
@@ -50,7 +46,7 @@ public final class JunitBehaveRunner extends Runner {
         report.suites()
               .forEach(suite -> {
                   suite.specifications().forEach(spec -> {
-                      Description test = Description.createTestDescription(testClass, spec.getDescription());
+                      Description test = createTestDescription(testClass, spec.getDescription());
                       notifier.fireTestStarted(test);
                       switch (spec.getResult()) {
                           case SUCCESS:
