@@ -56,6 +56,7 @@ public class Specifier {
     }
 
     public void checkSpecifications() {
+        report.onSuiteName(suite);
         behaviours.forEach(behaviour -> {
             runAll(prefixes);
             checkBehaviour(behaviour);

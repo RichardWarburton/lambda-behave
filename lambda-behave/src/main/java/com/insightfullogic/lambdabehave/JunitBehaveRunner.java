@@ -1,14 +1,12 @@
 package com.insightfullogic.lambdabehave;
 
 import com.insightfullogic.lambdabehave.impl.reports.Report;
-import com.insightfullogic.lambdabehave.impl.reports.ReportFactory;
 import com.insightfullogic.lambdabehave.impl.reports.SuiteReport;
 import org.junit.runner.Description;
 import org.junit.runner.Runner;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunNotifier;
 
-import static java.util.Collections.singletonList;
 import static org.junit.runner.Description.createSuiteDescription;
 
 /**
@@ -33,9 +31,8 @@ public final class JunitBehaveRunner extends Runner {
     public void run(RunNotifier notifier) {
         try {
             notifier.fireTestStarted(suiteDescription);
-            BehaveRunner runner = new BehaveRunner(singletonList(testClass));
-            runner.runSpecifications();
-            reportResults(notifier);
+            Report report =  BehaveRunner.runOnly(testClass);
+            reportResults(notifier, report);
         } catch (Exception e) {
             notifier.fireTestFailure(new Failure(getDescription(), e));
             // TODO: log
@@ -43,8 +40,7 @@ public final class JunitBehaveRunner extends Runner {
         }
     }
 
-    private void reportResults(RunNotifier notifier) {
-        Report report = ReportFactory.getReport();
+    private void reportResults(RunNotifier notifier, Report report) {
         report.suites()
               .flatMap(SuiteReport::specifications)
               .forEach(spec -> {

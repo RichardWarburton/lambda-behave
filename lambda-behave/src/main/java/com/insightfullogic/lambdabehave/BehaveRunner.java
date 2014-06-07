@@ -3,7 +3,7 @@ package com.insightfullogic.lambdabehave;
 import com.insightfullogic.lambdabehave.impl.output.ConsoleFormatter;
 import com.insightfullogic.lambdabehave.impl.output.ReportFormatter;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
-import com.insightfullogic.lambdabehave.impl.reports.ReportFactory;
+import com.insightfullogic.lambdabehave.impl.reports.ReportStore;
 import org.reflections.Reflections;
 import org.reflections.scanners.ResourcesScanner;
 import org.reflections.scanners.SubTypesScanner;
@@ -12,6 +12,7 @@ import org.reflections.util.ConfigurationBuilder;
 import org.reflections.util.FilterBuilder;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -25,11 +26,17 @@ public final class BehaveRunner {
 
     public static void main(String[] args) {
         new BehaveRunner(args)
-                .runSpecifications()
+                .runAll()
                 .printReport();
     }
 
-    private final List<Class<?>> specifications;
+    public static Report runOnly(Class<?> specClass) {
+        return new BehaveRunner().run(specClass).getReport();
+    }
+
+    public BehaveRunner() {
+        this(Collections.emptyList());
+    }
 
     public BehaveRunner(String ... specifications) {
         this(Stream.of(specifications)
@@ -72,37 +79,47 @@ public final class BehaveRunner {
                     .filterInputsBy(new FilterBuilder().include(FilterBuilder.prefix(packageName))));
     }
 
+    private final List<Class<?>> specifications;
+    private final Report report = new Report();
+
     public BehaveRunner(Class<?> ... specifications) {
         this(Arrays.asList(specifications));
     }
 
     public BehaveRunner(List<Class<?>> specifications) {
         this.specifications = specifications;
-        ReportFactory.init();
     }
 
-    public BehaveRunner runSpecifications() {
+    public BehaveRunner runAll() {
         specifications.forEach(this::run);
         return this;
     }
 
-    private final Report report = new Report();
-
-    public BehaveRunner run(Class<?> specification) {
+    private BehaveRunner run(Class<?> specification) {
+        ReportStore.pushReport(report);
         try {
             specification.newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
+        } finally {
+            Report poppedReport = ReportStore.popReport();
+            if (poppedReport != report) {
+                throw new IllegalStateException("Different report instances popped, error running nested" + getClass().getSimpleName());
+            }
         }
         return this;
     }
 
     public BehaveRunner printReport() {
         ReportFormatter formatter = new ConsoleFormatter();
-        formatter.format(ReportFactory.getReport());
+        formatter.format(report);
         return this;
+    }
+
+    public Report getReport() {
+        return report;
     }
 
 }

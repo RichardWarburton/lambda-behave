@@ -35,10 +35,14 @@ public final class Report {
     }
 
     public void recordSpecification(String suiteName, SpecificationReport report) {
+        onSuiteName(suiteName);
+        currentSuite.add(report);
+    }
+
+    public void onSuiteName(String suiteName) {
         if (noSuite() || seenNewSuite(suiteName)) {
             newSuite(suiteName);
         }
-        currentSuite.add(report);
     }
 
     private boolean seenNewSuite(String suite) {
@@ -49,9 +53,11 @@ public final class Report {
         return currentSuite == null;
     }
 
-
     public Stream<SuiteReport> suites() {
         return suites.stream();
     }
 
+    public List<SuiteReport> getSuites() {
+        return suites;
+    }
 }

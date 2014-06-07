@@ -2,7 +2,7 @@ package com.insightfullogic.lambdabehave;
 
 import com.insightfullogic.lambdabehave.impl.Specifier;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
-import com.insightfullogic.lambdabehave.impl.reports.ReportFactory;
+import com.insightfullogic.lambdabehave.impl.reports.ReportStore;
 
 /**
  * Callback interface to allow you to describe a suite of
@@ -18,7 +18,7 @@ public interface Suite {
      * @param behaviours the suite of behaviours you're specifying.
      */
     public static void describe(String name, Suite behaviours) {
-        Report report = ReportFactory.getReport();
+        Report report = ReportStore.getReport();
         Specifier specifier = new Specifier(name, report);
         Description description = new Description(specifier);
         behaviours.specifySuite(description);

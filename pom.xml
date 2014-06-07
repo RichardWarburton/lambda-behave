@@ -10,7 +10,6 @@
 
     <modules>
         <module>lambda-behave</module>
-        <module>lambda-behave-junit</module>
         <module>lambda-behave-examples</module>
     </modules>
 
