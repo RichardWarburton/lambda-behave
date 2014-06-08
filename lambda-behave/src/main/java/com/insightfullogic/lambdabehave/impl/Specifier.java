@@ -1,6 +1,5 @@
 package com.insightfullogic.lambdabehave.impl;
 
-import com.insightfullogic.lambdabehave.expectations.Expect;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
 import com.insightfullogic.lambdabehave.specifications.ColumnDataSpecification;
 import com.insightfullogic.lambdabehave.specifications.Specification;
@@ -56,38 +55,16 @@ public class Specifier {
 
     public void checkSpecifications(Report report) {
         report.onSuiteName(suiteName);
-        behaviours.forEach(behaviour -> {
-            runAll(prefixes);
-            checkBehaviour(behaviour, report);
-            runAll(postfixes);
-        });
+        completeBehaviours().forEach(behaviour -> report.recordSpecification(suiteName, behaviour.checkCompleteBehaviour()));
     }
 
-    private void runAll(List<Runnable> blocks) {
-        blocks.forEach(Runnable::run);
-    }
-
-    private void checkBehaviour(Behaviour behaviour, Report report) {
-        Specification specification = behaviour.getSpecification();
-        String description = behaviour.getDescription();
-        try {
-            Expect expect = new Expect();
-            specification.specifyBehaviour(expect);
-            report.recordSuccess(suiteName, description);
-        } catch (AssertionError cause) {
-            report.recordFailure(suiteName, description, cause);
-        } catch (Throwable cause) {
-            report.recordError(suiteName, description, cause);
-        }
+    public Stream<CompleteBehaviour> completeBehaviours() {
+        return behaviours.stream()
+                         .map(behaviour -> new CompleteBehaviour(prefixes, behaviour, postfixes, suiteName));
     }
 
     public String getSuiteName() {
         return suiteName;
-    }
-
-    public Stream<String> getDescriptions() {
-        return behaviours.stream()
-                         .map(Behaviour::getDescription);
     }
 
 }

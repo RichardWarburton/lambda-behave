@@ -19,21 +19,6 @@ public final class Report {
         suites.add(currentSuite);
     }
 
-    public void recordSuccess(String suite, String specification) {
-        recordSpecification(suite, new SpecificationReport(specification));
-    }
-
-    public void recordFailure(String suite, String specification, AssertionError cause) {
-        SpecificationReport specificationReport = new SpecificationReport(specification, Result.FAILURE, cause.getMessage());
-        recordSpecification(suite, specificationReport);
-    }
-
-    public void recordError(String suite, String specification, Throwable cause) {
-        cause.printStackTrace();
-        SpecificationReport specificationReport = new SpecificationReport(specification, Result.ERROR, cause.getMessage());
-        recordSpecification(suite, specificationReport);
-    }
-
     public void recordSpecification(String suiteName, SpecificationReport report) {
         onSuiteName(suiteName);
         currentSuite.add(report);

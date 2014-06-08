@@ -1,11 +1,11 @@
 package com.insightfullogic.lambdabehave.example;
 
-import com.insightfullogic.lambdabehave.JunitBehaveRunner;
+import com.insightfullogic.lambdabehave.JunitSuiteRunner;
 import org.junit.runner.RunWith;
 
 import static com.insightfullogic.lambdabehave.Suite.describe;
 
-@RunWith(JunitBehaveRunner.class)
+@RunWith(JunitSuiteRunner.class)
 public class DataDrivenSpec {{
 
     describe("a number", it -> {

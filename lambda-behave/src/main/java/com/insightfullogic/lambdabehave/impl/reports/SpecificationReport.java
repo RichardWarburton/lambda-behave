@@ -8,6 +8,20 @@ public final class SpecificationReport {
     private final Result result;
     private final String message;
 
+
+    public static SpecificationReport success(String specification) {
+        return new SpecificationReport(specification);
+    }
+
+    public static SpecificationReport failure(String specification, AssertionError cause) {
+        return new SpecificationReport(specification, Result.FAILURE, cause.getMessage());
+    }
+
+    public static SpecificationReport error(String specification, Throwable cause) {
+        //cause.printStackTrace();
+        return new SpecificationReport(specification, Result.ERROR, cause.getMessage());
+    }
+
     public SpecificationReport(String description, Result result, String message) {
         Objects.requireNonNull(description);
         Objects.requireNonNull(result);

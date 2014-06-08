@@ -11,7 +11,7 @@ import static com.insightfullogic.lambdabehave.Suite.describe;
 import static com.insightfullogic.lambdabehave.impl.reports.Result.ERROR;
 import static com.insightfullogic.lambdabehave.impl.reports.Result.FAILURE;
 
-@RunWith(JunitBehaveRunner.class)
+@RunWith(JunitSuiteRunner.class)
 public class LambdaBehaveSpec {{
 
     describe("lambda behave", it -> {
