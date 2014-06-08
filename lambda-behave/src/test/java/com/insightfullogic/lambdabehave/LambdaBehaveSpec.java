@@ -1,9 +1,6 @@
 package com.insightfullogic.lambdabehave;
 
-import com.insightfullogic.lambdabehave.fixtures.EmptyExample;
-import com.insightfullogic.lambdabehave.fixtures.SingleErrorExample;
-import com.insightfullogic.lambdabehave.fixtures.SingleExample;
-import com.insightfullogic.lambdabehave.fixtures.SingleFailingExample;
+import com.insightfullogic.lambdabehave.fixtures.*;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
 import com.insightfullogic.lambdabehave.impl.reports.SpecificationReport;
 import com.insightfullogic.lambdabehave.impl.reports.SuiteReport;
@@ -50,6 +47,15 @@ public class LambdaBehaveSpec {{
 
             SuiteReport suite = new SuiteReport("a one spec suite that errors");
             suite.add(new SpecificationReport("have a single erroring spec", ERROR, "EPIC FAIL"));
+
+            expect.that(report.getSuites()).contains(suite);
+        });
+
+        it.should("describe a spec that errors after passing asserts as erroring", expect -> {
+            Report report = runOnly(PassThenErrorExample.class);
+
+            SuiteReport suite = new SuiteReport("a pass then error suite");
+            suite.add(new SpecificationReport("pass then error", ERROR, "EPIC FAIL"));
 
             expect.that(report.getSuites()).contains(suite);
         });
