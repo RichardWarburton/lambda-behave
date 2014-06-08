@@ -9,8 +9,7 @@ import com.insightfullogic.lambdabehave.specifications.TwoColumnDataSpecificatio
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.util.stream.Collectors.toList;
+import java.util.stream.Stream;
 
 /**
  * A Specifier defines how .
@@ -86,10 +85,9 @@ public class Specifier {
         return suiteName;
     }
 
-    public List<String> getDescriptions() {
+    public Stream<String> getDescriptions() {
         return behaviours.stream()
-                         .map(Behaviour::getDescription)
-                         .collect(toList());
+                         .map(Behaviour::getDescription);
     }
 
 }

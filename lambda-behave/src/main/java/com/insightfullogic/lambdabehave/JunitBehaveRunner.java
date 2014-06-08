@@ -23,7 +23,16 @@ public final class JunitBehaveRunner extends Runner {
     public JunitBehaveRunner(Class<?> testClass) {
         this.testClass = testClass;
         specifier = BehaveRunner.declareOnly(testClass);
-        suiteDescription = createSuiteDescription(specifier.getSuiteName(), testClass);
+        suiteDescription = makeDescription(testClass);
+    }
+
+    private Description makeDescription(Class<?> testClass) {
+        final Description description = createSuiteDescription(specifier.getSuiteName(), testClass);
+        specifier.getDescriptions()
+                 .forEach(name -> {
+                     description.addChild(createTestDescription(testClass, name));
+                 });
+        return description;
     }
 
     @Override
