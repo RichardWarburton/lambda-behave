@@ -33,11 +33,6 @@ public final class JunitSuiteRunner extends ParentRunner<CompleteBehaviour> {
     }
 
     @Override
-    public Description getDescription() {
-        return super.getDescription();
-    }
-
-    @Override
     protected List<CompleteBehaviour> getChildren() {
         return children;
     }

@@ -18,7 +18,6 @@ public final class SpecificationReport {
     }
 
     public static SpecificationReport error(String specification, Throwable cause) {
-        //cause.printStackTrace();
         return new SpecificationReport(specification, Result.ERROR, cause.getMessage());
     }
 
