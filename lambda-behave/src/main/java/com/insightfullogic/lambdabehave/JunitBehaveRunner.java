@@ -8,6 +8,7 @@ import org.junit.runner.Runner;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunNotifier;
 
+import static org.junit.runner.Description.createSuiteDescription;
 import static org.junit.runner.Description.createTestDescription;
 
 /**
@@ -22,7 +23,7 @@ public final class JunitBehaveRunner extends Runner {
     public JunitBehaveRunner(Class<?> testClass) {
         this.testClass = testClass;
         specifier = BehaveRunner.declareOnly(testClass);
-        suiteDescription = createTestDescription(this.testClass, specifier.getSuiteName());
+        suiteDescription = createSuiteDescription(specifier.getSuiteName(), testClass);
     }
 
     @Override
