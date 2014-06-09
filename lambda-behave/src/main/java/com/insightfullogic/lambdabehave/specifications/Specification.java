@@ -8,6 +8,12 @@ import com.insightfullogic.lambdabehave.expectations.Expect;
 @FunctionalInterface
 public interface Specification {
 
+    /**
+     * Callback method which specifies the actual behaviour.
+     *
+     * @param expect
+     * @throws Exception
+     */
     public void specifyBehaviour(Expect expect) throws Exception;
 
 }

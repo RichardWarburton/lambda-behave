@@ -13,6 +13,15 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
+/**
+ * This runner can be used to run a specification suite with a junit runner,
+ * for example:
+ *
+ * <code>
+ *  @RunWith(JunitSuiteRunner.class)
+ *  public class LambdaBehaveSpec {{
+ * </code>
+ */
 public final class JunitSuiteRunner extends ParentRunner<CompleteBehaviour> {
 
     private final Class<?> testClass;

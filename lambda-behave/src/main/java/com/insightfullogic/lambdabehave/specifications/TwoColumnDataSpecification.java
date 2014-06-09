@@ -9,6 +9,13 @@ import com.insightfullogic.lambdabehave.expectations.Expect;
 @FunctionalInterface
 public interface TwoColumnDataSpecification<F, S> {
 
+    /**
+     * Callback method which specifies the actual behaviour.
+     *
+     * @param expect
+     * @param first
+     * @param second
+     */
     public void specifyBehaviour(Expect expect, F first, S second);
 
 }

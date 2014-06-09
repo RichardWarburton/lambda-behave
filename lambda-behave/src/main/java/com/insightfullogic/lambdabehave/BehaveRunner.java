@@ -14,7 +14,22 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 
 /**
- * Entrypoint to run the lambda behave specification library.
+ * <p>
+ * BehaveRunner is the entry point class for running the lambda behave
+ * specification library. You can run specifications from your own
+ * code, for example:
+ * </p>
+ *
+ * <code>
+ *  new BehaveRunner(specClass).runAll().getReport();
+ * </code>
+ *
+ * <p>
+ *     If you want to run lambda behave specifications via junit then
+ *     you should use {@link com.insightfullogic.lambdabehave.JunitSuiteRunner}.
+ * </p>
+ *
+ * @see com.insightfullogic.lambdabehave.JunitSuiteRunner
  */
 public final class BehaveRunner {
 
