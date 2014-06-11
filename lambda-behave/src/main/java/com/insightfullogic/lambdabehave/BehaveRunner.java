@@ -5,6 +5,8 @@ import com.insightfullogic.lambdabehave.impl.output.ConsoleFormatter;
 import com.insightfullogic.lambdabehave.impl.output.ReportFormatter;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
 import com.insightfullogic.lambdabehave.impl.reports.Specifiers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -61,7 +63,7 @@ public final class BehaveRunner {
         try {
             return Stream.of(Class.forName(name));
         } catch (ClassNotFoundException e) {
-            throw new IllegalArgumentException(e);
+            throw new SpecificationDeclarationException("Unable to create suite from: " + name, e);
         }
     }
 
@@ -89,10 +91,9 @@ public final class BehaveRunner {
     private Specifier declare(Class<?> specification) {
         try {
             specification.newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
+        } catch (InstantiationException | IllegalAccessException e) {
+            String message = "Unable to create specification from: " + specification.getSimpleName();
+            throw new SpecificationDeclarationException(message, e);
         }
         return Specifiers.pop();
     }

@@ -1,23 +1,30 @@
 package com.insightfullogic.lambdabehave.impl.reports;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Objects;
 
 public final class SpecificationReport {
+
+    private static final Logger log = LoggerFactory.getLogger(SpecificationReport.class);
 
     private final String description;
     private final Result result;
     private final String message;
 
-
-    public static SpecificationReport success(String specification) {
-        return new SpecificationReport(specification);
+    public static SpecificationReport success(String description) {
+        log.info(description + " has succeeded");
+        return new SpecificationReport(description);
     }
 
-    public static SpecificationReport failure(String specification, AssertionError cause) {
-        return new SpecificationReport(specification, Result.FAILURE, cause.getMessage());
+    public static SpecificationReport failure(String description, AssertionError cause) {
+        log.warn(description + " has failed");
+        return new SpecificationReport(description, Result.FAILURE, cause.getMessage());
     }
 
     public static SpecificationReport error(String specification, Throwable cause) {
+        log.warn(specification + " has finished in error");
         return new SpecificationReport(specification, Result.ERROR, cause.getMessage());
     }
 

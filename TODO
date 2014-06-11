@@ -1,7 +1,6 @@
 
 0.1:
     slf4j for logging 
-    public api javadoc
 
 Wishlist:
     ability to run individual tests - priority: intellij, maven, eclipse
