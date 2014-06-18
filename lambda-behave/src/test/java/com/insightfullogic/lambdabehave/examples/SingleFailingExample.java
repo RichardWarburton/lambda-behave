@@ -1,4 +1,4 @@
-package com.insightfullogic.lambdabehave.fixtures;
+package com.insightfullogic.lambdabehave.examples;
 
 import static com.insightfullogic.lambdabehave.Suite.describe;
 

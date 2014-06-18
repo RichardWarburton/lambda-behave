@@ -19,4 +19,5 @@ Wishlist:
     not
     matchers for arrays
     parallelism
+    fully detailed reports that state what asserts have been run
 

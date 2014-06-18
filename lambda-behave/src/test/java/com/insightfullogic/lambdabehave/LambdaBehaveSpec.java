@@ -1,6 +1,6 @@
 package com.insightfullogic.lambdabehave;
 
-import com.insightfullogic.lambdabehave.fixtures.*;
+import com.insightfullogic.lambdabehave.examples.*;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
 import com.insightfullogic.lambdabehave.impl.reports.SpecificationReport;
 import com.insightfullogic.lambdabehave.impl.reports.SuiteReport;
