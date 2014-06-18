@@ -1,9 +1,5 @@
 package com.insightfullogic.lambdabehave;
 
-import com.insightfullogic.lambdabehave.impl.Specifier;
-import com.insightfullogic.lambdabehave.impl.specifications.PairBuilder;
-import com.insightfullogic.lambdabehave.impl.specifications.TripletBuilder;
-import com.insightfullogic.lambdabehave.impl.specifications.ValueBuilder;
 import com.insightfullogic.lambdabehave.specifications.Column;
 import com.insightfullogic.lambdabehave.specifications.Specification;
 import com.insightfullogic.lambdabehave.specifications.ThreeColumns;
@@ -29,13 +25,8 @@ import com.insightfullogic.lambdabehave.specifications.TwoColumns;
  *
  * @see com.insightfullogic.lambdabehave.specifications.Specification
  */
-public final class Description {
+public interface Description {
 
-    private final Specifier specifier;
-
-    Description(Specifier specifier) {
-        this.specifier = specifier;
-    }
 
     /**
      * Specify a behaviour.
@@ -43,9 +34,7 @@ public final class Description {
      * @param description
      * @param specification
      */
-    public void should(String description, Specification specification) {
-        specifier.specifyBehaviour(description, specification);
-    }
+    public void should(String description, Specification specification);
 
     /**
      * Specify a single value data driven behaviour.
@@ -54,9 +43,7 @@ public final class Description {
      * @param <T>
      * @return
      */
-    public <T> Column<T> uses(T value) {
-        return new ValueBuilder<>(value, specifier);
-    }
+    public <T> Column<T> uses(T value);
 
     /**
      * Specify a two value data driven behaviour.
@@ -67,9 +54,7 @@ public final class Description {
      * @param <S>
      * @return
      */
-    public <F, S> TwoColumns<F, S> uses(F first, S second) {
-        return new PairBuilder<>(first, second, specifier);
-    }
+    public <F, S> TwoColumns<F, S> uses(F first, S second);
 
     /**
      * Specify a three value data driven behaviour.
@@ -82,26 +67,24 @@ public final class Description {
      * @param <T>
      * @return
      */
-    public <F, S, T> ThreeColumns<F, S, T> uses(F first, S second, T third) {
-        return new TripletBuilder<>(first, second, third, specifier);
-    }
+    public <F, S, T> ThreeColumns<F, S, T> uses(F first, S second, T third);
 
     /**
      * Run some code before each of the specifications.
      *
      * @param block the code to run.
      */
-    public void setsUp(Runnable block) {
-        specifier.addPrefix(block);
-    }
+    public void beforeEach(Runnable block);
+
+    public void beforeAll(Runnable block);
 
     /**
      * Run some code after each of the specifications.
      *
      * @param block the code to run.
      */
-    public void tearsDown(Runnable block) {
-        specifier.addPostfix(block);
-    }
+    public void afterEach(Runnable block);
+
+    public void afterAll(Runnable block);
 
 }

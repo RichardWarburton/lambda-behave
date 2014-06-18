@@ -1,10 +1,11 @@
 package com.insightfullogic.lambdabehave.impl;
 
+import com.insightfullogic.lambdabehave.Description;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
-import com.insightfullogic.lambdabehave.specifications.ColumnDataSpecification;
-import com.insightfullogic.lambdabehave.specifications.Specification;
-import com.insightfullogic.lambdabehave.specifications.ThreeColumnDataSpecification;
-import com.insightfullogic.lambdabehave.specifications.TwoColumnDataSpecification;
+import com.insightfullogic.lambdabehave.impl.specifications.PairBuilder;
+import com.insightfullogic.lambdabehave.impl.specifications.TripletBuilder;
+import com.insightfullogic.lambdabehave.impl.specifications.ValueBuilder;
+import com.insightfullogic.lambdabehave.specifications.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.stream.Stream;
 /**
  * A Specifier defines how .
  */
-public class Specifier {
+public class Specifier implements Description {
 
     private final String suiteName;
 
@@ -29,28 +30,55 @@ public class Specifier {
         postfixes = new ArrayList<>();
     }
 
-    public void specifyBehaviour(String description, Specification specification) {
-        behaviours.add(new Behaviour(description, specification));
-    }
-
     public <T> void specifyBehaviour(String description, T value, ColumnDataSpecification<T> specification) {
-        specifyBehaviour(description, expect -> specification.specifyBehaviour(expect, value));
+        should(description, expect -> specification.specifyBehaviour(expect, value));
     }
 
     public <F, S> void specifyBehaviour(String description, F first, S second, TwoColumnDataSpecification<F, S> specification) {
-        specifyBehaviour(description, expect -> specification.specifyBehaviour(expect, first, second));
+        should(description, expect -> specification.specifyBehaviour(expect, first, second));
     }
 
     public <F, S, T> void specifyBehaviour(String description, F first, S second, T third, ThreeColumnDataSpecification<F, S, T> specification) {
-        specifyBehaviour(description, expect -> specification.specifyBehaviour(expect, first, second, third));
+        should(description, expect -> specification.specifyBehaviour(expect, first, second, third));
     }
 
-    public void addPrefix(Runnable block) {
+    @Override
+    public void should(String description, Specification specification) {
+        behaviours.add(new Behaviour(description, specification));
+    }
+
+    @Override
+    public <T> Column<T> uses(T value) {
+        return new ValueBuilder<>(value, this);
+    }
+
+    @Override
+    public <F, S> TwoColumns<F, S> uses(F first, S second) {
+        return new PairBuilder<>(first, second, this);
+    }
+
+    @Override
+    public <F, S, T> ThreeColumns<F, S, T> uses(F first, S second, T third) {
+        return new TripletBuilder<>(first, second, third, this);
+    }
+
+    @Override
+    public void beforeEach(Runnable block) {
         prefixes.add(block);
     }
 
-    public void addPostfix(Runnable block) {
+    @Override
+    public void beforeAll(Runnable block) {
+        // TODO
+    }
+
+    public void afterEach(Runnable block) {
         postfixes.add(block);
+    }
+
+    @Override
+    public void afterAll(Runnable block) {
+        // TODO
     }
 
     public void checkSpecifications(Report report) {
