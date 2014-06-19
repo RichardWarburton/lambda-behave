@@ -8,7 +8,6 @@ public final class SpecificationReport {
     private final Result result;
     private final String message;
 
-
     public static SpecificationReport success(String specification) {
         return new SpecificationReport(specification);
     }
