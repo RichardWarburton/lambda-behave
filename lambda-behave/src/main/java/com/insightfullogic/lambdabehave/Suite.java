@@ -34,8 +34,7 @@ public interface Suite {
      */
     public static void describe(String name, Suite behaviours) {
         Specifier specifier = new Specifier(name);
-        Description description = new Description(specifier);
-        behaviours.specifySuite(description);
+        behaviours.specifySuite(specifier);
         Specifiers.push(specifier);
     }
 
