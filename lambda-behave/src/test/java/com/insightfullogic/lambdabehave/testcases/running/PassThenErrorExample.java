@@ -1,4 +1,4 @@
-package com.insightfullogic.lambdabehave.examples;
+package com.insightfullogic.lambdabehave.testcases.running;
 
 import static com.insightfullogic.lambdabehave.Suite.describe;
 

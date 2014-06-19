@@ -1,6 +1,6 @@
 package com.insightfullogic.lambdabehave;
 
-import com.insightfullogic.lambdabehave.examples.*;
+import com.insightfullogic.lambdabehave.testcases.running.*;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
 import com.insightfullogic.lambdabehave.impl.reports.SpecificationReport;
 import com.insightfullogic.lambdabehave.impl.reports.SuiteReport;
@@ -12,9 +12,9 @@ import static com.insightfullogic.lambdabehave.impl.reports.Result.ERROR;
 import static com.insightfullogic.lambdabehave.impl.reports.Result.FAILURE;
 
 @RunWith(JunitSuiteRunner.class)
-public class LambdaBehaveSpec {{
+public class TestingRunningSpec {{
 
-    describe("lambda behave", it -> {
+    describe("lambda behave specifications", it -> {
 
         it.should("run a suite that it is specified to run", expect -> {
             Report report = runOnly(EmptyExample.class);
