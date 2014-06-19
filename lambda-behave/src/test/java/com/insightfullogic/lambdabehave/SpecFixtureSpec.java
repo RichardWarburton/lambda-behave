@@ -5,17 +5,17 @@ import com.insightfullogic.lambdabehave.testcases.fixtures.ShouldSetupMulti;
 import com.insightfullogic.lambdabehave.testcases.fixtures.ShouldSetupNone;
 import org.junit.runner.RunWith;
 import org.mockito.InOrder;
-import org.mockito.Mockito;
 
 import static com.insightfullogic.lambdabehave.BehaveRunner.runOnly;
 import static com.insightfullogic.lambdabehave.Suite.describe;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.verifyZeroInteractions;
 
 @RunWith(JunitSuiteRunner.class)
-public class FixtureSpec {{
+public class SpecFixtureSpec {{
 
-    describe("lambda behave fixtures", it -> {
+    describe("lambda behave spec fixtures", it -> {
 
         it.should("execute shouldSetup() before a spec1 and shouldTearDown() after a spec1", expect -> {
             runOnly(ShouldSetup.class);
@@ -46,9 +46,9 @@ public class FixtureSpec {{
         it.should("not execute shouldSetup() or shouldTearDown() when there are no specs", expect -> {
             runOnly(ShouldSetupNone.class);
 
-            Mockito.verifyZeroInteractions(ShouldSetupNone.setup, ShouldSetupNone.tearDown);
+            verifyZeroInteractions(ShouldSetupNone.setup, ShouldSetupNone.tearDown);
         });
-        
+
     });
 
 }}

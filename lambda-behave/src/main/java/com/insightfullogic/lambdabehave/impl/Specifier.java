@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static java.util.stream.Stream.concat;
+
 /**
  * A Specifier defines how .
  */
@@ -18,16 +20,20 @@ public class Specifier implements Description {
 
     private final String suiteName;
 
+    private final List<Runnable> initializers;
     private final List<Runnable> prefixes;
     private final List<Behaviour> behaviours;
     private final List<Runnable> postfixes;
+    private final List<Runnable> completers;
 
     public Specifier(String suite) {
         this.suiteName = suite;
 
+        initializers = new ArrayList<>();
         prefixes = new ArrayList<>();
         behaviours = new ArrayList<>();
         postfixes = new ArrayList<>();
+        completers = new ArrayList<>();
     }
 
     public <T> void specifyBehaviour(String description, T value, ColumnDataSpecification<T> specification) {
@@ -69,7 +75,7 @@ public class Specifier implements Description {
 
     @Override
     public void shouldInitialize(Runnable block) {
-        // TODO
+        initializers.add(block);
     }
 
     public void shouldTearDown(Runnable block) {
@@ -78,7 +84,7 @@ public class Specifier implements Description {
 
     @Override
     public void shouldComplete(Runnable block) {
-        // TODO
+        completers.add(block);
     }
 
     public void checkSpecifications(Report report) {
@@ -87,8 +93,23 @@ public class Specifier implements Description {
     }
 
     public Stream<CompleteBehaviour> completeBehaviours() {
+        if (behaviours.isEmpty())
+            return Stream.empty();
+
+        return concat(
+                concat(completeFixtures("initializer", initializers),
+                       completeSpecifications()),
+                       completeFixtures("completer", completers));
+    }
+
+    private Stream<CompleteBehaviour> completeFixtures(String description, List<Runnable> blocks) {
+        return blocks.stream()
+                     .map(block -> new CompleteFixture(description, block));
+    }
+
+    private Stream<CompleteBehaviour> completeSpecifications() {
         return behaviours.stream()
-                         .map(behaviour -> new CompleteBehaviour(prefixes, behaviour, postfixes, suiteName));
+                         .map(behaviour -> new CompleteSpecification(prefixes, behaviour, postfixes, suiteName));
     }
 
     public String getSuiteName() {

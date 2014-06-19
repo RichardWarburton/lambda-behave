@@ -7,7 +7,7 @@ import com.insightfullogic.lambdabehave.specifications.ThreeColumns;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TripletBuilder<F, S, T> implements ThreeColumns<F,S,T> {
+public final class TripletBuilder<F, S, T> implements ThreeColumns<F,S,T> {
 
     private final List<Row> values;
     private final Specifier specifier;

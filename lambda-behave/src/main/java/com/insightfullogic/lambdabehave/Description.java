@@ -76,6 +76,11 @@ public interface Description {
      */
     public void shouldSetup(Runnable block);
 
+    /**
+     * Run some code before all of the specifications.
+     *
+     * @param block the code to run.
+     */
     public void shouldInitialize(Runnable block);
 
     /**
@@ -85,6 +90,11 @@ public interface Description {
      */
     public void shouldTearDown(Runnable block);
 
+    /**
+     * Run some code after all of the specifications.
+     *
+     * @param block the code to run.
+     */
     public void shouldComplete(Runnable block);
 
 }

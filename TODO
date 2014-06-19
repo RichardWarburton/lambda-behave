@@ -1,11 +1,10 @@
 
 0.1:
-    slf4j for logging 
+    slf4j for logging
 
 Wishlist:
     ability to run individual tests - priority: intellij, maven, eclipse
     vertx integration, or possibly the ability to do junit runner integration
-    before class/after class
     expect exceptions
     samir's crazy idea
     asserts on a different thread/async support

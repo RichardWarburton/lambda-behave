@@ -7,7 +7,7 @@ import com.insightfullogic.lambdabehave.specifications.ColumnDataSpecification;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ValueBuilder<T> implements Column<T> {
+public final class ValueBuilder<T> implements Column<T> {
 
     private final List<T> values;
     private final Specifier specifier;

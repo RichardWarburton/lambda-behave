@@ -6,7 +6,7 @@ import com.insightfullogic.lambdabehave.impl.reports.SpecificationReport;
 
 import java.io.PrintStream;
 
-public class ConsoleFormatter implements ReportFormatter {
+public final class ConsoleFormatter implements ReportFormatter {
 
     @Override
     public void format(Report report) {

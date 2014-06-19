@@ -5,7 +5,7 @@ import com.insightfullogic.lambdabehave.specifications.Specification;
 /**
  * A behaviour is a specification with its associated description.
  */
-public class Behaviour {
+public final class Behaviour {
 
     private final String description;
     private final Specification specification;

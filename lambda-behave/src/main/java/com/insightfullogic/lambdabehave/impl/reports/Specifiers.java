@@ -8,7 +8,7 @@ import java.util.Deque;
 /**
  * Maintains a stack of Specifier instances to allow nested runners;
  */
-public class Specifiers {
+public final class Specifiers {
 
     private static ThreadLocal<Deque<Specifier>> specifiers;
 
