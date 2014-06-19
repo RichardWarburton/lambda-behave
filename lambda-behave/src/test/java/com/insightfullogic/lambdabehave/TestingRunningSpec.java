@@ -22,36 +22,36 @@ public class TestingRunningSpec {{
             expect.that(report.getSuites()).contains(new SuiteReport("An empty suite"));
         });
 
-        it.should("run a single spec that passes", expect -> {
+        it.should("run a single spec1 that passes", expect -> {
             Report report = runOnly(SingleExample.class);
 
-            SuiteReport suite = new SuiteReport("a one spec suite");
-            suite.add(new SpecificationReport("have a single spec"));
+            SuiteReport suite = new SuiteReport("a one spec1 suite");
+            suite.add(new SpecificationReport("have a single spec1"));
 
             expect.that(report.getSuites()).contains(suite);
         });
 
-        it.should("run a single spec that fails", expect -> {
+        it.should("run a single spec1 that fails", expect -> {
             Report report = runOnly(SingleFailingExample.class);
 
-            SuiteReport suite = new SuiteReport("a one spec suite that fails");
-            suite.add(new SpecificationReport("have a single failing spec", FAILURE, "\n" +
+            SuiteReport suite = new SuiteReport("a one spec1 suite that fails");
+            suite.add(new SpecificationReport("have a single failing spec1", FAILURE, "\n" +
                     "Expected: is <false>\n" +
                     "     but: was <true>"));
 
             expect.that(report.getSuites()).contains(suite);
         });
 
-        it.should("run a single spec that errors", expect -> {
+        it.should("run a single spec1 that errors", expect -> {
             Report report = runOnly(SingleErrorExample.class);
 
-            SuiteReport suite = new SuiteReport("a one spec suite that errors");
-            suite.add(new SpecificationReport("have a single erroring spec", ERROR, "EPIC FAIL"));
+            SuiteReport suite = new SuiteReport("a one spec1 suite that errors");
+            suite.add(new SpecificationReport("have a single erroring spec1", ERROR, "EPIC FAIL"));
 
             expect.that(report.getSuites()).contains(suite);
         });
 
-        it.should("describe a spec that errors after passing asserts as erroring", expect -> {
+        it.should("describe a spec1 that errors after passing asserts as erroring", expect -> {
             Report report = runOnly(PassThenErrorExample.class);
 
             SuiteReport suite = new SuiteReport("a pass then error suite");

@@ -74,17 +74,17 @@ public interface Description {
      *
      * @param block the code to run.
      */
-    public void beforeEach(Runnable block);
+    public void shouldSetup(Runnable block);
 
-    public void beforeAll(Runnable block);
+    public void shouldInitialize(Runnable block);
 
     /**
      * Run some code after each of the specifications.
      *
      * @param block the code to run.
      */
-    public void afterEach(Runnable block);
+    public void shouldTearDown(Runnable block);
 
-    public void afterAll(Runnable block);
+    public void shouldComplete(Runnable block);
 
 }

@@ -63,21 +63,21 @@ public class Specifier implements Description {
     }
 
     @Override
-    public void beforeEach(Runnable block) {
+    public void shouldSetup(Runnable block) {
         prefixes.add(block);
     }
 
     @Override
-    public void beforeAll(Runnable block) {
+    public void shouldInitialize(Runnable block) {
         // TODO
     }
 
-    public void afterEach(Runnable block) {
+    public void shouldTearDown(Runnable block) {
         postfixes.add(block);
     }
 
     @Override
-    public void afterAll(Runnable block) {
+    public void shouldComplete(Runnable block) {
         // TODO
     }
 
