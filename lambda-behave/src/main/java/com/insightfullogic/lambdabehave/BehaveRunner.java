@@ -5,6 +5,8 @@ import com.insightfullogic.lambdabehave.impl.output.ConsoleFormatter;
 import com.insightfullogic.lambdabehave.impl.output.ReportFormatter;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
 import com.insightfullogic.lambdabehave.impl.reports.Specifiers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,7 +16,22 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 
 /**
- * Entrypoint to run the lambda behave specification library.
+ * <p>
+ * BehaveRunner is the entry point class for running the lambda behave
+ * specification library. You can run specifications from your own
+ * code, for example:
+ * </p>
+ *
+ * <code>
+ *  new BehaveRunner(specClass).runAll().getReport();
+ * </code>
+ *
+ * <p>
+ *     If you want to run lambda behave specifications via junit then
+ *     you should use {@link com.insightfullogic.lambdabehave.JunitSuiteRunner}.
+ * </p>
+ *
+ * @see com.insightfullogic.lambdabehave.JunitSuiteRunner
  */
 public final class BehaveRunner {
 
@@ -46,7 +63,7 @@ public final class BehaveRunner {
         try {
             return Stream.of(Class.forName(name));
         } catch (ClassNotFoundException e) {
-            throw new IllegalArgumentException(e);
+            throw new SpecificationDeclarationException("Unable to create suite from: " + name, e);
         }
     }
 
@@ -74,10 +91,9 @@ public final class BehaveRunner {
     private Specifier declare(Class<?> specification) {
         try {
             specification.newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
+        } catch (InstantiationException | IllegalAccessException e) {
+            String message = "Unable to create specification from: " + specification.getSimpleName();
+            throw new SpecificationDeclarationException(message, e);
         }
         return Specifiers.pop();
     }

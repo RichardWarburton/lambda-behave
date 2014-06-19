@@ -8,12 +8,25 @@ import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.ParentRunner;
 import org.junit.runners.model.InitializationError;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
+/**
+ * This runner can be used to run a specification suite with a junit runner,
+ * for example:
+ *
+ * <code>
+ *  @RunWith(JunitSuiteRunner.class)
+ *  public class LambdaBehaveSpec {{
+ * </code>
+ */
 public final class JunitSuiteRunner extends ParentRunner<CompleteBehaviour> {
+
+    private static final Logger log = LoggerFactory.getLogger(JunitSuiteRunner.class);
 
     private final Class<?> testClass;
     private final List<CompleteBehaviour> children;
@@ -49,8 +62,7 @@ public final class JunitSuiteRunner extends ParentRunner<CompleteBehaviour> {
             reportResults(notifier, report, describeChild(child));
         } catch (Exception e) {
             notifier.fireTestFailure(new Failure(getDescription(), e));
-            // TODO: log
-            e.printStackTrace();
+            log.error(e.getMessage(), e);
         }
     }
 

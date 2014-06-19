@@ -13,5 +13,11 @@ public interface Column<T> {
      */
     Column<T> and(T value);
 
+    /**
+     * Specify the actual behaviour.
+     *
+     * @param description
+     * @param specification
+     */
     void toShow(String description, ColumnDataSpecification<T> specification);
 }
