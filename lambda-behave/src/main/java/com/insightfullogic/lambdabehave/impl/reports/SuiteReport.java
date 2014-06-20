@@ -24,6 +24,10 @@ public final class SuiteReport {
         return specifications.stream();
     }
 
+    public List<SpecificationReport> getSpecifications() {
+        return specifications;
+    }
+
     public String getName() {
         return name;
     }

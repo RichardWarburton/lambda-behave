@@ -4,7 +4,7 @@ import com.insightfullogic.lambdabehave.expectations.Expect;
 import com.insightfullogic.lambdabehave.impl.reports.SpecificationReport;
 import com.insightfullogic.lambdabehave.specifications.Specification;
 
-import java.util.List;
+import java.util.Optional;
 
 import static com.insightfullogic.lambdabehave.impl.reports.SpecificationReport.*;
 
@@ -14,12 +14,12 @@ import static com.insightfullogic.lambdabehave.impl.reports.SpecificationReport.
  */
 final class CompleteSpecification implements CompleteBehaviour {
 
-    private final List<Runnable> prefixes;
+    private final Blocks prefixes;
     private final Behaviour behaviour;
-    private final List<Runnable> postfixes;
+    private final Blocks postfixes;
     private final String suiteName;
 
-    public CompleteSpecification(List<Runnable> prefixes, Behaviour behaviour, List<Runnable> postfixes, String suiteName) {
+    public CompleteSpecification(Blocks prefixes, Behaviour behaviour, Blocks postfixes, String suiteName) {
         this.prefixes = prefixes;
         this.behaviour = behaviour;
         this.postfixes = postfixes;
@@ -28,10 +28,15 @@ final class CompleteSpecification implements CompleteBehaviour {
 
     @Override
     public SpecificationReport checkCompleteBehaviour() {
-        runAll(prefixes);
-        SpecificationReport report = checkBehaviour();
-        runAll(postfixes);
-        return report;
+        SpecificationReport report = prefixes.runAll(getDescription())
+                                    .orElseGet(this::checkBehaviour);
+
+        Optional<SpecificationReport> suffixReport = postfixes.runAll(getDescription());
+        if (report.isSuccess() && suffixReport.isPresent()) {
+            return suffixReport.get();
+        } else {
+            return report;
+        }
     }
 
     private SpecificationReport checkBehaviour() {
@@ -46,10 +51,6 @@ final class CompleteSpecification implements CompleteBehaviour {
         } catch (Throwable cause) {
             return error(description, cause);
         }
-    }
-
-    private void runAll(List<Runnable> blocks) {
-        blocks.forEach(Runnable::run);
     }
 
     @Override

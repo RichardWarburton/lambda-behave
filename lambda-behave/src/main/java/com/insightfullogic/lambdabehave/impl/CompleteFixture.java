@@ -1,13 +1,14 @@
 package com.insightfullogic.lambdabehave.impl;
 
+import com.insightfullogic.lambdabehave.Block;
 import com.insightfullogic.lambdabehave.impl.reports.SpecificationReport;
 
 final class CompleteFixture implements CompleteBehaviour {
 
     private final String description;
-    private final Runnable block;
+    private final Block block;
 
-    public CompleteFixture(String description, Runnable block) {
+    public CompleteFixture(String description, Block block) {
         this.description = description;
         this.block = block;
     }

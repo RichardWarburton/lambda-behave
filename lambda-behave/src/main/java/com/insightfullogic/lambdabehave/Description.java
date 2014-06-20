@@ -74,27 +74,27 @@ public interface Description {
      *
      * @param block the code to run.
      */
-    public void shouldSetup(Runnable block);
+    public void shouldSetup(Block block);
 
     /**
      * Run some code before all of the specifications.
      *
      * @param block the code to run.
      */
-    public void shouldInitialize(Runnable block);
+    public void shouldInitialize(Block block);
 
     /**
      * Run some code after each of the specifications.
      *
      * @param block the code to run.
      */
-    public void shouldTearDown(Runnable block);
+    public void shouldTearDown(Block block);
 
     /**
      * Run some code after all of the specifications.
      *
      * @param block the code to run.
      */
-    public void shouldComplete(Runnable block);
+    public void shouldComplete(Block block);
 
 }

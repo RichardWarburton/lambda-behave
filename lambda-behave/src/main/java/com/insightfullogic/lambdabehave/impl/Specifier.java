@@ -1,5 +1,6 @@
 package com.insightfullogic.lambdabehave.impl;
 
+import com.insightfullogic.lambdabehave.Block;
 import com.insightfullogic.lambdabehave.Description;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
 import com.insightfullogic.lambdabehave.impl.specifications.PairBuilder;
@@ -20,20 +21,20 @@ public class Specifier implements Description {
 
     private final String suiteName;
 
-    private final List<Runnable> initializers;
-    private final List<Runnable> prefixes;
+    private final Blocks initializers;
+    private final Blocks prefixes;
     private final List<Behaviour> behaviours;
-    private final List<Runnable> postfixes;
-    private final List<Runnable> completers;
+    private final Blocks postfixes;
+    private final Blocks completers;
 
     public Specifier(String suite) {
         this.suiteName = suite;
 
-        initializers = new ArrayList<>();
-        prefixes = new ArrayList<>();
+        initializers = new Blocks();
+        prefixes = new Blocks();
         behaviours = new ArrayList<>();
-        postfixes = new ArrayList<>();
-        completers = new ArrayList<>();
+        postfixes = new Blocks();
+        completers = new Blocks();
     }
 
     public <T> void specifyBehaviour(String description, T value, ColumnDataSpecification<T> specification) {
@@ -69,21 +70,21 @@ public class Specifier implements Description {
     }
 
     @Override
-    public void shouldSetup(Runnable block) {
+    public void shouldSetup(Block block) {
         prefixes.add(block);
     }
 
     @Override
-    public void shouldInitialize(Runnable block) {
+    public void shouldInitialize(Block block) {
         initializers.add(block);
     }
 
-    public void shouldTearDown(Runnable block) {
+    public void shouldTearDown(Block block) {
         postfixes.add(block);
     }
 
     @Override
-    public void shouldComplete(Runnable block) {
+    public void shouldComplete(Block block) {
         completers.add(block);
     }
 
@@ -97,14 +98,9 @@ public class Specifier implements Description {
             return Stream.empty();
 
         return concat(
-                concat(completeFixtures("initializer", initializers),
+                concat(initializers.completeFixtures("initializer"),
                        completeSpecifications()),
-                       completeFixtures("completer", completers));
-    }
-
-    private Stream<CompleteBehaviour> completeFixtures(String description, List<Runnable> blocks) {
-        return blocks.stream()
-                     .map(block -> new CompleteFixture(description, block));
+                       completers.completeFixtures("completer"));
     }
 
     private Stream<CompleteBehaviour> completeSpecifications() {
