@@ -16,6 +16,8 @@ public final class Expect {
         return new StringExpectation(str);
     }
 
-    // TODO: not
+    public void toThrow(Class<? extends Throwable> exceptionClass) {
+
+    }
 
 }
