@@ -4,9 +4,12 @@
     <groupId>com.insightfullogic</groupId>
     <artifactId>lambda-behave-parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1-SNAPSHOT</version>
     <name>Lambda Behave Parent</name>
-    <url>http://maven.apache.org</url>
+    <description>
+        A modern testing and behavioural specification framework for Java 8
+    </description>
+    <url>http://richardwarburton.github.io/lambda-behave/</url>
 
     <modules>
         <module>lambda-behave</module>
@@ -84,6 +87,28 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <developers>
+        <developer>
+            <name>Richard Warburton</name>
+            <email>richard.warburton@gmail.com</email>
+            <organization>Monotonic Ltd.</organization>
+            <organizationUrl>http://www.insightfullogic.com</organizationUrl>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git@github.com:RichardWarburton/lambda-behave.git</connection>
+        <developerConnection>scm:git:git@github.com:RichardWarburton/lambda-behave.git</developerConnection>
+        <url>git@github.com:RichardWarburton/lambda-behave.git</url>
+    </scm>
 
 </project>
 
