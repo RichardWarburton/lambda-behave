@@ -10,15 +10,15 @@ public interface TwoColumns<F, S> {
      *
      * @param first the first element to add.
      * @param second the second element to add.
-     * @return this
+     * @return this the fluent builder object
      */
     TwoColumns<F, S> and(F first, S second);
 
     /**
      * Specify the actual behaviour.
      *
-     * @param description
-     * @param specification
+     * @param description a human readable description of the behaviour you're expecting.
+     * @param specification a function which describes in code the expected behaviour.
      */
     void toShow(String description, TwoColumnDataSpecification<F, S> specification);
 }

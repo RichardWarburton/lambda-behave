@@ -27,45 +27,44 @@ import com.insightfullogic.lambdabehave.specifications.TwoColumns;
  */
 public interface Description {
 
-
     /**
      * Specify a behaviour.
      *
-     * @param description
-     * @param specification
+     * @param description a human readable description of the behaviour you're expecting.
+     * @param specification a function which describes in code the expected behaviour.
      */
     public void should(String description, Specification specification);
 
     /**
      * Specify a single value data driven behaviour.
      *
-     * @param value
-     * @param <T>
-     * @return
+     * @param value the only value to parameterise by
+     * @param <T> the type of the value
+     * @return a fluent builder for a column of values
      */
     public <T> Column<T> uses(T value);
 
     /**
      * Specify a two value data driven behaviour.
      *
-     * @param first
-     * @param second
-     * @param <F>
-     * @param <S>
-     * @return
+     * @param first the first value to parameterise by
+     * @param second the second value to parameterise by
+     * @param <F> the type of the first value
+     * @param <S> the type of the second value
+     * @return a fluent builder for two columns of values
      */
     public <F, S> TwoColumns<F, S> uses(F first, S second);
 
     /**
      * Specify a three value data driven behaviour.
      *
-     * @param first
-     * @param second
-     * @param third
-     * @param <F>
-     * @param <S>
-     * @param <T>
-     * @return
+     * @param first the first value to parameterise by
+     * @param second the second value to parameterise by
+     * @param third the third value to parameterise by
+     * @param <F> the type of the first value
+     * @param <S> the type of the second value
+     * @param <T> the type of the third value
+     * @return a fluent builder for two columns of values
      */
     public <F, S, T> ThreeColumns<F, S, T> uses(F first, S second, T third);
 

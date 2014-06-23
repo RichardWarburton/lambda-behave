@@ -12,9 +12,9 @@ public interface TwoColumnDataSpecification<F, S> {
     /**
      * Callback method which specifies the actual behaviour.
      *
-     * @param expect
-     * @param first
-     * @param second
+     * @param expect the callback object used to describe expectations
+     * @param first the first parameter value
+     * @param second the second parameter value
      */
     public void specifyBehaviour(Expect expect, F first, S second);
 

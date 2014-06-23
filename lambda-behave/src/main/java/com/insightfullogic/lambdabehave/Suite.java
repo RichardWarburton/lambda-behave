@@ -6,19 +6,7 @@ import com.insightfullogic.lambdabehave.impl.reports.Specifiers;
 /**
  * <p>
  * Callback interface to allow you to describe a suite of
- * behaviours about some concept, for example you might write:
- * </p>
- *
- * <code>
- *  describe("a stack", it -> {
-        it.should("be empty when created", expect -> {
-            expect.that(stack).isEmpty();
-        });
-    });
- * </code>
- *
- * <p>
- *     In order to describe the a stack.
+ * behaviours about some concept,
  * </p>
  *
  * @see com.insightfullogic.lambdabehave.Description
