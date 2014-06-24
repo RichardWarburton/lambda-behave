@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <title>Lambda Behave by RichardWarburton</title>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Lambda Behave : A modern testing and behavioural specification framework for Java 8" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Lambda Behave</title>
   </head>
 
   <body>
-    <div id="container">
-      <div class="inner">
 
-        <header>
-          <h1>Lambda Behave</h1>
-          <h2>A modern testing and behavioural specification framework for Java 8</h2>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/RichardWarburton/lambda-behave">View on GitHub</a>
+
+          <h1 id="project_title">Lambda Behave</h1>
+          <h2 id="project_tagline">A modern testing and behavioural specification framework for Java 8</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/RichardWarburton/lambda-behave/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/RichardWarburton/lambda-behave/tarball/master">Download this project as a tar.gz file</a>
+            </section>
         </header>
+    </div>
 
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/RichardWarburton/lambda-behave/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/RichardWarburton/lambda-behave/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/RichardWarburton/lambda-behave" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
-
-        <hr>
-
-        <section id="main_content">
-          <h3>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>
 <a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h3>
 
 <p>If you're a Java developer and you've seen the fluent, modern specification frameworks available in other programming languages such as spock or jasmine then Lambda Behave is for you. Its goal is to make testing a more pleasant experience than it currently is with junit.</p>
@@ -64,7 +64,7 @@
 
 <ul>
 <li>If you want to specify a property about your system use <code>it.should</code>.</li>
-<li>If you want describe an expectation of that property, use <code>expect.that</code>. This will get you to a fluent API restricted to the type of value that you're making the expectation about. The expectation system is based upon hamcrest. Lambda Behave doesn't compromised the ability to compose matchers in favour of fluency - if you want to compose in more complex flavours simply use <code>expect.that(value).is()</code> and then you can use regular Hamcrest matchers. In my experience this is a rare, albeit useful, breakout option.</li>
+<li>If you want describe an expectation of that property, use <code>expect.that</code>. This will get you to a fluent API restricted to the type of value that you're making the expectation about. The expectation system is based upon hamcrest. Lambda Behave doesn't compromise the ability to compose matchers in favour of fluency - if you want to compose in more complex flavours simply use <code>expect.that(value).is()</code> and then you can use regular Hamcrest matchers. In my experience this is a rare, albeit useful, breakout option.</li>
 <li>If you want to setup or teardown data before or after each specification use <code>it.shouldSetup</code> and <code>it.shouldTearDown</code>.</li>
 <li>If you want to setup or teardown data before or after each suite use <code>it.shouldInitialize</code> and <code>it.shouldComplete</code>.</li>
 <li>Don't worry - I know some Java 8 lambdafied APIs don't deal with exceptions very well but you can throw exceptions in all our callbacks and then will cause the appropriate error to be reported, not just break the library.</li>
@@ -105,7 +105,7 @@
 <h3>
 <a name="junit-integration" class="anchor" href="#junit-integration"><span class="octicon octicon-link"></span></a>Junit Integration</h3>
 
-<p>Lambda behave also offers a junit runner. This lets you easily integrate into existing your existing test suite, or the tests via an Eclipse, Intellij, Netbeans, Maven, Gradle or Ant. You can use annotations to drive this:</p>
+<p>Lambda Behave also offers a junit runner. This lets you easily integrate into existing your existing test suite, or the tests via an Eclipse, Intellij, Netbeans, Maven, Gradle or Ant. You can use annotations to drive this:</p>
 
 <pre><code>@RunWith(JunitSuiteRunner.class)
 public class StackSpec {{
@@ -119,17 +119,21 @@ public class StackSpec {{
 <h3>
 <a name="how-to-contribute" class="anchor" href="#how-to-contribute"><span class="octicon octicon-link"></span></a>How to contribute</h3>
 
-<p>Patches should be submitted as github pull requests, issues filed via the github.</p>
+<p>Patches should be submitted as github pull requests, issues filed via <a href="https://github.com/RichardWarburton/lambda-behave">the github project</a>.</p>
 
 <p>Have fun!</p>
-        </section>
+      </section>
+    </div>
 
-        <footer>
-          Lambda Behave is maintained by <a href="https://github.com/RichardWarburton">RichardWarburton</a><br>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Lambda Behave maintained by <a href="https://github.com/RichardWarburton">RichardWarburton</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
 
-                  <script type="text/javascript">
+              <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -140,7 +144,6 @@ public class StackSpec {{
             } catch(err) {}
           </script>
 
-      </div>
-    </div>
+
   </body>
 </html>
