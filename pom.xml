@@ -106,6 +106,7 @@
                     <useReleaseProfile>false</useReleaseProfile>
                     <releaseProfiles>release</releaseProfiles>
                     <goals>deploy</goals>
+                    <!-- Exists to force the gpg signer to not hang -->
                     <mavenExecutorId>forked-path</mavenExecutorId>
                 </configuration>
             </plugin>
