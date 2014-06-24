@@ -81,7 +81,6 @@
                         </goals>
                         <configuration>
                             <useAgent>false</useAgent>
-                            <executable>/usr/bin/gpg</executable>
                         </configuration>
                     </execution>
                 </executions>
