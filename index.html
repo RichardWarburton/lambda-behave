@@ -67,7 +67,7 @@
 <li>If you want describe an expectation of that property, use <code>expect.that</code>. This will get you to a fluent API restricted to the type of value that you're making the expectation about. The expectation system is based upon hamcrest. Lambda Behave doesn't compromise the ability to compose matchers in favour of fluency - if you want to compose in more complex flavours simply use <code>expect.that(value).is()</code> and then you can use regular Hamcrest matchers. In my experience this is a rare, albeit useful, breakout option.</li>
 <li>If you want to setup or teardown data before or after each specification use <code>it.shouldSetup</code> and <code>it.shouldTearDown</code>.</li>
 <li>If you want to setup or teardown data before or after each suite use <code>it.shouldInitialize</code> and <code>it.shouldComplete</code>.</li>
-<li>Don't worry - I know some Java 8 lambdafied APIs don't deal with exceptions very well but you can throw exceptions in all our callbacks and then will cause the appropriate error to be reported, not just break the library.</li>
+<li>Don't worry - I know some Java 8 lambdafied APIs don't deal with exceptions very well but you can throw exceptions in all our callbacks and the appropriate error will be reported, not just break the library.</li>
 </ul><h3>
 <a name="data-driven-specifications" class="anchor" href="#data-driven-specifications"><span class="octicon octicon-link"></span></a>Data Driven Specifications</h3>
 
@@ -86,11 +86,11 @@
 
 <pre><code>a pair of numbers
   2 / 4 is two
-  4 / 8 is two
+  8 / 4 is two
 </code></pre>
 
 <h3>
-<a name="using-lambda-behave" class="anchor" href="#using-lambda-behave"><span class="octicon octicon-link"></span></a>Using Lambda Behave</h3>
+<a name="downloading-lambda-behave" class="anchor" href="#downloading-lambda-behave"><span class="octicon octicon-link"></span></a>Downloading Lambda Behave</h3>
 
 <p>If you're using a maven project then you can download Lambda Behave using the following pom entry.</p>
 
