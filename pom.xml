@@ -3,7 +3,7 @@
     <groupId>com.insightfullogic</groupId>
     <artifactId>lambda-behave</artifactId>
     <packaging>jar</packaging>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.1</version>
     <name>Lambda Behave</name>
     <description>
         A modern testing and behavioural specification framework for Java 8
@@ -165,6 +165,7 @@
         <connection>scm:git:git@github.com:RichardWarburton/lambda-behave.git</connection>
         <developerConnection>scm:git:git@github.com:RichardWarburton/lambda-behave.git</developerConnection>
         <url>git@github.com:RichardWarburton/lambda-behave.git</url>
+    <tag>lambda-behave-0.1</tag>
   </scm>
 
     <distributionManagement>
