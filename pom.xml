@@ -81,6 +81,7 @@
                         </goals>
                         <configuration>
                             <useAgent>false</useAgent>
+                            <executable>gpg</executable>
                         </configuration>
                     </execution>
                 </executions>
@@ -105,6 +106,7 @@
                     <useReleaseProfile>false</useReleaseProfile>
                     <releaseProfiles>release</releaseProfiles>
                     <goals>deploy</goals>
+                    <mavenExecutorId>forked-path</mavenExecutorId>
                 </configuration>
             </plugin>
         </plugins>
