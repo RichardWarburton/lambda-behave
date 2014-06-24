@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.toList;
 import static java.util.stream.Stream.concat;
 
 /**
@@ -60,13 +61,51 @@ public class Specifier implements Description {
     }
 
     @Override
+    public <T> Column<T> uses(List<T> values) {
+        // Additional arraylist required to ensure
+        // we can add more values
+        return new ValueBuilder<>(new ArrayList<>(values), this);
+    }
+
+    @Override
+    public <T> Column<T> uses(Stream<T> values) {
+        return uses(values.collect(toList()));
+    }
+
+    @Override
     public <F, S> TwoColumns<F, S> uses(F first, S second) {
         return new PairBuilder<>(first, second, this);
     }
 
     @Override
+    public <F, S> TwoColumns<F, S> uses(List<F> first, List<S> second) {
+        return new PairBuilder<F, S>(new ArrayList<>(first), new ArrayList<>(second), this);
+    }
+
+    @Override
+    public <F, S> TwoColumns<F, S> uses(Stream<F> first, Stream<S> second) {
+        return new PairBuilder<F, S>(first.collect(toList()), second.collect(toList()), this);
+    }
+
+    @Override
     public <F, S, T> ThreeColumns<F, S, T> uses(F first, S second, T third) {
         return new TripletBuilder<>(first, second, third, this);
+    }
+
+    @Override
+    public <F, S, T> ThreeColumns<F, S, T> uses(List<F> first, List<S> second, List<T> third) {
+        return new TripletBuilder<F, S, T>(new ArrayList<>(first),
+                                           new ArrayList<>(second),
+                                           new ArrayList<>(third),
+                                           this);
+    }
+
+    @Override
+    public <F, S, T> ThreeColumns<F, S, T> uses(Stream<F> first, Stream<S> second, Stream<T> third) {
+        return new TripletBuilder<F, S, T>(first.collect(toList()),
+                                           second.collect(toList()),
+                                           third.collect(toList()),
+                                           this);
     }
 
     @Override

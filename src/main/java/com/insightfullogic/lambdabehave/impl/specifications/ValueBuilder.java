@@ -18,6 +18,11 @@ public final class ValueBuilder<T> implements Column<T> {
         values.add(value);
     }
 
+    public ValueBuilder(List<T> values, Specifier specifier) {
+        this.specifier = specifier;
+        this.values = values;
+    }
+
     @Override
     public ValueBuilder<T> and(T value) {
         values.add(value);

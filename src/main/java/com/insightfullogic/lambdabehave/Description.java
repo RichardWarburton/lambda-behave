@@ -5,6 +5,9 @@ import com.insightfullogic.lambdabehave.specifications.Specification;
 import com.insightfullogic.lambdabehave.specifications.ThreeColumns;
 import com.insightfullogic.lambdabehave.specifications.TwoColumns;
 
+import java.util.List;
+import java.util.stream.Stream;
+
 /**
  * <p>
  * A Description is a fluent builder to describe a
@@ -44,6 +47,10 @@ public interface Description {
      */
     public <T> Column<T> uses(T value);
 
+    public <T> Column<T> uses(List<T> values);
+
+    public <T> Column<T> uses(Stream<T> values);
+
     /**
      * Specify a two value data driven behaviour.
      *
@@ -54,6 +61,10 @@ public interface Description {
      * @return a fluent builder for two columns of values
      */
     public <F, S> TwoColumns<F, S> uses(F first, S second);
+
+    public <F, S> TwoColumns<F, S> uses(List<F> first, List<S> second);
+
+    public <F, S> TwoColumns<F, S> uses(Stream<F> first, Stream<S> second);
 
     /**
      * Specify a three value data driven behaviour.
@@ -67,6 +78,10 @@ public interface Description {
      * @return a fluent builder for two columns of values
      */
     public <F, S, T> ThreeColumns<F, S, T> uses(F first, S second, T third);
+
+    public <F, S, T> ThreeColumns<F, S, T> uses(List<F> first, List<S> second, List<T> third);
+
+    public <F, S, T> ThreeColumns<F, S, T> uses(Stream<F> first, Stream<S> second, Stream<T> third);
 
     /**
      * Run some code before each of the specifications.

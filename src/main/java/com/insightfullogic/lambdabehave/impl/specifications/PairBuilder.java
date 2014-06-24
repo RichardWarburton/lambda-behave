@@ -28,6 +28,19 @@ public final class PairBuilder<F, S> implements TwoColumns<F,S> {
         and(first, second);
     }
 
+    public PairBuilder(List<F> first, List<S> second, Specifier specifier) {
+        this.specifier = specifier;
+        final int size = first.size();
+        if (size != second.size()) {
+            throw new IllegalArgumentException("Lengths not identical: " + size + ", " + second.size());
+        }
+
+        values = new ArrayList<>(size);
+        for (int i = 0; i < size; i++) {
+            and(first.get(i), second.get(i));
+        }
+    }
+
     @Override
     public PairBuilder<F, S> and(F first, S second) {
         values.add(new Row(first, second));
