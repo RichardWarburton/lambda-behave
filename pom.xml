@@ -3,7 +3,7 @@
     <groupId>com.insightfullogic</groupId>
     <artifactId>lambda-behave</artifactId>
     <packaging>jar</packaging>
-    <version>0.1</version>
+    <version>0.1-SNAPSHOT</version>
     <name>Lambda Behave</name>
     <description>
         A modern testing and behavioural specification framework for Java 8
