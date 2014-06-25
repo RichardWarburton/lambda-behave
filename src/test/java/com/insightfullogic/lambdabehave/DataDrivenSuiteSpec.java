@@ -61,7 +61,7 @@ public class DataDrivenSuiteSpec {{
         it.should("reject lists of different length as a pair of data columns", expect -> {
             try {
                 runOnly(TwoColDataDrivenWrongLength.class);
-                expect.that(true).is(false);
+                expect.failure("Should never reach here");
             } catch (IllegalArgumentException e) {
 
             }
@@ -72,7 +72,7 @@ public class DataDrivenSuiteSpec {{
         it.should("reject lists of different length as a triple of data columns", expect -> {
             try {
                 runOnly(ThreeColDataDrivenWrongLength.class);
-                expect.that(true).is(false);
+                expect.failure("Should never reach here");
             } catch (IllegalArgumentException e) {
 
             }

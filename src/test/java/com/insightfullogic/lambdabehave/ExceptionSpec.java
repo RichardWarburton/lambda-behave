@@ -3,6 +3,7 @@ package com.insightfullogic.lambdabehave;
 import com.insightfullogic.lambdabehave.expectations.Expect;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
 import com.insightfullogic.lambdabehave.impl.reports.SpecificationReport;
+import com.insightfullogic.lambdabehave.testcases.data_driven.FailureCase;
 import com.insightfullogic.lambdabehave.testcases.exceptions.ExceptionInCompleter;
 import com.insightfullogic.lambdabehave.testcases.exceptions.ExceptionInInitializer;
 import com.insightfullogic.lambdabehave.testcases.exceptions.ExceptionInSetup;
@@ -52,7 +53,6 @@ public class ExceptionSpec {{
             List<SpecificationReport> specifications = report.getSuites().get(0).getSpecifications();
             expect.that(specifications).hasItem(error("completer", new RuntimeException()));
         });
-
     });
 }
 

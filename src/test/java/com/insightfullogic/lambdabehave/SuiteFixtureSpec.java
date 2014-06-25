@@ -1,5 +1,8 @@
 package com.insightfullogic.lambdabehave;
 
+import com.insightfullogic.lambdabehave.impl.reports.Report;
+import com.insightfullogic.lambdabehave.impl.reports.SpecificationReport;
+import com.insightfullogic.lambdabehave.testcases.data_driven.FailureCase;
 import com.insightfullogic.lambdabehave.testcases.fixtures.AllFixturesMulti;
 import com.insightfullogic.lambdabehave.testcases.fixtures.AllFixturesNone;
 import org.junit.runner.RunWith;
@@ -41,6 +44,13 @@ public class SuiteFixtureSpec {{
             inOrder.verify(AllFixturesMulti.completer).run();
 
             inOrder.verifyNoMoreInteractions();
+        });
+
+        it.should("Fail a spec when failure is called", expect -> {
+            Report report = runOnly(FailureCase.class);
+
+            SpecificationReport spec = SpecificationReport.failure("fail", new AssertionError("FAIL"));
+            expect.that(report.getSuites().get(0).getSpecifications()).contains(spec);
         });
 
     });

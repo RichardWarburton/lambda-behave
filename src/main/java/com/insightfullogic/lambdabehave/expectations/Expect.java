@@ -1,5 +1,7 @@
 package com.insightfullogic.lambdabehave.expectations;
 
+import junit.framework.Assert;
+
 import java.util.Collection;
 
 public final class Expect {
@@ -18,6 +20,10 @@ public final class Expect {
 
     public void toThrow(Class<? extends Throwable> exceptionClass) {
 
+    }
+
+    public void failure(final String message) {
+        Assert.fail(message);
     }
 
 }
