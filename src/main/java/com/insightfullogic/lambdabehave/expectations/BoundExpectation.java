@@ -21,7 +21,7 @@ public class BoundExpectation<T> {
     }
 
     public CollectionExpectation and(Collection<?> collection) {
-        return new CollectionExpectation(collection);
+        return new CollectionExpectation<>(collection);
     }
 
     public StringExpectation and(String str) {

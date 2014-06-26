@@ -1,5 +1,6 @@
 package com.insightfullogic.lambdabehave;
 
+import com.insightfullogic.lambdabehave.generators.GeneratedDescription;
 import com.insightfullogic.lambdabehave.specifications.Column;
 import com.insightfullogic.lambdabehave.specifications.Specification;
 import com.insightfullogic.lambdabehave.specifications.ThreeColumns;
@@ -36,7 +37,7 @@ public interface Description {
      * @param description a human readable description of the behaviour you're expecting.
      * @param specification a function which describes in code the expected behaviour.
      */
-    public void should(String description, Specification specification);
+    void should(String description, Specification specification);
 
     /**
      * Specify a single value data driven behaviour.
@@ -45,11 +46,11 @@ public interface Description {
      * @param <T> the type of the value
      * @return a fluent builder for a column of values
      */
-    public <T> Column<T> uses(T value);
+    <T> Column<T> uses(T value);
 
-    public <T> Column<T> uses(List<T> values);
+    <T> Column<T> uses(List<T> values);
 
-    public <T> Column<T> uses(Stream<T> values);
+    <T> Column<T> uses(Stream<T> values);
 
     /**
      * Specify a two value data driven behaviour.
@@ -60,11 +61,11 @@ public interface Description {
      * @param <S> the type of the second value
      * @return a fluent builder for two columns of values
      */
-    public <F, S> TwoColumns<F, S> uses(F first, S second);
+    <F, S> TwoColumns<F, S> uses(F first, S second);
 
-    public <F, S> TwoColumns<F, S> uses(List<F> first, List<S> second);
+    <F, S> TwoColumns<F, S> uses(List<F> first, List<S> second);
 
-    public <F, S> TwoColumns<F, S> uses(Stream<F> first, Stream<S> second);
+    <F, S> TwoColumns<F, S> uses(Stream<F> first, Stream<S> second);
 
     /**
      * Specify a three value data driven behaviour.
@@ -77,38 +78,39 @@ public interface Description {
      * @param <T> the type of the third value
      * @return a fluent builder for two columns of values
      */
-    public <F, S, T> ThreeColumns<F, S, T> uses(F first, S second, T third);
+    <F, S, T> ThreeColumns<F, S, T> uses(F first, S second, T third);
 
-    public <F, S, T> ThreeColumns<F, S, T> uses(List<F> first, List<S> second, List<T> third);
+    <F, S, T> ThreeColumns<F, S, T> uses(List<F> first, List<S> second, List<T> third);
 
-    public <F, S, T> ThreeColumns<F, S, T> uses(Stream<F> first, Stream<S> second, Stream<T> third);
+    <F, S, T> ThreeColumns<F, S, T> uses(Stream<F> first, Stream<S> second, Stream<T> third);
+
+    GeneratedDescription requires(int i);
 
     /**
      * Run some code before each of the specifications.
      *
      * @param block the code to run.
      */
-    public void shouldSetup(Block block);
+    void shouldSetup(Block block);
 
     /**
      * Run some code before all of the specifications.
      *
      * @param block the code to run.
      */
-    public void shouldInitialize(Block block);
+    void shouldInitialize(Block block);
 
     /**
      * Run some code after each of the specifications.
      *
      * @param block the code to run.
      */
-    public void shouldTearDown(Block block);
+    void shouldTearDown(Block block);
 
     /**
      * Run some code after all of the specifications.
      *
      * @param block the code to run.
      */
-    public void shouldComplete(Block block);
-
+    void shouldComplete(Block block);
 }

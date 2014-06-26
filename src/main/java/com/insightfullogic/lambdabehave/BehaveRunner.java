@@ -1,14 +1,13 @@
 package com.insightfullogic.lambdabehave;
 
+import com.insightfullogic.lambdabehave.generators.NumberGenerator;
 import com.insightfullogic.lambdabehave.impl.Specifier;
+import com.insightfullogic.lambdabehave.impl.generators.NumberGenerators;
 import com.insightfullogic.lambdabehave.impl.output.ConsoleFormatter;
 import com.insightfullogic.lambdabehave.impl.output.ReportFormatter;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
 import com.insightfullogic.lambdabehave.impl.reports.Specifiers;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
@@ -49,16 +48,6 @@ public final class BehaveRunner {
         return new BehaveRunner().declare(specClass);
     }
 
-    public BehaveRunner() {
-        this(Collections.emptyList());
-    }
-
-    public BehaveRunner(String ... specifications) {
-        this(Stream.of(specifications)
-                   .flatMap(BehaveRunner::loadClassOrPackage)
-                   .collect(toList()));
-    }
-
     private static Stream<Class<?>> loadClassOrPackage(String name) {
         try {
             return Stream.of(Class.forName(name));
@@ -68,14 +57,30 @@ public final class BehaveRunner {
     }
 
     private final List<Class<?>> specifications;
+    private final NumberGenerator generator;
     private final Report report = new Report();
 
-    public BehaveRunner(Class<?> ... specifications) {
-        this(Arrays.asList(specifications));
+    public BehaveRunner() {
+        this(NumberGenerators.makeDefault());
+    }
+
+    public BehaveRunner(NumberGenerator generator) {
+        this(Collections.emptyList(), generator);
+    }
+
+    public BehaveRunner(String ... specifications) {
+        this(Stream.of(specifications)
+                .flatMap(BehaveRunner::loadClassOrPackage)
+                .collect(toList()));
     }
 
     public BehaveRunner(List<Class<?>> specifications) {
+        this(specifications, NumberGenerators.makeDefault());
+    }
+
+    public BehaveRunner(List<Class<?>> specifications, NumberGenerator generator) {
         this.specifications = specifications;
+        this.generator = generator;
     }
 
     public BehaveRunner runAll() {
@@ -89,12 +94,15 @@ public final class BehaveRunner {
     }
 
     private Specifier declare(Class<?> specification) {
+        NumberGenerators.push(generator);
         try {
             specification.newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
             String message = "Unable to create specification from: " + specification.getSimpleName();
             throw new SpecificationDeclarationException(message, e);
         }
+        NumberGenerators.pop();
+
         return Specifiers.pop();
     }
 

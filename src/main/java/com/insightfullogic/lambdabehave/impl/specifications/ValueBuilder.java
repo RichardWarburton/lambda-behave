@@ -1,5 +1,6 @@
 package com.insightfullogic.lambdabehave.impl.specifications;
 
+import com.insightfullogic.lambdabehave.generators.GeneratedColumn;
 import com.insightfullogic.lambdabehave.impl.Specifier;
 import com.insightfullogic.lambdabehave.specifications.Column;
 import com.insightfullogic.lambdabehave.specifications.ColumnDataSpecification;
@@ -7,7 +8,7 @@ import com.insightfullogic.lambdabehave.specifications.ColumnDataSpecification;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class ValueBuilder<T> implements Column<T> {
+public final class ValueBuilder<T> implements Column<T>, GeneratedColumn<T> {
 
     private final List<T> values;
     private final Specifier specifier;

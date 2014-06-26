@@ -1,6 +1,6 @@
 package com.insightfullogic.lambdabehave.expectations;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import java.util.Collection;
 
