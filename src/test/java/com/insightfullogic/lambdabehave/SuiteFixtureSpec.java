@@ -2,7 +2,7 @@ package com.insightfullogic.lambdabehave;
 
 import com.insightfullogic.lambdabehave.impl.reports.Report;
 import com.insightfullogic.lambdabehave.impl.reports.SpecificationReport;
-import com.insightfullogic.lambdabehave.testcases.data_driven.FailureCase;
+import com.insightfullogic.lambdabehave.testcases.running.FailureCase;
 import com.insightfullogic.lambdabehave.testcases.fixtures.AllFixturesMulti;
 import com.insightfullogic.lambdabehave.testcases.fixtures.AllFixturesNone;
 import org.junit.runner.RunWith;

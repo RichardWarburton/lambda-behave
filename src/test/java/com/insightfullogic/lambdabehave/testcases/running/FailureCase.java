@@ -1,4 +1,4 @@
-package com.insightfullogic.lambdabehave.testcases.data_driven;
+package com.insightfullogic.lambdabehave.testcases.running;
 
 import com.insightfullogic.lambdabehave.Suite;
 
