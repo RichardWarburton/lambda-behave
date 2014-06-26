@@ -16,12 +16,12 @@ public class StringGenerator implements Generator<String> {
     }
 
     @Override
-    public String generate(NumberGenerator ng) {
-        final int length = ng.generateInt(MAX_STRING_LENGTH);
+    public String generate(NumberGenerator source) {
+        final int length = source.generateInt(MAX_STRING_LENGTH);
 
         char[] characters = new char[length];
         for (int i = 0; i < length; i++) {
-            characters[i] = (char) (minValue + ng.generateInt(range));
+            characters[i] = (char) (minValue + source.generateInt(range));
         }
 
         return new String(characters);

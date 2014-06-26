@@ -9,7 +9,7 @@ public interface Generator<T> {
 
     public static final int MAX_TRIES = 100_000;
 
-    public T generate(NumberGenerator randomNumberGenerator);
+    public T generate(NumberGenerator source);
 
     public default Generator<T> matching(Predicate<T> predicate) {
         return rng -> {
