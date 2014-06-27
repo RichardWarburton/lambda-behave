@@ -5,7 +5,6 @@ import com.insightfullogic.lambdabehave.specifications.TwoColumnDataSpecificatio
 import java.util.stream.Stream;
 
 import static com.insightfullogic.lambdabehave.Suite.describe;
-import static java.util.Arrays.asList;
 import static org.mockito.Mockito.mock;
 
 public class TwoColDataDrivenByStream {

@@ -1,7 +1,6 @@
 package com.insightfullogic.lambdabehave.testcases.data_driven;
 
 import com.insightfullogic.lambdabehave.specifications.ThreeColumnDataSpecification;
-import com.insightfullogic.lambdabehave.specifications.TwoColumnDataSpecification;
 
 import static com.insightfullogic.lambdabehave.Suite.describe;
 import static java.util.Arrays.asList;

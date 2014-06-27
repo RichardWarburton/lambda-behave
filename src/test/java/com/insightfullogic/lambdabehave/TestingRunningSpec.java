@@ -1,9 +1,9 @@
 package com.insightfullogic.lambdabehave;
 
-import com.insightfullogic.lambdabehave.testcases.running.*;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
 import com.insightfullogic.lambdabehave.impl.reports.SpecificationReport;
 import com.insightfullogic.lambdabehave.impl.reports.SuiteReport;
+import com.insightfullogic.lambdabehave.testcases.running.*;
 import org.junit.runner.RunWith;
 
 import static com.insightfullogic.lambdabehave.BehaveRunner.runOnly;

@@ -2,13 +2,13 @@ package com.insightfullogic.lambdabehave.impl;
 
 import com.insightfullogic.lambdabehave.Block;
 import com.insightfullogic.lambdabehave.Description;
+import com.insightfullogic.lambdabehave.generators.GeneratedDescription;
 import com.insightfullogic.lambdabehave.generators.NumberGenerator;
 import com.insightfullogic.lambdabehave.impl.generators.GeneratedDescriptionBuilder;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
 import com.insightfullogic.lambdabehave.impl.specifications.PairBuilder;
 import com.insightfullogic.lambdabehave.impl.specifications.TripletBuilder;
 import com.insightfullogic.lambdabehave.impl.specifications.ValueBuilder;
-import com.insightfullogic.lambdabehave.generators.GeneratedDescription;
 import com.insightfullogic.lambdabehave.specifications.*;
 
 import java.util.ArrayList;

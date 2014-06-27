@@ -2,7 +2,6 @@ package com.insightfullogic.lambdabehave.impl;
 
 import com.insightfullogic.lambdabehave.Block;
 import com.insightfullogic.lambdabehave.impl.reports.SpecificationReport;
-import com.insightfullogic.lambdabehave.specifications.Specification;
 
 import java.util.ArrayList;
 import java.util.List;

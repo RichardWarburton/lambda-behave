@@ -2,7 +2,6 @@ package com.insightfullogic.lambdabehave;
 
 import com.insightfullogic.lambdabehave.impl.reports.Report;
 import com.insightfullogic.lambdabehave.impl.reports.SuiteReport;
-import com.insightfullogic.lambdabehave.specifications.ThreeColumnDataSpecification;
 import com.insightfullogic.lambdabehave.testcases.data_driven.*;
 import org.junit.runner.RunWith;
 

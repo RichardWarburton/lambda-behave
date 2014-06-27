@@ -4,7 +4,6 @@ import com.insightfullogic.lambdabehave.generators.NumberGenerator;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.concurrent.ThreadLocalRandom;
 
 public final class NumberGenerators {
 

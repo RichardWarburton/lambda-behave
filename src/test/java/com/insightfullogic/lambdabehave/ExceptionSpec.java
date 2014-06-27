@@ -14,9 +14,7 @@ import java.util.List;
 
 import static com.insightfullogic.lambdabehave.BehaveRunner.runOnly;
 import static com.insightfullogic.lambdabehave.Suite.describe;
-import static com.insightfullogic.lambdabehave.impl.reports.SpecificationReport.error;
-import static com.insightfullogic.lambdabehave.impl.reports.SpecificationReport.failure;
-import static com.insightfullogic.lambdabehave.impl.reports.SpecificationReport.success;
+import static com.insightfullogic.lambdabehave.impl.reports.SpecificationReport.*;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 @RunWith(JunitSuiteRunner.class)
@@ -70,10 +68,10 @@ public class ExceptionSpec {{
                 "Expected exception: java.lang.RuntimeException, but java.lang.Exception was thrown");
 
             expect.that(specifications).contains(
-                success("pass if exceptions thrown are expected"),
-                failure("fail if exceptions are expected but not thrown", noException),
-                success("pass if exceptions of a sub class are expected"),
-                failure("fail if exceptions of a different type are expected", wrongException)
+                    success("pass if exceptions thrown are expected"),
+                    failure("fail if exceptions are expected but not thrown", noException),
+                    success("pass if exceptions of a sub class are expected"),
+                    failure("fail if exceptions of a different type are expected", wrongException)
             );
         });
     });
