@@ -14,19 +14,26 @@ import static java.util.stream.Collectors.toList;
 
 public class GeneratedDescriptionBuilder implements GeneratedDescription {
 
-    private final NumberGenerator rng;
     private final int numberOfInstances;
     private final Specifier specifier;
 
-    public GeneratedDescriptionBuilder(final NumberGenerator rng, final int numberOfInstances, final Specifier specifier) {
-        this.rng = rng;
+    private NumberGenerator numberGenerator;
+
+    public GeneratedDescriptionBuilder(final NumberGenerator numberGenerator, final int numberOfInstances, final Specifier specifier) {
+        this.numberGenerator = numberGenerator;
         this.numberOfInstances = numberOfInstances;
         this.specifier = specifier;
     }
 
     @Override
+    public GeneratedDescription numberedBy(NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
+        return this;
+    }
+
+    @Override
     public <T> GeneratedColumn<T> example(final Generator<T> generator) {
-        final List<T> values = Stream.generate(() -> generator.generate(rng))
+        final List<T> values = Stream.generate(() -> generator.generate(numberGenerator))
                                      .limit(numberOfInstances)
                                      .collect(toList());
         return new ValueBuilder<T>(values, specifier);
