@@ -8,7 +8,7 @@ public interface Column<T> {
     /**
      * Add another element to the column.
      *
-     * @param value the element to add.
+     * @param value the element to with.
      * @return this the fluent builder object
      */
     Column<T> and(T value);

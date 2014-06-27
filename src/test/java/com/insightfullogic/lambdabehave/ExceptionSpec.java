@@ -7,6 +7,7 @@ import com.insightfullogic.lambdabehave.testcases.exceptions.ExceptionInComplete
 import com.insightfullogic.lambdabehave.testcases.exceptions.ExceptionInInitializer;
 import com.insightfullogic.lambdabehave.testcases.exceptions.ExceptionInSetup;
 import com.insightfullogic.lambdabehave.testcases.exceptions.ExceptionInTearDown;
+import com.insightfullogic.lambdabehave.testcases.running.ExceptionHandling;
 import org.junit.runner.RunWith;
 
 import java.util.List;
@@ -14,6 +15,8 @@ import java.util.List;
 import static com.insightfullogic.lambdabehave.BehaveRunner.runOnly;
 import static com.insightfullogic.lambdabehave.Suite.describe;
 import static com.insightfullogic.lambdabehave.impl.reports.SpecificationReport.error;
+import static com.insightfullogic.lambdabehave.impl.reports.SpecificationReport.failure;
+import static com.insightfullogic.lambdabehave.impl.reports.SpecificationReport.success;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 @RunWith(JunitSuiteRunner.class)
@@ -31,9 +34,7 @@ public class ExceptionSpec {{
         it.should("not execute a suite when there were exceptions in its shouldInitialize()", expect -> {
             Report report = runOnly(ExceptionInInitializer.class);
 
-            expect.that(report.getSuites()).hasSize(1);
-
-            List<SpecificationReport> specifications = report.getSuites().get(0).getSpecifications();
+            List<SpecificationReport> specifications = report.getSuite().getSpecifications();
             expect.that(specifications).hasItem(error("initializer", new RuntimeException()));
         });
 
@@ -46,17 +47,40 @@ public class ExceptionSpec {{
         it.should("fail a suite when there were exceptions in its shouldComplete()", expect -> {
             Report report = runOnly(ExceptionInCompleter.class);
 
-            expect.that(report.getSuites()).hasSize(1);
-
-            List<SpecificationReport> specifications = report.getSuites().get(0).getSpecifications();
+            List<SpecificationReport> specifications = report.getSuite().getSpecifications();
             expect.that(specifications).hasItem(error("completer", new RuntimeException()));
+        });
+
+        it.should("fail a suite when there were exceptions in its shouldComplete()", expect -> {
+            Report report = runOnly(ExceptionInCompleter.class);
+
+            List<SpecificationReport> specifications = report.getSuite().getSpecifications();
+            expect.that(specifications).hasItem(error("completer", new RuntimeException()));
+        });
+
+        it.should("be able to expect exceptions from specifications", expect -> {
+            Report report = runOnly(ExceptionHandling.class);
+
+            List<SpecificationReport> specifications = report.getSuite().getSpecifications();
+
+            AssertionError noException = new AssertionError(
+                "Expected exception: java.lang.Exception, but no exception was thrown");
+
+            AssertionError wrongException = new AssertionError(
+                "Expected exception: java.lang.RuntimeException, but java.lang.Exception was thrown");
+
+            expect.that(specifications).contains(
+                success("pass if exceptions thrown are expected"),
+                failure("fail if exceptions are expected but not thrown", noException),
+                success("pass if exceptions of a sub class are expected"),
+                failure("fail if exceptions of a different type are expected", wrongException)
+            );
         });
     });
 }
 
     private void expectSingleSpecErrored(Expect expect, Report report) {
-        expect.that(report.getSuites()).hasSize(1);
-        List<SpecificationReport> specifications = report.getSuites().get(0).getSpecifications();
+        List<SpecificationReport> specifications = report.getSuite().getSpecifications();
         expect.that(specifications).contains(error("have a single spec1", new RuntimeException()));
     }
 }

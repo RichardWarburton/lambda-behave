@@ -21,7 +21,7 @@ public final class Report {
 
     public void recordSpecification(String suiteName, SpecificationReport report) {
         onSuiteName(suiteName);
-        currentSuite.add(report);
+        currentSuite.with(report);
     }
 
     public void onSuiteName(String suiteName) {
@@ -44,5 +44,14 @@ public final class Report {
 
     public List<SuiteReport> getSuites() {
         return suites;
+    }
+
+    public SuiteReport getSuite() {
+        final int size = suites.size();
+        if (size != 1) {
+            throw new IllegalStateException("Assumed there was only suite, but there were: " + size);
+        }
+
+        return suites.get(0);
     }
 }

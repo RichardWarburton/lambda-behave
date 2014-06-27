@@ -1,5 +1,6 @@
 package com.insightfullogic.lambdabehave.expectations;
 
+import com.insightfullogic.lambdabehave.Block;
 import org.junit.Assert;
 
 import java.util.Collection;
@@ -22,10 +23,20 @@ public final class Expect {
         return new ArrayExpectation(array);
     }
 
-    public void toThrow(Class<? extends Throwable> exceptionClass) {
-
+    public void exception(Class<? extends Throwable> expectedException, Block block) throws Exception {
+        String expectedName = expectedException.getName();
+        try {
+            block.run();
+            failure("Expected exception: " + expectedName + ", but no exception was thrown");
+        } catch (Exception e) {
+            if (!expectedException.isInstance(e)) {
+                String name = e.getClass().getName();
+                failure("Expected exception: " + expectedName + ", but " + name + " was thrown");
+            }
+        }
     }
 
+    // NB: no failure without a message because its a bad idea to not have test failure diagnostics
     public void failure(final String message) {
         Assert.fail(message);
     }

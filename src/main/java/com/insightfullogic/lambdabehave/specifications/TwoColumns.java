@@ -8,8 +8,8 @@ public interface TwoColumns<F, S> {
     /**
      * Add another pair of elements to the column.
      *
-     * @param first the first element to add.
-     * @param second the second element to add.
+     * @param first the first element to with.
+     * @param second the second element to with.
      * @return this the fluent builder object
      */
     TwoColumns<F, S> and(F first, S second);

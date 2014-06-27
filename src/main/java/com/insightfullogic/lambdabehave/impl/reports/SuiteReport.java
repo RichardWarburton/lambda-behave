@@ -16,8 +16,9 @@ public final class SuiteReport {
         specifications = new ArrayList<>();
     }
 
-    public void add(SpecificationReport specification) {
+    public SuiteReport with(SpecificationReport specification) {
         specifications.add(specification);
+        return this;
     }
 
     public Stream<SpecificationReport> specifications() {

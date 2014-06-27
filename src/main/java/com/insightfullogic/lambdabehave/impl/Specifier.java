@@ -68,7 +68,7 @@ public class Specifier implements Description {
     @Override
     public <T> Column<T> uses(List<T> values) {
         // Additional arraylist required to ensure
-        // we can add more values
+        // we can with more values
         return new ValueBuilder<>(new ArrayList<>(values), this);
     }
 

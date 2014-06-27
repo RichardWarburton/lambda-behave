@@ -8,9 +8,9 @@ public interface ThreeColumns<F, S, T> {
     /**
      * Add another triple of elements to the column.
      *
-     * @param first the first element to add.
-     * @param second the second element to add.
-     * @param third the third element to add.
+     * @param first the first element to with.
+     * @param second the second element to with.
+     * @param third the third element to with.
      * @return this the fluent builder object
      */
     ThreeColumns<F, S, T> and(F first, S second, T third);
