@@ -70,13 +70,13 @@ public final class JunitSuiteRunner extends ParentRunner<CompleteBehaviour> {
                 notifier.fireTestFailure(new Failure(test, new TestFailure(spec.getMessage())));
                 return;
             case ERROR:
-                throw new SpecificationError(spec.getMessage());
+                throw new SpecificationError(spec.getMessage(), spec.getCause());
         }
     }
 
     public static class SpecificationError extends RuntimeException {
-        public SpecificationError(String message) {
-            super(message);
+        public SpecificationError(String message, Throwable cause) {
+            super(message, cause);
         }
     }
 

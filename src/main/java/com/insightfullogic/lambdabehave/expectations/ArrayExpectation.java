@@ -10,8 +10,8 @@ import static org.junit.Assert.assertThat;
 
 public final class ArrayExpectation<T> extends BoundExpectation<T[]> {
 
-    ArrayExpectation(T[] array) {
-        super(array);
+    ArrayExpectation(T[] array, boolean positive) {
+        super(array, positive);
     }
 
     public ArrayExpectation<T> isArrayWithSize(int size) {
@@ -54,11 +54,11 @@ public final class ArrayExpectation<T> extends BoundExpectation<T[]> {
         return matches(emptyArray());
     }
 
-    public ArrayExpectation<T> arrayHasItem(T item) {
+    public ArrayExpectation<T> isArrayWithItem(T item) {
         return matches(hasItemInArray(item));
     }
 
-    public ArrayExpectation<T> arrayHasItem(Matcher<? super T> itemMatcher) {
+    public ArrayExpectation<T> isArrayWithItem(Matcher<? super T> itemMatcher) {
         return matches(hasItemInArray(itemMatcher));
     }
 

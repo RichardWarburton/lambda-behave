@@ -12,32 +12,32 @@ public final class SpecificationReport {
     private final String description;
     private final Result result;
     private final String message;
+    private final Throwable cause;
 
     public static SpecificationReport success(String description) {
+        // TODO: remove this logging - causes coupling
         log.info(description + " has succeeded");
-        return new SpecificationReport(description);
+        return new SpecificationReport(description, Result.SUCCESS, null, null);
     }
 
     public static SpecificationReport failure(String description, AssertionError cause) {
         log.warn(description + " has failed");
-        return new SpecificationReport(description, Result.FAILURE, cause.getMessage());
+        return new SpecificationReport(description, Result.FAILURE, cause.getMessage(), cause);
     }
 
     public static SpecificationReport error(String specification, Throwable cause) {
         log.warn(specification + " has finished in error");
-        return new SpecificationReport(specification, Result.ERROR, cause.getMessage());
+        return new SpecificationReport(specification, Result.ERROR, cause.getMessage(), cause);
     }
 
-    public SpecificationReport(String description, Result result, String message) {
+    public SpecificationReport(String description, Result result, String message, Throwable cause) {
         Objects.requireNonNull(description);
         Objects.requireNonNull(result);
+
         this.description = description;
         this.result = result;
         this.message = message;
-    }
-
-    public SpecificationReport(String specification) {
-        this(specification, Result.SUCCESS, null);
+        this.cause = cause;
     }
 
     public String getDescription() {
@@ -50,6 +50,10 @@ public final class SpecificationReport {
 
     public String getMessage() {
         return message;
+    }
+
+    public Throwable getCause() {
+        return cause;
     }
 
     public boolean isSuccess() {

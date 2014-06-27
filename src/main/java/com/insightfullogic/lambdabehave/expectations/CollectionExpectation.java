@@ -11,8 +11,8 @@ import static org.junit.Assert.assertThat;
 
 public final class CollectionExpectation<T> extends BoundExpectation<Collection<T>> {
 
-    CollectionExpectation(Collection<T> objectUnderTest) {
-        super(objectUnderTest);
+    CollectionExpectation(Collection<T> objectUnderTest, boolean positive) {
+        super(objectUnderTest, positive);
     }
 
     public CollectionExpectation<T> isEmpty() {
@@ -72,7 +72,7 @@ public final class CollectionExpectation<T> extends BoundExpectation<Collection<
     }
 
     private CollectionExpectation<T> matches(Matcher<? super Collection<T>> matcher) {
-        assertThat(objectUnderTest, matcher);
+        assertThat(objectUnderTest, negatedIfNeeded(matcher));
         return this;
     }
 

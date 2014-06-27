@@ -5,13 +5,10 @@ import org.hamcrest.Matchers;
 
 import static org.junit.Assert.assertThat;
 
-/**
- * .
- */
 public class ComparableExpectation<T extends Comparable<T>> extends BoundExpectation<T> {
 
-    ComparableExpectation(T value) {
-        super(value);
+    ComparableExpectation(T value, boolean positive) {
+        super(value, positive);
     }
 
     public ComparableExpectation<T> greaterThan(T value) {
@@ -30,12 +27,12 @@ public class ComparableExpectation<T extends Comparable<T>> extends BoundExpecta
         return matches(Matchers.lessThanOrEqualTo(value));
     }
 
-    public BoundExpectation<T> comparesEqualTo(T expected) {
+    public ComparableExpectation<T> comparesEqualTo(T expected) {
         return matches(Matchers.comparesEqualTo(expected));
     }
 
     private ComparableExpectation<T> matches(Matcher<T> matcher) {
-        assertThat(objectUnderTest, matcher);
+        assertThat(objectUnderTest, negatedIfNeeded(matcher));
         return this;
     }
 

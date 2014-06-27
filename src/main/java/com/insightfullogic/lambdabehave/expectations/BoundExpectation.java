@@ -10,22 +10,24 @@ import static org.junit.Assert.assertThat;
 
 public class BoundExpectation<T> {
 
+    protected final boolean positive;
     protected final T objectUnderTest;
 
-    BoundExpectation(T value) {
+    BoundExpectation(T value, boolean positive) {
         this.objectUnderTest = value;
+        this.positive = positive;
     }
 
     public <T> BoundExpectation<T> and(T value) {
-        return new BoundExpectation<T>(value);
+        return new BoundExpectation<T>(value, true);
     }
 
     public CollectionExpectation and(Collection<?> collection) {
-        return new CollectionExpectation<>(collection);
+        return new CollectionExpectation<>(collection, true);
     }
 
     public StringExpectation and(String str) {
-        return new StringExpectation(str);
+        return new StringExpectation(str, true);
     }
 
     public BoundExpectation<T> isEqualTo(T expected) {
@@ -49,7 +51,7 @@ public class BoundExpectation<T> {
     }
 
     public BoundExpectation<T> toBeNull() {
-        return matches(Matchers.nullValue(getWrappedClass()));
+        return matches(Matchers.nullValue());
     }
 
     public BoundExpectation<T> sameInstance(T target) {
@@ -80,17 +82,17 @@ public class BoundExpectation<T> {
         return matches(Matchers.isIn(values));
     }
 
-    public BoundExpectation<T> isNot(T value) {
-        return matches(Matchers.is(Matchers.not(value)));
-    }
-
-    public BoundExpectation<T> isNot(Matcher<T> value) {
-        return matches(Matchers.is(Matchers.not(value)));
+    public BoundExpectation<T> never() {
+        return new BoundExpectation<>(objectUnderTest, !positive);
     }
 
     private BoundExpectation<T> matches(Matcher<? super T> matcher) {
-        assertThat(objectUnderTest, matcher);
+        assertThat(objectUnderTest, negatedIfNeeded(matcher));
         return this;
+    }
+
+    protected Matcher<? super T> negatedIfNeeded(Matcher<? super T> matcher) {
+        return positive ? matcher : Matchers.not(matcher);
     }
 
     protected Class<T> getWrappedClass() {

@@ -26,7 +26,7 @@ public class TestingRunningSpec {{
             Report report = runOnly(SingleExample.class);
 
             SuiteReport suite = new SuiteReport("a one spec1 suite");
-            suite.with(new SpecificationReport("have a single spec1"));
+            suite.with(SpecificationReport.success("have a single spec1"));
 
             expect.that(report.getSuites()).contains(suite);
         });
@@ -37,7 +37,7 @@ public class TestingRunningSpec {{
             SuiteReport suite = new SuiteReport("a one spec1 suite that fails");
             suite.with(new SpecificationReport("have a single failing spec1", FAILURE, "\n" +
                     "Expected: is <false>\n" +
-                    "     but: was <true>"));
+                    "     but: was <true>", null));
 
             expect.that(report.getSuites()).contains(suite);
         });
@@ -46,7 +46,7 @@ public class TestingRunningSpec {{
             Report report = runOnly(SingleErrorExample.class);
 
             SuiteReport suite = new SuiteReport("a one spec1 suite that errors");
-            suite.with(new SpecificationReport("have a single erroring spec1", ERROR, "EPIC FAIL"));
+            suite.with(new SpecificationReport("have a single erroring spec1", ERROR, "EPIC FAIL", null));
 
             expect.that(report.getSuites()).contains(suite);
         });
@@ -55,7 +55,7 @@ public class TestingRunningSpec {{
             Report report = runOnly(PassThenErrorExample.class);
 
             SuiteReport suite = new SuiteReport("a pass then error suite");
-            suite.with(new SpecificationReport("pass then error", ERROR, "EPIC FAIL"));
+            suite.with(new SpecificationReport("pass then error", ERROR, "EPIC FAIL", null));
 
             expect.that(report.getSuites()).contains(suite);
         });

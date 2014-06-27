@@ -9,8 +9,8 @@ import static org.junit.Assert.assertThat;
  * .
  */
 public final class StringExpectation extends BoundExpectation<String> {
-    public StringExpectation(String str) {
-        super(str);
+    public StringExpectation(String str, boolean positive) {
+        super(str, positive);
     }
 
     public StringExpectation isEmptyString() {
