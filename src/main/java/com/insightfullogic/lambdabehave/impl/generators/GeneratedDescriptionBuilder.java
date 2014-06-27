@@ -1,11 +1,10 @@
 package com.insightfullogic.lambdabehave.impl.generators;
 
+import com.insightfullogic.lambdabehave.generators.*;
 import com.insightfullogic.lambdabehave.impl.Specifier;
+import com.insightfullogic.lambdabehave.impl.specifications.PairBuilder;
+import com.insightfullogic.lambdabehave.impl.specifications.TripletBuilder;
 import com.insightfullogic.lambdabehave.impl.specifications.ValueBuilder;
-import com.insightfullogic.lambdabehave.generators.Generator;
-import com.insightfullogic.lambdabehave.generators.NumberGenerator;
-import com.insightfullogic.lambdabehave.generators.GeneratedColumn;
-import com.insightfullogic.lambdabehave.generators.GeneratedDescription;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -33,10 +32,38 @@ public class GeneratedDescriptionBuilder implements GeneratedDescription {
 
     @Override
     public <T> GeneratedColumn<T> example(final Generator<T> generator) {
-        final List<T> values = Stream.generate(() -> generator.generate(numberGenerator))
-                                     .limit(numberOfInstances)
-                                     .collect(toList());
-        return new ValueBuilder<T>(values, specifier);
+        return new ValueBuilder<T>(generateValues(generator), specifier);
+    }
+
+    @Override
+    public <F, S> GeneratedTwoColumns<F, S> example(
+            Generator<F> firstGenerator,
+            Generator<S> secondGenerator) {
+
+        return new PairBuilder<F, S>(
+                generateValues(firstGenerator),
+                generateValues(secondGenerator),
+                specifier);
+    }
+
+    @Override
+    public <F, S, T> GeneratedThreeColumns<F, S, T> example(
+            Generator<F> firstGenerator,
+            Generator<S> secondGenerator,
+            Generator<T> thirdGenerator) {
+
+        return new TripletBuilder<F, S, T>(
+                generateValues(firstGenerator),
+                generateValues(secondGenerator),
+                generateValues(thirdGenerator),
+                specifier
+        );
+    }
+
+    private <T> List<T> generateValues(Generator<T> generator) {
+        return Stream.generate(() -> generator.generate(numberGenerator))
+                     .limit(numberOfInstances)
+                     .collect(toList());
     }
 
 }

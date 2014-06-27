@@ -1,5 +1,6 @@
 package com.insightfullogic.lambdabehave.impl.specifications;
 
+import com.insightfullogic.lambdabehave.generators.GeneratedTwoColumns;
 import com.insightfullogic.lambdabehave.impl.Specifier;
 import com.insightfullogic.lambdabehave.specifications.TwoColumnDataSpecification;
 import com.insightfullogic.lambdabehave.specifications.TwoColumns;
@@ -7,7 +8,7 @@ import com.insightfullogic.lambdabehave.specifications.TwoColumns;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class PairBuilder<F, S> implements TwoColumns<F,S> {
+public final class PairBuilder<F, S> implements TwoColumns<F,S>, GeneratedTwoColumns<F,S> {
 
     private final List<Row> values;
     private final Specifier specifier;

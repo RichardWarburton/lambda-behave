@@ -1,5 +1,6 @@
 package com.insightfullogic.lambdabehave.impl.specifications;
 
+import com.insightfullogic.lambdabehave.generators.GeneratedThreeColumns;
 import com.insightfullogic.lambdabehave.impl.Specifier;
 import com.insightfullogic.lambdabehave.specifications.ThreeColumnDataSpecification;
 import com.insightfullogic.lambdabehave.specifications.ThreeColumns;
@@ -7,7 +8,7 @@ import com.insightfullogic.lambdabehave.specifications.ThreeColumns;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class TripletBuilder<F, S, T> implements ThreeColumns<F,S,T> {
+public final class TripletBuilder<F, S, T> implements ThreeColumns<F,S,T>, GeneratedThreeColumns<F,S,T> {
 
     private final List<Row> values;
     private final Specifier specifier;
