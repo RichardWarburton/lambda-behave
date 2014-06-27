@@ -18,6 +18,10 @@ public final class Expect {
         return new StringExpectation(str);
     }
 
+    public <T> ArrayExpectation that(T[] array) {
+        return new ArrayExpectation(array);
+    }
+
     public void toThrow(Class<? extends Throwable> exceptionClass) {
 
     }
