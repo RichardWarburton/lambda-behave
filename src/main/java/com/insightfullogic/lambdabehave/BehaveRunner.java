@@ -3,6 +3,7 @@ package com.insightfullogic.lambdabehave;
 import com.insightfullogic.lambdabehave.generators.NumberGenerator;
 import com.insightfullogic.lambdabehave.impl.Specifier;
 import com.insightfullogic.lambdabehave.impl.generators.NumberGenerators;
+import com.insightfullogic.lambdabehave.impl.generators.RandomNumberGenerator;
 import com.insightfullogic.lambdabehave.impl.output.ConsoleFormatter;
 import com.insightfullogic.lambdabehave.impl.output.ReportFormatter;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
@@ -61,7 +62,7 @@ public final class BehaveRunner {
     private final Report report = new Report();
 
     public BehaveRunner() {
-        this(NumberGenerators.makeDefault());
+        this(new RandomNumberGenerator());
     }
 
     public BehaveRunner(NumberGenerator generator) {
@@ -75,7 +76,7 @@ public final class BehaveRunner {
     }
 
     public BehaveRunner(List<Class<?>> specifications) {
-        this(specifications, NumberGenerators.makeDefault());
+        this(specifications, new RandomNumberGenerator());
     }
 
     public BehaveRunner(List<Class<?>> specifications, NumberGenerator generator) {

@@ -8,11 +8,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public final class NumberGenerators {
 
-    public static NumberGenerator makeDefault() {
-        final ThreadLocalRandom random = ThreadLocalRandom.current();
-        return max -> random.nextInt(max);
-    }
-
     private static final Deque<NumberGenerator> generators = new ArrayDeque<>();
 
     public static NumberGenerator peek() {
