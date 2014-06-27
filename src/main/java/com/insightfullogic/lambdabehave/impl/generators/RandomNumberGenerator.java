@@ -1,10 +1,10 @@
 package com.insightfullogic.lambdabehave.impl.generators;
 
-import com.insightfullogic.lambdabehave.generators.NumberGenerator;
+import com.insightfullogic.lambdabehave.generators.SourceGenerator;
 
 import java.util.Random;
 
-public class RandomNumberGenerator implements NumberGenerator {
+public class RandomNumberGenerator implements SourceGenerator {
 
     private final Random random;
     private final long seed;

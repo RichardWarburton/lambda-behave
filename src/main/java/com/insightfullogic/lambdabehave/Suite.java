@@ -1,6 +1,6 @@
 package com.insightfullogic.lambdabehave;
 
-import com.insightfullogic.lambdabehave.generators.NumberGenerator;
+import com.insightfullogic.lambdabehave.generators.SourceGenerator;
 import com.insightfullogic.lambdabehave.impl.Specifier;
 import com.insightfullogic.lambdabehave.impl.generators.NumberGenerators;
 import com.insightfullogic.lambdabehave.impl.reports.Specifiers;
@@ -23,7 +23,7 @@ public interface Suite {
      * @param behaviours the suite of behaviours you're specifying.
      */
     public static void describe(String name, Suite behaviours) {
-        NumberGenerator generator = NumberGenerators.peek();
+        SourceGenerator generator = NumberGenerators.peek();
         Specifier specifier = new Specifier(name, generator);
         behaviours.specifySuite(specifier);
         Specifiers.push(specifier);

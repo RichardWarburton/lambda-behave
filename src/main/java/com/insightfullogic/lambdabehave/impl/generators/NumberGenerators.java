@@ -1,23 +1,23 @@
 package com.insightfullogic.lambdabehave.impl.generators;
 
-import com.insightfullogic.lambdabehave.generators.NumberGenerator;
+import com.insightfullogic.lambdabehave.generators.SourceGenerator;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 
 public final class NumberGenerators {
 
-    private static final Deque<NumberGenerator> generators = new ArrayDeque<>();
+    private static final Deque<SourceGenerator> generators = new ArrayDeque<>();
 
-    public static NumberGenerator peek() {
+    public static SourceGenerator peek() {
         return generators.peek();
     }
 
-    public static void push(NumberGenerator generator) {
+    public static void push(SourceGenerator generator) {
         generators.push(generator);
     }
 
-    public static NumberGenerator pop() {
+    public static SourceGenerator pop() {
         return generators.pop();
     }
 

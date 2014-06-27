@@ -1,7 +1,7 @@
 package com.insightfullogic.lambdabehave.example.random_trees;
 
 import com.insightfullogic.lambdabehave.generators.Generator;
-import com.insightfullogic.lambdabehave.generators.NumberGenerator;
+import com.insightfullogic.lambdabehave.generators.SourceGenerator;
 
 public class TreeGenerator<T> implements Generator<Node<T>> {
 
@@ -17,11 +17,11 @@ public class TreeGenerator<T> implements Generator<Node<T>> {
     }
 
     @Override
-    public Node<T> generate(NumberGenerator source) {
+    public Node<T> generate(SourceGenerator source) {
         return generateNode(source, maxTreeDepth);
     }
 
-    private Node<T> generateNode(NumberGenerator source, int height) {
+    private Node<T> generateNode(SourceGenerator source, int height) {
         if (height == 1 || source.generateBoolean())
             return new Leaf<T>(value(source));
 
@@ -29,7 +29,7 @@ public class TreeGenerator<T> implements Generator<Node<T>> {
         return new Branch<T>(value(source), generateNode(source, height), generateNode(source, height));
     }
 
-    private T value(NumberGenerator source) {
+    private T value(SourceGenerator source) {
         return valueGenerator.generate(source);
     }
 

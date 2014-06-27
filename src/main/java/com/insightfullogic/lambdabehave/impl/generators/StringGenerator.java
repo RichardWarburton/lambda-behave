@@ -1,7 +1,7 @@
 package com.insightfullogic.lambdabehave.impl.generators;
 
 import com.insightfullogic.lambdabehave.generators.Generator;
-import com.insightfullogic.lambdabehave.generators.NumberGenerator;
+import com.insightfullogic.lambdabehave.generators.SourceGenerator;
 
 public class StringGenerator implements Generator<String> {
 
@@ -16,7 +16,7 @@ public class StringGenerator implements Generator<String> {
     }
 
     @Override
-    public String generate(NumberGenerator source) {
+    public String generate(SourceGenerator source) {
         final int length = source.generateInt(MAX_STRING_LENGTH);
 
         char[] characters = new char[length];

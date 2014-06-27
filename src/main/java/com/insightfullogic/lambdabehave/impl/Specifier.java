@@ -3,7 +3,7 @@ package com.insightfullogic.lambdabehave.impl;
 import com.insightfullogic.lambdabehave.Block;
 import com.insightfullogic.lambdabehave.Description;
 import com.insightfullogic.lambdabehave.generators.GeneratedDescription;
-import com.insightfullogic.lambdabehave.generators.NumberGenerator;
+import com.insightfullogic.lambdabehave.generators.SourceGenerator;
 import com.insightfullogic.lambdabehave.impl.generators.GeneratedDescriptionBuilder;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
 import com.insightfullogic.lambdabehave.impl.specifications.PairBuilder;
@@ -30,11 +30,11 @@ public class Specifier implements Description {
     private final List<Behaviour> behaviours;
     private final Blocks postfixes;
     private final Blocks completers;
-    private final NumberGenerator numberGenerator;
+    private final SourceGenerator sourceGenerator;
 
-    public Specifier(String suite, NumberGenerator numberGenerator) {
+    public Specifier(String suite, SourceGenerator sourceGenerator) {
         this.suiteName = suite;
-        this.numberGenerator = numberGenerator;
+        this.sourceGenerator = sourceGenerator;
 
         initializers = new Blocks();
         prefixes = new Blocks();
@@ -115,7 +115,7 @@ public class Specifier implements Description {
 
     @Override
     public GeneratedDescription requires(int numberOfInstances) {
-        return new GeneratedDescriptionBuilder(numberGenerator, numberOfInstances, this);
+        return new GeneratedDescriptionBuilder(sourceGenerator, numberOfInstances, this);
     }
 
     @Override

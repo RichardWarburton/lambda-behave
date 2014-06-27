@@ -2,7 +2,7 @@ package com.insightfullogic.lambdabehave.example.random_trees;
 
 import com.insightfullogic.lambdabehave.impl.generators.RandomNumberGenerator;
 
-import static com.insightfullogic.lambdabehave.generators.Example.integersUpTo;
+import static com.insightfullogic.lambdabehave.generators.Generators.integersUpTo;
 
 public class Runner {
 

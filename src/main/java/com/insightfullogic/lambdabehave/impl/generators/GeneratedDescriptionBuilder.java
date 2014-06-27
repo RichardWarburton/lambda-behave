@@ -16,17 +16,17 @@ public class GeneratedDescriptionBuilder implements GeneratedDescription {
     private final int numberOfInstances;
     private final Specifier specifier;
 
-    private NumberGenerator numberGenerator;
+    private SourceGenerator sourceGenerator;
 
-    public GeneratedDescriptionBuilder(final NumberGenerator numberGenerator, final int numberOfInstances, final Specifier specifier) {
-        this.numberGenerator = numberGenerator;
+    public GeneratedDescriptionBuilder(final SourceGenerator sourceGenerator, final int numberOfInstances, final Specifier specifier) {
+        this.sourceGenerator = sourceGenerator;
         this.numberOfInstances = numberOfInstances;
         this.specifier = specifier;
     }
 
     @Override
-    public GeneratedDescription numberedBy(NumberGenerator numberGenerator) {
-        this.numberGenerator = numberGenerator;
+    public GeneratedDescription numberedBy(SourceGenerator sourceGenerator) {
+        this.sourceGenerator = sourceGenerator;
         return this;
     }
 
@@ -61,7 +61,7 @@ public class GeneratedDescriptionBuilder implements GeneratedDescription {
     }
 
     private <T> List<T> generateValues(Generator<T> generator) {
-        return Stream.generate(() -> generator.generate(numberGenerator))
+        return Stream.generate(() -> generator.generate(sourceGenerator))
                      .limit(numberOfInstances)
                      .collect(toList());
     }
