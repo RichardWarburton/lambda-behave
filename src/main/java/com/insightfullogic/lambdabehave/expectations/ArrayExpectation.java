@@ -62,6 +62,76 @@ public final class ArrayExpectation<T> extends BoundExpectation<T[]> {
         return matches(hasItemInArray(itemMatcher));
     }
 
+    public ArrayExpectation<T> isEqualTo(T[] expected) {
+        super.isEqualTo(expected);
+        return this;
+    }
+
+    public ArrayExpectation<T> hasToString(Matcher<? super String> str) {
+        super.hasToString(str);
+        return this;
+    }
+
+    public ArrayExpectation<T> hasToString(String arg) {
+        super.hasToString(arg);
+        return this;
+    }
+
+    public ArrayExpectation<T> instanceOf(Class<?> arg) {
+        super.instanceOf(arg);
+        return this;
+    }
+
+    public ArrayExpectation<T> isNotNull() {
+        super.isNotNull();
+        return this;
+    }
+
+    public ArrayExpectation<T> toBeNull() {
+        super.toBeNull();
+        return this;
+    }
+
+    public ArrayExpectation<T> sameInstance(T[] target) {
+        super.sameInstance(target);
+        return this;
+    }
+
+    public ArrayExpectation<T> any() {
+        super.any();
+        return this;
+    }
+
+    public ArrayExpectation<T> hasProperty(String propertyName, Matcher<?> propertyValue) {
+        super.hasProperty(propertyName, propertyValue);
+        return this;
+    }
+
+    public ArrayExpectation<T> is(T[] value) {
+        super.is(value);
+        return this;
+    }
+
+    public ArrayExpectation<T> is(Matcher<? super T[]> matcher) {
+        super.is(matcher);
+        return this;
+    }
+
+    public ArrayExpectation<T> isIn(Collection<T[]> values) {
+        super.isIn(values);
+        return this;
+    }
+
+    public ArrayExpectation<T> isIn(T[] ... values) {
+        super.isIn(values);
+        return this;
+    }
+
+    public ArrayExpectation<T> never() {
+        super.never();
+        return this;
+    }
+
     private ArrayExpectation<T> matches(Matcher<? super T[]> matcher) {
         assertThat(objectUnderTest, matcher);
         return this;

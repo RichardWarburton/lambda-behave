@@ -53,7 +53,7 @@ public class ExpectationSpec {{
                       .toBeNull();
         });
 
-        it.should("allow you write expectations about different string values", expect -> {
+        it.should("support expectations about different string values", expect -> {
 
             String str = "The quick brown fox jumps over the lazy dog";
             expect.that(str)
@@ -62,6 +62,15 @@ public class ExpectationSpec {{
                   .endsWith("lazy dog")
                   .startsWith("The quick")
                   .is(str);
+        });
+
+        it.should("support expectations about different array values", expect -> {
+
+            final String[] strs = { "The quick brown", "fox jumps over", "the lazy dog" };
+            expect.that(strs)
+                  .isArrayWithSize(3)
+                  .isArrayWithItem("the lazy dog")
+                  .is(strs);
         });
 
     });

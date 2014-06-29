@@ -27,7 +27,7 @@ public final class Expect {
         return new DoubleExpectation(value, true);
     }
 
-    public <T> ArrayExpectation that(T[] array) {
+    public <T> ArrayExpectation<T> that(T[] array) {
         return new ArrayExpectation<>(array, true);
     }
 
