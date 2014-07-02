@@ -16,6 +16,7 @@
 
     <modules>
         <module>lambda-behave</module>
+        <module>lambda-behave-scalatest</module>
     </modules>
 
     <build>
