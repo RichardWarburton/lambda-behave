@@ -49,13 +49,6 @@ public class ExceptionSpec {{
             expect.that(specifications).hasItem(error("completer", new RuntimeException()));
         });
 
-        it.should("fail a suite when there were exceptions in its shouldComplete()", expect -> {
-            Report report = runOnly(ExceptionInCompleter.class);
-
-            List<SpecificationReport> specifications = report.getSuite().getSpecifications();
-            expect.that(specifications).hasItem(error("completer", new RuntimeException()));
-        });
-
         it.should("be able to expect exceptions from specifications", expect -> {
             Report report = runOnly(ExceptionHandling.class);
 

@@ -28,7 +28,7 @@ public class DataDrivenSuiteSpec {{
               verify(spec).specifyBehaviour(any(), eq(3));
 
               SuiteReport suite = report.getSuites().get(0);
-              expect.that(suite.getSpecifications()).contains(success("1"), success("2"), success("3"));
+              expect.that(suite.getSpecifications()).contains(success("0: 1"), success("1: 2"), success("2: 3"));
           });
 
         it.uses("streams", (Class) TwoColDataDrivenByStream.class, TwoColDataDrivenByStream.specification)
@@ -41,7 +41,7 @@ public class DataDrivenSuiteSpec {{
               verify(spec).specifyBehaviour(any(), eq(3), eq(6));
 
               SuiteReport suite = report.getSuites().get(0);
-              expect.that(suite.getSpecifications()).contains(success("1 2"), success("2 4"), success("3 6"));
+              expect.that(suite.getSpecifications()).contains(success("0: 1 2"), success("1: 2 4"), success("2: 3 6"));
           });
 
         it.uses("streams", (Class) ThreeColDataDrivenByStream.class, ThreeColDataDrivenByStream.specification)
@@ -54,7 +54,7 @@ public class DataDrivenSuiteSpec {{
               verify(spec).specifyBehaviour(any(), eq(3), eq(6), eq(9));
 
               SuiteReport suite = report.getSuites().get(0);
-              expect.that(suite.getSpecifications()).contains(success("1 2 3"), success("2 4 6"), success("3 6 9"));
+              expect.that(suite.getSpecifications()).contains(success("0: 1 2 3"), success("1: 2 4 6"), success("2: 3 6 9"));
           });
 
         it.should("reject lists of different length as a pair of data columns", expect -> {

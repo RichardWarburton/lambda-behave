@@ -2,6 +2,7 @@ package com.insightfullogic.lambdabehave.impl;
 
 import com.insightfullogic.lambdabehave.Block;
 import com.insightfullogic.lambdabehave.Description;
+import com.insightfullogic.lambdabehave.SpecificationDeclarationException;
 import com.insightfullogic.lambdabehave.generators.GeneratedDescription;
 import com.insightfullogic.lambdabehave.generators.SourceGenerator;
 import com.insightfullogic.lambdabehave.impl.generators.GeneratedDescriptionBuilder;
@@ -13,6 +14,7 @@ import com.insightfullogic.lambdabehave.specifications.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
@@ -57,7 +59,19 @@ public class Specifier implements Description {
 
     @Override
     public void should(String description, Specification specification) {
-        behaviours.add(new Behaviour(description, specification));
+        Objects.nonNull(description);
+        Objects.nonNull(specification);
+
+        if (behaviours.removeIf(behaviour -> behaviour.hasDescription(description))) {
+            behaviours.add(new Behaviour(description, expect -> {
+
+                throw new SpecificationDeclarationException(
+                        "You can't declare multiple specifications with the same name. Name: '" + description + "'");
+
+            }));
+        } else {
+            behaviours.add(new Behaviour(description, specification));
+        }
     }
 
     @Override

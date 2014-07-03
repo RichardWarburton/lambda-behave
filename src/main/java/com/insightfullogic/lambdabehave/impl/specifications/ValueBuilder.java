@@ -32,9 +32,13 @@ public final class ValueBuilder<T> implements Column<T>, GeneratedColumn<T> {
 
     @Override
     public void toShow(String descriptionFormat, ColumnDataSpecification<T> specification) {
-        values.forEach(value -> {
+        for (int i = 0; i < values.size(); i++) {
+            T value = values.get(i);
             String description = String.format(descriptionFormat, value);
-            specifier.specifyBehaviour(description, value, specification);
-        });
+            if (description.equals(descriptionFormat)) {
+                description += String.format("(%s)", value);
+            }
+            specifier.specifyBehaviour(String.valueOf(i) + ": " + description, value, specification);
+        }
     }
 }

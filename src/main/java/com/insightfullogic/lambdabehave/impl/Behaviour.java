@@ -19,6 +19,10 @@ public final class Behaviour {
         return description;
     }
 
+    public boolean hasDescription(String description) {
+        return this.description.equals(description);
+    }
+
     public Specification getSpecification() {
         return specification;
     }

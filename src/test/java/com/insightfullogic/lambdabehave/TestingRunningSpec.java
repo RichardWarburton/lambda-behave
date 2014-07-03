@@ -6,6 +6,8 @@ import com.insightfullogic.lambdabehave.impl.reports.SuiteReport;
 import com.insightfullogic.lambdabehave.testcases.running.*;
 import org.junit.runner.RunWith;
 
+import java.util.List;
+
 import static com.insightfullogic.lambdabehave.BehaveRunner.runOnly;
 import static com.insightfullogic.lambdabehave.Suite.describe;
 import static com.insightfullogic.lambdabehave.impl.reports.Result.ERROR;
@@ -60,6 +62,14 @@ public class TestingRunningSpec {{
             expect.that(report.getSuites()).contains(suite);
         });
 
+        it.should("disallow tests with duplicate names", expect -> {
+            Report report = runOnly(DuplicateNamedSpec.class);
+
+            List<SpecificationReport> specifications = report.getSuite().getSpecifications();
+
+            expect.that(specifications).hasSize(1);
+            expect.that(specifications.get(0).getResult()).is(ERROR);
+        });
     });
 
 }}

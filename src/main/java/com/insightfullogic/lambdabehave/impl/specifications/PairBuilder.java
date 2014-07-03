@@ -50,9 +50,13 @@ public final class PairBuilder<F, S> implements TwoColumns<F,S>, GeneratedTwoCol
 
     @Override
     public void toShow(String descriptionFormat, TwoColumnDataSpecification<F, S> specification) {
-        values.forEach(row -> {
+        for (int i = 0; i < values.size(); i++) {
+            Row row = values.get(i);
             String description = String.format(descriptionFormat, row.first, row.second);
-            specifier.specifyBehaviour(description, row.first, row.second, specification);
-        });
+            if (description.equals(descriptionFormat)) {
+                description += String.format("(%s, %s)", row.first, row.second);
+            }
+            specifier.specifyBehaviour(String.valueOf(i) + ": " + description, row.first, row.second, specification);
+        }
     }
 }
