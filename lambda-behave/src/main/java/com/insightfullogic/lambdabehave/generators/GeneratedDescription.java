@@ -1,7 +1,7 @@
 package com.insightfullogic.lambdabehave.generators;
 
 /**
- * 
+ * A fluent builder interface for describing how test cases get generated.
  */
 public interface GeneratedDescription {
 
