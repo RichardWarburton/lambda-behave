@@ -14,6 +14,10 @@ import static java.lang.Integer.MAX_VALUE;
  */
 public final class Generators {
 
+    private static final char ASCII_CHAR_START = ' ';
+    private static final char ASCII_CHAR_END = '~';
+    private static final int GAP = ASCII_CHAR_END - ASCII_CHAR_START;
+
     private Generators() {}
 
     /**
@@ -22,7 +26,7 @@ public final class Generators {
      * @return a generator that generates java.lang.String instances.
      */
     public static Generator<String> strings() {
-        return new StringGenerator(' ', Character.MAX_VALUE);
+        return new StringGenerator(ASCII_CHAR_START, Character.MAX_VALUE);
     }
 
     /**
@@ -32,7 +36,19 @@ public final class Generators {
      * @return a generator that generates ascii java.lang.String instances.
      */
     public static Generator<String> asciiStrings() {
-        return new StringGenerator(' ', '~');
+        return new StringGenerator(ASCII_CHAR_START, ASCII_CHAR_END);
+    }
+
+    /**
+     * Creates a generator that generates ascii characters
+     *
+     * @return a generator that generates ascii characters
+     */
+    public static Generator<Character> asciiCharacters() {
+        return source -> {
+            int index = source.generateInt(GAP);
+            return (char) (ASCII_CHAR_START + index);
+        };
     }
 
     /**
@@ -51,7 +67,7 @@ public final class Generators {
      * @return a generator that generates long instances.
      */
     public static Generator<Long> longs() {
-        return ng -> longs(ng);
+        return Generators::longs;
     }
 
     /**
