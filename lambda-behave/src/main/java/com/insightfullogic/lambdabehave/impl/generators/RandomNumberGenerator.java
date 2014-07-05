@@ -10,8 +10,13 @@ public class RandomNumberGenerator implements SourceGenerator {
     private final long seed;
 
     public RandomNumberGenerator() {
-        seed = System.nanoTime();
+        // TODO: investigate more non-determinism in the seed
+        this(System.nanoTime());
+    }
+
+    public RandomNumberGenerator(final long seed) {
         random = new Random(seed);
+        this.seed = seed;
     }
 
     @Override
@@ -20,7 +25,7 @@ public class RandomNumberGenerator implements SourceGenerator {
     }
 
     @Override
-    public String getSeed() {
-        return String.valueOf(seed);
+    public long getSeed() {
+        return seed;
     }
 }

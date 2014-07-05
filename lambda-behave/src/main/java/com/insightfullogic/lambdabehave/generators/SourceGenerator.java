@@ -29,11 +29,11 @@ public interface SourceGenerator {
     int generateInt(int maxValue);
 
     /**
-     * Gets any state required to generate the sequence of numbers.
+     * Gets the seed state required to generate the sequence of numbers.
      *
-     * @return any state required to generate the sequence of numbers
+     * @return the seed required to generate the sequence of numbers
      */
-    String getSeed();
+    long getSeed();
 
     /**
      * Generate a boolean value, based upon the current source

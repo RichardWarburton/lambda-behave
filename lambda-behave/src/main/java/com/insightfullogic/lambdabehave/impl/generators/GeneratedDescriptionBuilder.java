@@ -31,6 +31,12 @@ public class GeneratedDescriptionBuilder implements GeneratedDescription {
     }
 
     @Override
+    public GeneratedDescription randomlySeededBy(final long seed) {
+        this.sourceGenerator = new RandomNumberGenerator(seed);
+        return this;
+    }
+
+    @Override
     public <T> GeneratedColumn<T> example(final Generator<T> generator) {
         return new ValueBuilder<T>(generateValues(generator), specifier);
     }
