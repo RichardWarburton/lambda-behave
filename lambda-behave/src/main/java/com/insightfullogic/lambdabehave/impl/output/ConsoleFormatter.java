@@ -20,16 +20,15 @@ public final class ConsoleFormatter implements ReportFormatter {
     private void printSpecification(SpecificationReport specification) {
         boolean isSuccess = specification.getResult() == Result.SUCCESS;
         
-        try(PrintStream out = isSuccess ? System.out : System.err;) {
-            out.print("\tshould ");
-            out.print(specification.getDescription());
-            if (!isSuccess) {
-                out.print("[");
-                out.print(specification.getMessage());
-                out.print("]");
-            }
-            out.println();
+        PrintStream out = isSuccess ? System.out : System.err;
+        out.print("\tshould ");
+        out.print(specification.getDescription());
+        if (!isSuccess) {
+            out.print("[");
+            out.print(specification.getMessage());
+            out.print("]");
         }
+        out.println();
     }
 
 }

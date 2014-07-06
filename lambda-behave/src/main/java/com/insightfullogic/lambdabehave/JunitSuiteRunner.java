@@ -61,7 +61,7 @@ public final class JunitSuiteRunner extends ParentRunner<CompleteBehaviour> {
         }
     }
 
-    private static void reportResults(RunNotifier notifier, SpecificationReport spec, Description test) {
+    private void reportResults(RunNotifier notifier, SpecificationReport spec, Description test) {
         notifier.fireTestStarted(test);
         switch (spec.getResult()) {
             case SUCCESS:
