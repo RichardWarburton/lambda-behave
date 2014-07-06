@@ -36,6 +36,8 @@
 
 <p>If you're a Java developer and you've seen the fluent, modern specification frameworks available in other programming languages such as spock or jasmine then Lambda Behave is for you. Its goal is to make testing a more pleasant experience than it currently is with junit.</p>
 
+<p>The <a href="https://raw.githubusercontent.com/RichardWarburton/lambda-behave/master/CHANGELOG.md">changelog</a> explains what features have been added in each release.</p>
+
 <h3>
 <a name="fluent-specifications" class="anchor" href="#fluent-specifications"><span class="octicon octicon-link"></span></a>Fluent Specifications</h3>
 
@@ -60,6 +62,8 @@
         });
 </code></pre>
 
+<p>There are many, many, expectations builtin to the framework - not just <code>isEmpty()</code>. </p>
+
 <p>Every specification suite starts its declaration using the <code>Suite.describe</code> method. From that point onwards your IDE should be able to auto-complete the domain specific language for declaring specifications, but just in case you want more information, here's the details.</p>
 
 <ul>
@@ -71,18 +75,25 @@
 </ul><h3>
 <a name="data-driven-specifications" class="anchor" href="#data-driven-specifications"><span class="octicon octicon-link"></span></a>Data Driven Specifications</h3>
 
-<p>The ability to parametrise specifications by different data inputs.  Data driven tests in TestNG or the <code>@Parameterized</code> junit annotation perform a similar task. <code>@Parameterized</code> only parameterises at the level of a class, whereas Lambda Behave parameterises at the level of a specification. The API in Lambda Behave is both fluent and also type safe and doesn't rely on reflection magic.</p>
+<p>The ability to parametrise specifications by different data inputs.
+Data driven tests in TestNG or the <code>@Parameterized</code> junit annotation perform a similar task. 
+<code>@Parameterized</code> only parameterises at the level of a class, whereas Lambda Behave parameterises at the level of a specification. </p>
 
-<pre><code>    describe("a pair of numbers", it -&gt; {
-        it.uses(2, 4)
-          .and(4, 8)
-          .toShow("%d / %d is two", (expect, x, y) -&gt; {
-              expect.that(y / x).is(2);
-          });
-    });
+<pre><code>describe("a pair of numbers", it -&gt; {
+    it.uses(2, 4)
+      .and(4, 8)
+      .toShow("%d / %d is two", (expect, x, y) -&gt; {
+          expect.that(y / x).is(2);
+      });
+});
 </code></pre>
 
-<p>Not only is the specification parameterised by the data, but the description is also parameterised, its name being interpreted as a format <code>String</code>. The aforementioned test would output the following:</p>
+<p>The API in Lambda Behave is both fluent and also type safe and doesn't rely on reflection magic.
+The <code>uses</code> method is overloaded to allow a different number of columns of data to be used. It also supports taking
+streams or lists of data as its inputs, rather than explicitly chaining individual values.</p>
+
+<p>Not only is the specification parameterised by the data, but the description is also parameterised, its name being interpreted as a format <code>String</code>. 
+The aforementioned test would output the following:</p>
 
 <pre><code>a pair of numbers
   2 / 4 is two
@@ -90,6 +101,29 @@
 </code></pre>
 
 <h3>
+<a name="generated-specifications" class="anchor" href="#generated-specifications"><span class="octicon octicon-link"></span></a>Generated Specifications</h3>
+
+<p>Lambda Behave can automatically generate testcases for your to test your code with, similar to quick check or scala check.
+The Fluent API for this is similar to data driven specifications allows for control over the way that the values are generated
+and how many need to be generated. Here is an example of how to show that reversing a <code>String</code> twice returns the same <code>String</code>
+using randomly generated test case values.</p>
+
+<pre><code>it.requires(10)
+  .example(asciiStrings())
+  .toShow("reversing a String twice returns the original String", (expect, str) -&gt; {
+      String same = new StringBuilder(str).reverse().reverse().toString();
+      expect.that(same).isEqualTo(str);
+  });
+</code></pre>
+
+<p>All generated specifications follow this common pattern where;</p>
+
+<ul>
+<li>The <code>require</code> clause expresses how many values to generate,</li>
+<li>The <code>example</code> clause states what type of objects to generate and how to generate them, This is overloaded to allow multiple columns of testcase values to be generated.</li>
+<li>The <code>toShow</code> clause behaves like a <code>toShow</code> clause for a data drive spec. It is type safe against the the different columns.
+So in the above example the paramter <code>str</code> will have had its type correctly inferred as <code>String</code>. </li>
+</ul><h3>
 <a name="downloading-lambda-behave" class="anchor" href="#downloading-lambda-behave"><span class="octicon octicon-link"></span></a>Downloading Lambda Behave</h3>
 
 <p>If you're using a maven project then you can download Lambda Behave using the following pom entry.</p>
@@ -97,9 +131,14 @@
 <pre><code>&lt;dependency&gt;
     &lt;groupId&gt;com.insightfullogic&lt;/groupId&gt;
     &lt;artifactId&gt;lambda-behave&lt;/artifactId&gt;
-    &lt;version&gt;0.1&lt;/version&gt;
+    &lt;version&gt;0.2&lt;/version&gt;
     &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
+</code></pre>
+
+<p>If you're using a gradle project then you can use:</p>
+
+<pre><code>testCompile group: 'com.insightfullogic', name: 'lambda-behave', version: '0.2'
 </code></pre>
 
 <p>There's also an <a href="https://github.com/RichardWarburton/lambda-behave-examples">example project</a>.</p>
@@ -107,7 +146,8 @@
 <h3>
 <a name="junit-integration" class="anchor" href="#junit-integration"><span class="octicon octicon-link"></span></a>Junit Integration</h3>
 
-<p>Lambda Behave also offers a junit runner. This lets you easily integrate into existing your existing test suite, or the tests via an Eclipse, Intellij, Netbeans, Maven, Gradle or Ant. You can use annotations to drive this:</p>
+<p>Lambda Behave also offers a junit runner. This lets you easily integrate into existing your existing test suite, or the tests via an Eclipse, Intellij, Netbeans, Maven, Gradle or Ant. You just add an annotation to enable this,
+and it can be run through your normal tooling.</p>
 
 <pre><code>@RunWith(JunitSuiteRunner.class)
 public class StackSpec {{
@@ -119,11 +159,25 @@ public class StackSpec {{
 <p>Conveniently I've written a <a href="http://shop.oreilly.com/product/0636920030713.do?cmp=af-prog-books-videos-product_cj_9781491900154_%25zp'">book</a> on Lambda expressions in Java 8 and the cleaner code they enable!</p>
 
 <h3>
+<a name="more-details" class="anchor" href="#more-details"><span class="octicon octicon-link"></span></a>More Details</h3>
+
+<p>Over time <a href="https://github.com/RichardWarburton/lambda-behave/wiki">The wiki</a> will be fleshed out with more information including how-tos and guides.</p>
+
+<h3>
 <a name="how-to-contribute" class="anchor" href="#how-to-contribute"><span class="octicon octicon-link"></span></a>How to contribute</h3>
 
-<p>Patches should be submitted as github pull requests, issues filed via <a href="https://github.com/RichardWarburton/lambda-behave">the github project</a>.</p>
+<p>Contributions are welcome and appreciated.</p>
 
-<p>Have fun!</p>
+<ul>
+<li>Patches should be submitted as <a href="https://github.com/RichardWarburton/lambda-behave/pulls">github pull requests</a>
+</li>
+<li>Issues should be filed via <a href="https://github.com/RichardWarburton/lambda-behave/issues">the github project</a>
+</li>
+<li>CI Build status: <img src="https://travis-ci.org/RichardWarburton/lambda-behave.svg?branch=master" alt="Build Status">
+</li>
+<li>A list of key authors and contributors can be found in <a href="https://raw.githubusercontent.com/RichardWarburton/lambda-behave/master/AUTHORS.md">the authors file</a>
+</li>
+</ul><p>Have fun!</p>
       </section>
     </div>
 
