@@ -1,9 +1,11 @@
 package com.insightfullogic.lambdabehave.specifications;
 
+import com.insightfullogic.lambdabehave.generators.CompleteColumn;
+
 /**
  * A column represents a single series of data values.
  */
-public interface Column<T> {
+public interface Column<T> extends CompleteColumn<T> {
 
     /**
      * Add another element to the column.
@@ -12,12 +14,4 @@ public interface Column<T> {
      * @return this the fluent builder object
      */
     Column<T> and(T value);
-
-    /**
-     * Specify the actual behaviour.
-     *
-     * @param description a human readable description of the behaviour you're expecting.
-     * @param specification a function which describes in code the expected behaviour.
-     */
-    void toShow(String description, ColumnDataSpecification<T> specification);
 }

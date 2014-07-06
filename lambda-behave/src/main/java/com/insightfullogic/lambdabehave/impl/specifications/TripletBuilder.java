@@ -1,6 +1,6 @@
 package com.insightfullogic.lambdabehave.impl.specifications;
 
-import com.insightfullogic.lambdabehave.generators.GeneratedThreeColumns;
+import com.insightfullogic.lambdabehave.generators.CompleteThreeColumns;
 import com.insightfullogic.lambdabehave.impl.Specifier;
 import com.insightfullogic.lambdabehave.specifications.ThreeColumnDataSpecification;
 import com.insightfullogic.lambdabehave.specifications.ThreeColumns;
@@ -8,7 +8,7 @@ import com.insightfullogic.lambdabehave.specifications.ThreeColumns;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class TripletBuilder<F, S, T> implements ThreeColumns<F,S,T>, GeneratedThreeColumns<F,S,T> {
+public final class TripletBuilder<F, S, T> implements ThreeColumns<F,S,T> {
 
     private final List<Row> values;
     private final Specifier specifier;
@@ -50,7 +50,7 @@ public final class TripletBuilder<F, S, T> implements ThreeColumns<F,S,T>, Gener
     }
 
     @Override
-    public void toShow(String descriptionFormat, ThreeColumnDataSpecification<F, S, T> specification) {
+    public CompleteThreeColumns<F, S, T> toShow(String descriptionFormat, ThreeColumnDataSpecification<F, S, T> specification) {
         for (int i = 0; i < values.size(); i++) {
             Row row = values.get(i);
             String description = String.format(descriptionFormat, row.first, row.second, row.third);
@@ -59,5 +59,6 @@ public final class TripletBuilder<F, S, T> implements ThreeColumns<F,S,T>, Gener
             }
             specifier.specifyBehaviour(String.valueOf(i) + ": " + description, row.first, row.second, row.third, specification);
         }
+        return this;
     }
 }

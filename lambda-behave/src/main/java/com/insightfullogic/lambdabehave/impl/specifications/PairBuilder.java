@@ -1,6 +1,6 @@
 package com.insightfullogic.lambdabehave.impl.specifications;
 
-import com.insightfullogic.lambdabehave.generators.GeneratedTwoColumns;
+import com.insightfullogic.lambdabehave.generators.CompleteTwoColumns;
 import com.insightfullogic.lambdabehave.impl.Specifier;
 import com.insightfullogic.lambdabehave.specifications.TwoColumnDataSpecification;
 import com.insightfullogic.lambdabehave.specifications.TwoColumns;
@@ -8,7 +8,7 @@ import com.insightfullogic.lambdabehave.specifications.TwoColumns;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class PairBuilder<F, S> implements TwoColumns<F,S>, GeneratedTwoColumns<F,S> {
+public final class PairBuilder<F, S> implements TwoColumns<F,S> {
 
     private final List<Row> values;
     private final Specifier specifier;
@@ -49,7 +49,7 @@ public final class PairBuilder<F, S> implements TwoColumns<F,S>, GeneratedTwoCol
     }
 
     @Override
-    public void toShow(String descriptionFormat, TwoColumnDataSpecification<F, S> specification) {
+    public CompleteTwoColumns<F, S> toShow(String descriptionFormat, TwoColumnDataSpecification<F, S> specification) {
         for (int i = 0; i < values.size(); i++) {
             Row row = values.get(i);
             String description = String.format(descriptionFormat, row.first, row.second);
@@ -58,5 +58,6 @@ public final class PairBuilder<F, S> implements TwoColumns<F,S>, GeneratedTwoCol
             }
             specifier.specifyBehaviour(String.valueOf(i) + ": " + description, row.first, row.second, specification);
         }
+        return this;
     }
 }

@@ -37,12 +37,12 @@ public class GeneratedDescriptionBuilder implements GeneratedDescription {
     }
 
     @Override
-    public <T> GeneratedColumn<T> example(final Generator<T> generator) {
+    public <T> CompleteColumn<T> example(final Generator<T> generator) {
         return new ValueBuilder<T>(generateValues(generator), specifier);
     }
 
     @Override
-    public <F, S> GeneratedTwoColumns<F, S> example(
+    public <F, S> CompleteTwoColumns<F, S> example(
             Generator<F> firstGenerator,
             Generator<S> secondGenerator) {
 
@@ -53,7 +53,7 @@ public class GeneratedDescriptionBuilder implements GeneratedDescription {
     }
 
     @Override
-    public <F, S, T> GeneratedThreeColumns<F, S, T> example(
+    public <F, S, T> CompleteThreeColumns<F, S, T> example(
             Generator<F> firstGenerator,
             Generator<S> secondGenerator,
             Generator<T> thirdGenerator) {

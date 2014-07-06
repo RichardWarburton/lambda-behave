@@ -36,7 +36,7 @@ public interface GeneratedDescription {
      * @param <T> the type of the values in column
      * @return this
      */
-    <T> GeneratedColumn<T> example(Generator<T> generator);
+    <T> CompleteColumn<T> example(Generator<T> generator);
 
     /**
      * Use these generators to produce two columns of example testcases.
@@ -47,7 +47,7 @@ public interface GeneratedDescription {
      * @param <S> the type of the values in the second column
      * @return this
      */
-    <F, S> GeneratedTwoColumns<F, S> example(
+    <F, S> CompleteTwoColumns<F, S> example(
             Generator<F> firstGenerator,
             Generator<S> secondGenerator);
 
@@ -62,7 +62,7 @@ public interface GeneratedDescription {
      * @param <T> the type of the values in the third column
      * @return this
      */
-    <F, S, T> GeneratedThreeColumns<F, S, T> example(
+    <F, S, T> CompleteThreeColumns<F, S, T> example(
             Generator<F> firstGenerator,
             Generator<S> secondGenerator,
             Generator<T> thirdGenerator);
