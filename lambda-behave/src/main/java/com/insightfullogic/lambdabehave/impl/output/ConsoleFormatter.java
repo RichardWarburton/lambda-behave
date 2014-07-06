@@ -19,8 +19,8 @@ public final class ConsoleFormatter implements ReportFormatter {
 
     private void printSpecification(SpecificationReport specification) {
         boolean isSuccess = specification.getResult() == Result.SUCCESS;
+        
         PrintStream out = isSuccess ? System.out : System.err;
-
         out.print("\tshould ");
         out.print(specification.getDescription());
         if (!isSuccess) {
