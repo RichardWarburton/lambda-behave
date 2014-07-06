@@ -1,6 +1,7 @@
 package com.insightfullogic.lambdabehave.generators;
 
 import com.insightfullogic.lambdabehave.impl.generators.RandomNumberGenerator;
+import com.insightfullogic.lambdabehave.impl.generators.ValueSourceGenerator;
 
 /**
  * A source of information which generators use. Generators should
@@ -18,6 +19,26 @@ public interface SourceGenerator {
      */
     public static SourceGenerator randomNumbers() {
         return new RandomNumberGenerator();
+    }
+
+    /**
+     * creates a source generator that returns random numbers.
+     *
+     * @param seed the seed for the random number generator
+     * @return the source generator
+     */
+    public static SourceGenerator randomNumbers(long seed) {
+        return new RandomNumberGenerator(seed);
+    }
+
+    /**
+     * Generates a source from a sequence of values
+     *
+     * @param values the values to use
+     * @return the source generator
+     */
+    public static SourceGenerator values(int ... values) {
+        return new ValueSourceGenerator(values);
     }
 
     /**

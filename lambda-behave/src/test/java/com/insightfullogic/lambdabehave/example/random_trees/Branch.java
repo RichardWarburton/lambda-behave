@@ -20,11 +20,11 @@ public class Branch<T> extends Node<T> {
     }
 
     @Override
-    public void print(int depth) {
+    public void print(final int depth) {
         super.print(depth);
-        depth++;
-        left.print(depth);
-        right.print(depth);
+        final int childDepth = depth + 1;
+        left.print(childDepth);
+        right.print(childDepth);
     }
 
 }

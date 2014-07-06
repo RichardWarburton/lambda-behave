@@ -62,7 +62,7 @@ public class DataDrivenSuiteSpec {{
                 runOnly(TwoColDataDrivenWrongLength.class);
                 expect.failure("Should never reach here");
             } catch (IllegalArgumentException e) {
-
+                // should reach here, deliberate fall through
             }
 
             verifyNoMoreInteractions(TwoColDataDrivenWrongLength.specification);
@@ -73,7 +73,7 @@ public class DataDrivenSuiteSpec {{
                 runOnly(ThreeColDataDrivenWrongLength.class);
                 expect.failure("Should never reach here");
             } catch (IllegalArgumentException e) {
-
+                // should reach here, deliberate fall through
             }
 
             verifyNoMoreInteractions(ThreeColDataDrivenWrongLength.specification);

@@ -21,12 +21,12 @@ public class TreeGenerator<T> implements Generator<Node<T>> {
         return generateNode(source, maxTreeDepth);
     }
 
-    private Node<T> generateNode(SourceGenerator source, int height) {
+    private Node<T> generateNode(SourceGenerator source, final int height) {
         if (height == 1 || source.generateBoolean())
-            return new Leaf<T>(value(source));
+            return new Leaf<>(value(source));
 
-        height--;
-        return new Branch<T>(value(source), generateNode(source, height), generateNode(source, height));
+        final int parentHeight = height - 1;
+        return new Branch<>(value(source), generateNode(source, parentHeight), generateNode(source, parentHeight));
     }
 
     private T value(SourceGenerator source) {

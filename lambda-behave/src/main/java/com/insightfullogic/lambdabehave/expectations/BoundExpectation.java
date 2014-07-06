@@ -18,12 +18,12 @@ public class BoundExpectation<T> {
         this.positive = positive;
     }
 
-    public <T> BoundExpectation<T> and(T value) {
-        return new BoundExpectation<T>(value, true);
+    public <O> BoundExpectation<O> and(O value) {
+        return new BoundExpectation<O>(value, true);
     }
 
-    public CollectionExpectation and(Collection<?> collection) {
-        return new CollectionExpectation<>(collection, true);
+    public <O> CollectionExpectation<O> and(Collection<O> collection) {
+        return new CollectionExpectation<O>(collection, true);
     }
 
     public StringExpectation and(String str) {
@@ -47,7 +47,7 @@ public class BoundExpectation<T> {
     }
 
     public BoundExpectation<T> isNotNull() {
-        return matches(Matchers.<T>notNullValue());
+        return matches(Matchers.notNullValue());
     }
 
     public BoundExpectation<T> toBeNull() {
@@ -95,6 +95,7 @@ public class BoundExpectation<T> {
         return positive ? matcher : Matchers.not(matcher);
     }
 
+    @SuppressWarnings("unchecked")
     protected Class<T> getWrappedClass() {
         return (Class<T>)objectUnderTest.getClass();
     }

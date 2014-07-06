@@ -11,19 +11,19 @@ public class ComparableExpectation<T extends Comparable<T>> extends BoundExpecta
         super(value, positive);
     }
 
-    public ComparableExpectation<T> greaterThan(T value) {
+    public ComparableExpectation<T> isGreaterThan(T value) {
         return matches(Matchers.greaterThan(value));
     }
 
-    public ComparableExpectation<T> greaterThanOrEqualTo(T value) {
+    public ComparableExpectation<T> isGreaterThanOrEqualTo(T value) {
         return matches(Matchers.greaterThanOrEqualTo(value));
     }
 
-    public ComparableExpectation<T> lessThan(T value) {
+    public ComparableExpectation<T> isLessThan(T value) {
         return matches(Matchers.lessThan(value));
     }
 
-    public ComparableExpectation<T> lessThanOrEqualTo(T value) {
+    public ComparableExpectation<T> isLessThanOrEqualTo(T value) {
         return matches(Matchers.lessThanOrEqualTo(value));
     }
 
