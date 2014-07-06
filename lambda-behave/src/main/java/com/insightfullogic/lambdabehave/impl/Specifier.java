@@ -142,6 +142,7 @@ public class Specifier implements Description {
         initializers.add(block);
     }
 
+    @Override
     public void shouldTearDown(Block block) {
         postfixes.add(block);
     }

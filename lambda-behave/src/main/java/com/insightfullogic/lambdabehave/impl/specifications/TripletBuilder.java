@@ -58,6 +58,6 @@ public final class TripletBuilder<F, S, T> implements ThreeColumns<F,S,T>, Gener
                 description += String.format("(%s, %s, %s)", row.first, row.second, row.third);
             }
             specifier.specifyBehaviour(String.valueOf(i) + ": " + description, row.first, row.second, row.third, specification);
-        };
+        }
     }
 }
