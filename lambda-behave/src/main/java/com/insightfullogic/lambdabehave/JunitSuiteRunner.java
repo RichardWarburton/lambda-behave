@@ -22,14 +22,11 @@ public final class JunitSuiteRunner extends ParentRunner<CompleteBehaviour> {
 
     private static final Logger log = LoggerFactory.getLogger(JunitSuiteRunner.class);
 
-    // TODO testClass is not used
-    private final Class<?> testClass;
     private final List<CompleteBehaviour> children;
     private final String name;
 
     public JunitSuiteRunner(Class<?> testClass) throws InitializationError {
         super(testClass);
-        this.testClass = testClass;
         Specifier specifier = BehaveRunner.declareOnly(testClass);
         name = specifier.getSuiteName();
         children = specifier.completeBehaviours().collect(toList());

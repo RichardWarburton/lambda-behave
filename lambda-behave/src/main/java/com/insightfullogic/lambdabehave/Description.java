@@ -28,6 +28,9 @@ import java.util.stream.Stream;
  * </p>
  *
  * @see com.insightfullogic.lambdabehave.specifications.Specification
+ * @see com.insightfullogic.lambdabehave.specifications.Column
+ * @see com.insightfullogic.lambdabehave.specifications.TwoColumns
+ * @see com.insightfullogic.lambdabehave.specifications.ThreeColumns
  */
 public interface Description {
 
@@ -48,8 +51,22 @@ public interface Description {
      */
     <T> Column<T> uses(T value);
 
+    /**
+     * Specify a single value data driven behaviour.
+     *
+     * @param values a list of values to wrap as a Column
+     * @param <T> the type of the value
+     * @return a fluent builder for a column of values
+     */
     <T> Column<T> uses(List<T> values);
 
+    /**
+     * Specify a single value data driven behaviour.
+     *
+     * @param values a Stream of values to wrap as a Column
+     * @param <T> the type of the value
+     * @return a fluent builder for a column of values
+     */
     <T> Column<T> uses(Stream<T> values);
 
     /**
@@ -63,8 +80,26 @@ public interface Description {
      */
     <F, S> TwoColumns<F, S> uses(F first, S second);
 
+    /**
+     * Specify a two value data driven behaviour using Lists.
+     *
+     * @param first the list of values to wrap as the first column
+     * @param second the list of values to wrap as the second column
+     * @param <F> the type of the first value
+     * @param <S> the type of the second value
+     * @return a fluent builder for two columns of values
+     */
     <F, S> TwoColumns<F, S> uses(List<F> first, List<S> second);
 
+    /**
+     * Specify a two value data driven behaviour using Streams.
+     *
+     * @param first the Stream of values to wrap as the first column
+     * @param second the Stream of values to wrap as the second column
+     * @param <F> the type of the first value
+     * @param <S> the type of the second value
+     * @return a fluent builder for two columns of values
+     */
     <F, S> TwoColumns<F, S> uses(Stream<F> first, Stream<S> second);
 
     /**
@@ -80,11 +115,39 @@ public interface Description {
      */
     <F, S, T> ThreeColumns<F, S, T> uses(F first, S second, T third);
 
+    /**
+     * Specify a three value data driven behaviour using Lists.
+     *
+     * @param first the list of values to wrap as the first column
+     * @param second the list of values to wrap as the second column
+     * @param third the list of values to wrap as the third column
+     * @param <F> the type of the first value
+     * @param <S> the type of the second value
+     * @param <T> the type of the third value
+     * @return a fluent builder for two columns of values
+     */
     <F, S, T> ThreeColumns<F, S, T> uses(List<F> first, List<S> second, List<T> third);
 
+    /**
+     * Specify a three value data driven behaviour using streams.
+     *
+     * @param first the Stream of values to wrap as the first column
+     * @param second the Stream of values to wrap as the second column
+     * @param third the Stream of values to wrap as the third column
+     * @param <F> the type of the first value
+     * @param <S> the type of the second value
+     * @param <T> the type of the third value
+     * @return a fluent builder for two columns of values
+     */
     <F, S, T> ThreeColumns<F, S, T> uses(Stream<F> first, Stream<S> second, Stream<T> third);
 
-    GeneratedDescription requires(int i);
+    /**
+     * Create a fluent builder to do automatic testcase generation.
+     *
+     * @param exampleCount the number of example test cases to be generated
+     * @return the description builder
+     */
+    GeneratedDescription requires(int exampleCount);
 
     /**
      * Run some code before each of the specifications.

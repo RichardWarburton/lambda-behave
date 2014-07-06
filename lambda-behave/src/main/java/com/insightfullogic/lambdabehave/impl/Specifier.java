@@ -128,8 +128,8 @@ public class Specifier implements Description {
     }
 
     @Override
-    public GeneratedDescription requires(int numberOfInstances) {
-        return new GeneratedDescriptionBuilder(sourceGenerator, numberOfInstances, this);
+    public GeneratedDescription requires(int exampleCount) {
+        return new GeneratedDescriptionBuilder(sourceGenerator, exampleCount, this);
     }
 
     @Override

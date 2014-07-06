@@ -15,7 +15,10 @@ import static java.lang.Float.intBitsToFloat;
 import static java.lang.Integer.MAX_VALUE;
 
 /**
- * A generator
+ * An interface that defines the API for generating values to be used as testcases. The generator should be able
+ * to deterministically generate a value from a given sequence of integers. These are provided by source generators.
+ * This allows testcase generation to be deterministically reproduced if a failure occurs. Any source generator that
+ *
  *
  * @see com.insightfullogic.lambdabehave.generators.SourceGenerator
  *
@@ -94,6 +97,14 @@ public interface Generator<T> {
         return ng -> intBitsToFloat(ng.generateInt(MAX_VALUE));
     }
 
+    /**
+     * Generate a new value. This may make calls to the SourceGenerator provided in order to generate intermediate
+     * values. It may make any number of calls to source, but it should deterministically return the same value back
+     * given the same sequence of source numbers
+     *
+     * @param source the source generator used to produce values
+     * @return the new value
+     */
     public T generate(SourceGenerator source);
 
     public default Generator<T> matching(Predicate<T> predicate) {

@@ -16,18 +16,7 @@ public interface GeneratedDescription {
      * @param sourceGenerator the new source generator
      * @return this
      */
-    GeneratedDescription numberedBy(SourceGenerator sourceGenerator);
-
-    /**
-     * Sets the seed to be used by the random number generator for this instance.
-     *
-     * The source generator is the component which provides a source of numbers, upon which random test
-     * case generation is performed.
-     *
-     * @param seed a value used to initialise the random number generator.
-     * @return this
-     */
-    GeneratedDescription randomlySeededBy(long seed);
+    GeneratedDescription withSource(SourceGenerator sourceGenerator);
 
     /**
      * Use this generator to produce a single column of example testcases.

@@ -25,14 +25,8 @@ public class GeneratedDescriptionBuilder implements GeneratedDescription {
     }
 
     @Override
-    public GeneratedDescription numberedBy(SourceGenerator sourceGenerator) {
+    public GeneratedDescription withSource(SourceGenerator sourceGenerator) {
         this.sourceGenerator = sourceGenerator;
-        return this;
-    }
-
-    @Override
-    public GeneratedDescription randomlySeededBy(final long seed) {
-        this.sourceGenerator = new RandomNumberGenerator(seed);
         return this;
     }
 
