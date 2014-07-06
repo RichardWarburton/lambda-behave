@@ -22,6 +22,7 @@ public final class JunitSuiteRunner extends ParentRunner<CompleteBehaviour> {
 
     private static final Logger log = LoggerFactory.getLogger(JunitSuiteRunner.class);
 
+    // TODO testClass is not used
     private final Class<?> testClass;
     private final List<CompleteBehaviour> children;
     private final String name;
@@ -70,6 +71,7 @@ public final class JunitSuiteRunner extends ParentRunner<CompleteBehaviour> {
                 notifier.fireTestFailure(new Failure(test, new TestFailure(spec.getMessage())));
                 return;
             case ERROR:
+            default:
                 throw new SpecificationError(spec.getMessage(), spec.getCause());
         }
     }
