@@ -1,8 +1,8 @@
 Lambda Behave Release Changelog
 ===============================
 
-0.2 - 
-------
+0.2 - 06/07/2014
+----------------
 
  * Adds automatic testcase generation
  * Bans multiple specifications with the same name
