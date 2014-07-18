@@ -135,6 +135,7 @@ Contributions are welcome and appreciated.
  * Patches should be submitted as [github pull requests](https://github.com/RichardWarburton/lambda-behave/pulls)
  * Issues should be filed via [the github project](https://github.com/RichardWarburton/lambda-behave/issues)
  * CI Build status: ![Build Status](https://travis-ci.org/RichardWarburton/lambda-behave.svg?branch=master)
+ * If you want a task to pickup then you can just look at [issues labelled simple](https://github.com/RichardWarburton/lambda-behave/issues?labels=Simple)
  * A list of key authors and contributors can be found in [the authors file](https://raw.githubusercontent.com/RichardWarburton/lambda-behave/master/AUTHORS.md)
 
 Have fun!
