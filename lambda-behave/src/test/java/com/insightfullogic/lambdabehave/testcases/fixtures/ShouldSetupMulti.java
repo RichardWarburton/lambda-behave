@@ -16,9 +16,9 @@ public class ShouldSetupMulti {
 
 {
     describe("a two spec suite", it -> {
-        it.shouldSetup(setup::run);
+        it.isSetupWith(setup::run);
         it.should("have spec1", spec1::accept);
         it.should("have spec2", spec2::accept);
-        it.shouldTearDown(tearDown::run);
+        it.isConcludedWith(tearDown::run);
     });
 }}

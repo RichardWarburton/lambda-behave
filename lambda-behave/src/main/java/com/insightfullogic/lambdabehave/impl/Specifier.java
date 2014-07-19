@@ -133,22 +133,22 @@ public class Specifier implements Description {
     }
 
     @Override
-    public void shouldSetup(Block block) {
+    public void isSetupWith(Block block) {
         prefixes.add(block);
     }
 
     @Override
-    public void shouldInitialize(Block block) {
+    public void initializesWith(Block block) {
         initializers.add(block);
     }
 
     @Override
-    public void shouldTearDown(Block block) {
+    public void isConcludedWith(Block block) {
         postfixes.add(block);
     }
 
     @Override
-    public void shouldComplete(Block block) {
+    public void completesWith(Block block) {
         completers.add(block);
     }
 

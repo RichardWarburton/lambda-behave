@@ -10,7 +10,7 @@ public class AllFixturesNone {
 
 {
     describe("a no spec suite", it -> {
-        it.shouldInitialize(initializer::run);
-        it.shouldComplete(completer::run);
+        it.initializesWith(initializer::run);
+        it.completesWith(completer::run);
     });
 }}

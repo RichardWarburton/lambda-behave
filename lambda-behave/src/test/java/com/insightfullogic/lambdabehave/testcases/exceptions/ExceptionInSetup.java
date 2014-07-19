@@ -17,7 +17,7 @@ public class ExceptionInSetup {
     doThrow(RuntimeException.class).when(setup).run();
 
     describe("a one spec suite", it -> {
-        it.shouldSetup(setup::run);
+        it.isSetupWith(setup::run);
         it.should("have a single spec1", spec::accept);
     });
 }}

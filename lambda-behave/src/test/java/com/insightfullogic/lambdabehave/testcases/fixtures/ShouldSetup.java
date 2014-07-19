@@ -15,8 +15,8 @@ public class ShouldSetup {
 
 {
     describe("a one spec1 suite", it -> {
-        it.shouldSetup(setup::run);
+        it.isSetupWith(setup::run);
         it.should("have a single spec1", spec::accept);
-        it.shouldTearDown(tearDown::run);
+        it.isConcludedWith(tearDown::run);
     });
 }}

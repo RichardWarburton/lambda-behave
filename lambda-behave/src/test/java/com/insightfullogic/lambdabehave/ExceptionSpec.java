@@ -22,27 +22,27 @@ public class ExceptionSpec {{
 
     describe("lambda behave", it -> {
 
-        it.should("not execute a spec when there were exceptions in its shouldSetup()", expect -> {
+        it.should("not execute a spec when there were exceptions in its isSetupWith()", expect -> {
             Report report = runOnly(ExceptionInSetup.class);
 
             expectSingleSpecErrored(expect, report);
             verifyNoMoreInteractions(ExceptionInSetup.spec);
         });
 
-        it.should("not execute a suite when there were exceptions in its shouldInitialize()", expect -> {
+        it.should("not execute a suite when there were exceptions in its initializesWith()", expect -> {
             Report report = runOnly(ExceptionInInitializer.class);
 
             List<SpecificationReport> specifications = report.getSuite().getSpecifications();
             expect.that(specifications).hasItem(error("initializer", new RuntimeException()));
         });
 
-        it.should("fail a spec when there were exceptions in its shouldTearDown()", expect -> {
+        it.should("fail a spec when there were exceptions in its isConcludedWith()", expect -> {
             Report report = runOnly(ExceptionInTearDown.class);
 
             expectSingleSpecErrored(expect, report);
         });
 
-        it.should("fail a suite when there were exceptions in its shouldComplete()", expect -> {
+        it.should("fail a suite when there were exceptions in its completesWith()", expect -> {
             Report report = runOnly(ExceptionInCompleter.class);
 
             List<SpecificationReport> specifications = report.getSuite().getSpecifications();

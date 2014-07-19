@@ -19,13 +19,13 @@ public class SuiteFixtureSpec {{
 
     describe("lambda behave suite fixtures", it -> {
 
-        it.should("not execute shouldInitialize() or shouldComplete() when there are no specs", expect -> {
+        it.should("not execute initializesWith() or completesWith() when there are no specs", expect -> {
             runOnly(AllFixturesNone.class);
 
             verifyZeroInteractions(AllFixturesNone.initializer, AllFixturesNone.completer);
         });
 
-        it.should("execute shouldInitialize() before a suite and shouldComplete() after a suite", expect -> {
+        it.should("execute initializesWith() before a suite and completesWith() after a suite", expect -> {
             runOnly(AllFixturesMulti.class);
 
             InOrder inOrder = inOrder(AllFixturesMulti.setup, AllFixturesMulti.spec1, AllFixturesMulti.spec2,

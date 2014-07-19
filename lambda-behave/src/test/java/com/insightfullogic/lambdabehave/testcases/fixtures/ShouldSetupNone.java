@@ -10,7 +10,7 @@ public class ShouldSetupNone {
 
 {
     describe("a no spec suite", it -> {
-        it.shouldSetup(setup::run);
-        it.shouldTearDown(tearDown::run);
+        it.isSetupWith(setup::run);
+        it.isConcludedWith(tearDown::run);
     });
 }}

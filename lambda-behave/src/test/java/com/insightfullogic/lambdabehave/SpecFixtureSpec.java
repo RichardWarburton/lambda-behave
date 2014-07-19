@@ -17,7 +17,7 @@ public class SpecFixtureSpec {{
 
     describe("lambda behave spec fixtures", it -> {
 
-        it.should("execute shouldSetup() before a spec1 and shouldTearDown() after a spec1", expect -> {
+        it.should("execute isSetupWith() before a spec1 and isConcludedWith() after a spec1", expect -> {
             runOnly(ShouldSetup.class);
 
             InOrder inOrder = inOrder(ShouldSetup.setup, ShouldSetup.spec, ShouldSetup.tearDown);
@@ -27,7 +27,7 @@ public class SpecFixtureSpec {{
             inOrder.verifyNoMoreInteractions();
         });
 
-        it.should("execute shouldSetup() before multiple specs and shouldTearDown() after multiple specs", expect -> {
+        it.should("execute isSetupWith() before multiple specs and isConcludedWith() after multiple specs", expect -> {
             runOnly(ShouldSetupMulti.class);
 
             InOrder inOrder = inOrder(ShouldSetupMulti.setup, ShouldSetupMulti.spec1, ShouldSetupMulti.spec2, ShouldSetupMulti.tearDown);
@@ -43,7 +43,7 @@ public class SpecFixtureSpec {{
             inOrder.verifyNoMoreInteractions();
         });
 
-        it.should("not execute shouldSetup() or shouldTearDown() when there are no specs", expect -> {
+        it.should("not execute isSetupWith() or isConcludedWith() when there are no specs", expect -> {
             runOnly(ShouldSetupNone.class);
 
             verifyZeroInteractions(ShouldSetupNone.setup, ShouldSetupNone.tearDown);

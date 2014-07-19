@@ -154,26 +154,26 @@ public interface Description {
      *
      * @param block the code to run.
      */
-    void shouldSetup(Block block);
+    void isSetupWith(Block block);
 
     /**
      * Run some code before all of the specifications.
      *
      * @param block the code to run.
      */
-    void shouldInitialize(Block block);
+    void initializesWith(Block block);
 
     /**
      * Run some code after each of the specifications.
      *
      * @param block the code to run.
      */
-    void shouldTearDown(Block block);
+    void isConcludedWith(Block block);
 
     /**
      * Run some code after all of the specifications.
      *
      * @param block the code to run.
      */
-    void shouldComplete(Block block);
+    void completesWith(Block block);
 }

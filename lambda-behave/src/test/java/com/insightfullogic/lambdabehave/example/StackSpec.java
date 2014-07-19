@@ -14,9 +14,9 @@ public class StackSpec {{
 
     describe("a stack", it -> {
 
-        it.shouldSetup(stack::clear);
+        it.isSetupWith(stack::clear);
 
-        it.shouldTearDown(stack::clear);
+        it.isConcludedWith(stack::clear);
 
         it.should("be empty when created", expect -> {
             expect.that(stack).isEmpty();

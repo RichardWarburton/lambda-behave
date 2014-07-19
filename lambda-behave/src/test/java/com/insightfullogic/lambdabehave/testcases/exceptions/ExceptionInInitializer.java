@@ -24,10 +24,10 @@ public class ExceptionInInitializer {
         it.should("have spec1", spec1::accept);
         it.should("have spec2", spec2::accept);
 
-        it.shouldTearDown(tearDown::run);
-        it.shouldSetup(setup::run);
+        it.isConcludedWith(tearDown::run);
+        it.isSetupWith(setup::run);
 
-        it.shouldComplete(completer::run);
-        it.shouldInitialize(initializer::run);
+        it.completesWith(completer::run);
+        it.initializesWith(initializer::run);
     });
 }}
