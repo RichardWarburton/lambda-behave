@@ -114,8 +114,7 @@ public interface Generator<T> {
                                              .filter(predicate)
                                              .findFirst();
 
-            return candidate.orElseThrow(() ->
-                new IllegalArgumentException("Unable to find matching value in " + MAX_TRIES + " attempts"));
+            return candidate.orElseThrow(Generators::exceededMaxTries);
         };
     }
 
