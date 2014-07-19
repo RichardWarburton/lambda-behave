@@ -11,6 +11,7 @@ import com.insightfullogic.lambdabehave.impl.specifications.PairBuilder;
 import com.insightfullogic.lambdabehave.impl.specifications.TripletBuilder;
 import com.insightfullogic.lambdabehave.impl.specifications.ValueBuilder;
 import com.insightfullogic.lambdabehave.specifications.*;
+import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -150,6 +151,16 @@ public class Specifier implements Description {
     @Override
     public void completesWith(Block block) {
         completers.add(block);
+    }
+
+    @Override
+    public <T> T usesMock(Class<T> classToMock) {
+        final T mockObject = Mockito.mock(classToMock);
+        postfixes.add(() -> {
+            Mockito.reset(mockObject);
+        });
+
+        return mockObject;
     }
 
     public void checkSpecifications(Report report) {

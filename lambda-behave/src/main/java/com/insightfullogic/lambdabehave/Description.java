@@ -176,4 +176,14 @@ public interface Description {
      * @param block the code to run.
      */
     void completesWith(Block block);
+
+    /**
+     * Creates a mock similar to Mockito.mock which gets reset between tests.
+     *
+     * @param classToMock the class of the mock object
+     * @param <T> the type parameter of the mock object's type
+     * @return the mock object
+     */
+    <T> T usesMock(Class<T> classToMock);
+
 }
