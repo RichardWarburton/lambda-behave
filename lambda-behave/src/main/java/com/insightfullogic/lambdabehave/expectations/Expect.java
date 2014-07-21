@@ -35,13 +35,14 @@ public final class Expect {
         String expectedName = expectedException.getName();
         try {
             block.run();
-            failure("Expected exception: " + expectedName + ", but no exception was thrown");
-        } catch (Exception e) {
-            if (!expectedException.isInstance(e)) {
-                String name = e.getClass().getName();
+        } catch (Throwable throwable) {
+            if (!expectedException.isInstance(throwable)) {
+                String name = throwable.getClass().getName();
                 failure("Expected exception: " + expectedName + ", but " + name + " was thrown");
             }
+            return;
         }
+        failure("Expected exception: " + expectedName + ", but no exception was thrown");
     }
 
     // NB: no failure without a message because its a bad idea to not have test failure diagnostics

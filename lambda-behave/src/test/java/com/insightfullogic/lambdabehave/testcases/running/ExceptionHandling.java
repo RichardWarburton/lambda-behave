@@ -22,6 +22,12 @@ public class ExceptionHandling {{
             });
         });
 
+        it.should("pass if an AssertionError is expected", expect -> {
+            expect.exception(AssertionError.class, () -> {
+                throw new AssertionError();
+            });
+        });
+
         it.should("fail if exceptions of a different type are expected", expect -> {
             expect.exception(RuntimeException.class, () -> {
                 throw new Exception();

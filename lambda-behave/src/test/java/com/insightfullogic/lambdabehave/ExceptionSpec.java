@@ -60,12 +60,12 @@ public class ExceptionSpec {{
             AssertionError wrongException = new AssertionError(
                 "Expected exception: java.lang.RuntimeException, but java.lang.Exception was thrown");
 
-            expect.that(specifications).contains(
-                    success("pass if exceptions thrown are expected"),
-                    failure("fail if exceptions are expected but not thrown", noException),
-                    success("pass if exceptions of a sub class are expected"),
-                    failure("fail if exceptions of a different type are expected", wrongException)
-            );
+            expect.that(specifications)
+                .hasItem(success("pass if exceptions thrown are expected"))
+                .hasItem(failure("fail if exceptions are expected but not thrown", noException))
+                .hasItem(success("pass if an AssertionError is expected"))
+                .hasItem(success("pass if exceptions of a sub class are expected"))
+                .hasItem(failure("fail if exceptions of a different type are expected", wrongException));
         });
     });
 }
