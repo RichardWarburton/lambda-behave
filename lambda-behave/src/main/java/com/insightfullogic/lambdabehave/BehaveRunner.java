@@ -45,7 +45,7 @@ public final class BehaveRunner {
         return new BehaveRunner().run(specClass).getReport();
     }
 
-    static Specifier declareOnly(Class<?> specClass) {
+    public static Specifier declareOnly(Class<?> specClass) {
         return new BehaveRunner().declare(specClass);
     }
 
