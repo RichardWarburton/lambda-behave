@@ -2,8 +2,12 @@ package com.insightfullogic.lambdabehave.expectations;
 
 import com.insightfullogic.lambdabehave.Block;
 import org.junit.Assert;
+import org.mockito.Mockito;
+import org.mockito.stubbing.Stubber;
 
 import java.util.Collection;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public final class Expect {
 
@@ -48,6 +52,44 @@ public final class Expect {
     // NB: no failure without a message because its a bad idea to not have test failure diagnostics
     public void failure(final String message) {
         Assert.fail(message);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> Stubber toAnswer(Runnable method) {
+        return Mockito.doAnswer(invocation -> {
+            Object[] arguments = invocation.getArguments();
+            method.run();
+            return null;
+        });
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> Stubber toAnswer(Consumer<T> method) {
+        return doAnswer(arguments -> method.accept((T) arguments[0]), 1);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <F, S> Stubber toAnswer(BiConsumer<F, S> method) {
+        return doAnswer(arguments ->
+            method.accept((F) arguments[0], (S) arguments[1]), 2);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <F, S, T> Stubber toAnswer(TriConsumer<F, S, T> method) {
+        return doAnswer(arguments ->
+                method.accept((F) arguments[0], (S) arguments[1], (T) arguments[2]), 3);
+    }
+
+    private  Stubber doAnswer(Consumer<Object[]> method, int argumentCount) {
+        return Mockito.doAnswer(invocation -> {
+            Object[] arguments = invocation.getArguments();
+            if (arguments.length >= argumentCount) {
+                method.accept(arguments);
+            } else {
+                failure("Invocation requires at least " + argumentCount + " argument");
+            }
+            return null;
+        });
     }
 
 }
