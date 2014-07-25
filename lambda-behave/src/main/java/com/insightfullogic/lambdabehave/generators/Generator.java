@@ -4,12 +4,12 @@ import com.insightfullogic.lambdabehave.impl.generators.Generators;
 import com.insightfullogic.lambdabehave.impl.generators.StringGenerator;
 
 import java.util.Optional;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
-import static com.insightfullogic.lambdabehave.impl.generators.Generators.ASCII_CHAR_END;
-import static com.insightfullogic.lambdabehave.impl.generators.Generators.ASCII_CHAR_START;
-import static com.insightfullogic.lambdabehave.impl.generators.Generators.GAP;
+import static com.insightfullogic.lambdabehave.impl.generators.Generators.*;
 import static java.lang.Double.longBitsToDouble;
 import static java.lang.Float.intBitsToFloat;
 import static java.lang.Integer.MAX_VALUE;
@@ -67,7 +67,40 @@ public interface Generator<T> {
      * @return a generator that generates integers that are &lt;= maxValue
      */
     public static Generator<Integer> integersUpTo(int maxValue) {
-        return ng -> ng.generateInt(maxValue);
+        return source -> source.generateInt(maxValue);
+    }
+
+    public static <V, F> Generator<V> of(Function<F, V> constructor, Generator<F> firstArgumentGenerator) {
+        return source -> {
+            F argument = firstArgumentGenerator.generate(source);
+            return constructor.apply(argument);
+        };
+    }
+
+    public static <V, F, S> Generator<V> of(
+        BiFunction<F, S, V> constructor,
+        Generator<F> firstArgumentGenerator,
+        Generator<S> secondArgumentGenerator) {
+        
+        return source -> {
+            F first = firstArgumentGenerator.generate(source);
+            S second = secondArgumentGenerator.generate(source);
+            return constructor.apply(first, second);
+        };
+    }
+
+    public static <V, F, S, T> Generator<V> of(
+        TriFunction<F, S, T, V> constructor,
+        Generator<F> firstArgumentGenerator,
+        Generator<S> secondArgumentGenerator,
+        Generator<T> thirdArgumentGenerator) {
+
+        return source -> {
+            F first = firstArgumentGenerator.generate(source);
+            S second = secondArgumentGenerator.generate(source);
+            T third = thirdArgumentGenerator.generate(source);
+            return constructor.apply(first, second, third);
+        };
     }
 
     /**
