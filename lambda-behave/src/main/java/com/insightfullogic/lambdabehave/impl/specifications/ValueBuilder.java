@@ -1,6 +1,5 @@
 package com.insightfullogic.lambdabehave.impl.specifications;
 
-import com.insightfullogic.lambdabehave.generators.CompleteColumn;
 import com.insightfullogic.lambdabehave.impl.Specifier;
 import com.insightfullogic.lambdabehave.specifications.Column;
 import com.insightfullogic.lambdabehave.specifications.ColumnDataSpecification;
@@ -31,7 +30,7 @@ public final class ValueBuilder<T> implements Column<T> {
     }
 
     @Override
-    public CompleteColumn<T> toShow(String descriptionFormat, ColumnDataSpecification<T> specification) {
+    public Column<T> toShow(String descriptionFormat, ColumnDataSpecification<T> specification) {
         for (int i = 0; i < values.size(); i++) {
             T value = values.get(i);
             String description = String.format(descriptionFormat, value);

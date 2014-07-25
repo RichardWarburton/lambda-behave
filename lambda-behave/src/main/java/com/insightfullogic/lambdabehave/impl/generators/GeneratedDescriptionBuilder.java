@@ -1,10 +1,15 @@
 package com.insightfullogic.lambdabehave.impl.generators;
 
-import com.insightfullogic.lambdabehave.generators.*;
+import com.insightfullogic.lambdabehave.generators.GeneratedDescription;
+import com.insightfullogic.lambdabehave.generators.Generator;
+import com.insightfullogic.lambdabehave.generators.SourceGenerator;
 import com.insightfullogic.lambdabehave.impl.Specifier;
 import com.insightfullogic.lambdabehave.impl.specifications.PairBuilder;
 import com.insightfullogic.lambdabehave.impl.specifications.TripletBuilder;
 import com.insightfullogic.lambdabehave.impl.specifications.ValueBuilder;
+import com.insightfullogic.lambdabehave.specifications.Column;
+import com.insightfullogic.lambdabehave.specifications.ThreeColumns;
+import com.insightfullogic.lambdabehave.specifications.TwoColumns;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -31,12 +36,12 @@ public class GeneratedDescriptionBuilder implements GeneratedDescription {
     }
 
     @Override
-    public <T> CompleteColumn<T> example(final Generator<T> generator) {
+    public <T> Column<T> example(final Generator<T> generator) {
         return new ValueBuilder<T>(generateValues(generator), specifier);
     }
 
     @Override
-    public <F, S> CompleteTwoColumns<F, S> example(
+    public <F, S> TwoColumns<F, S> example(
             Generator<F> firstGenerator,
             Generator<S> secondGenerator) {
 
@@ -47,7 +52,7 @@ public class GeneratedDescriptionBuilder implements GeneratedDescription {
     }
 
     @Override
-    public <F, S, T> CompleteThreeColumns<F, S, T> example(
+    public <F, S, T> ThreeColumns<F, S, T> example(
             Generator<F> firstGenerator,
             Generator<S> secondGenerator,
             Generator<T> thirdGenerator) {

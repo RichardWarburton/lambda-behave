@@ -1,6 +1,5 @@
 package com.insightfullogic.lambdabehave.impl.specifications;
 
-import com.insightfullogic.lambdabehave.generators.CompleteThreeColumns;
 import com.insightfullogic.lambdabehave.impl.Specifier;
 import com.insightfullogic.lambdabehave.specifications.ThreeColumnDataSpecification;
 import com.insightfullogic.lambdabehave.specifications.ThreeColumns;
@@ -50,7 +49,7 @@ public final class TripletBuilder<F, S, T> implements ThreeColumns<F,S,T> {
     }
 
     @Override
-    public CompleteThreeColumns<F, S, T> toShow(String descriptionFormat, ThreeColumnDataSpecification<F, S, T> specification) {
+    public ThreeColumns<F, S, T> toShow(String descriptionFormat, ThreeColumnDataSpecification<F, S, T> specification) {
         for (int i = 0; i < values.size(); i++) {
             Row row = values.get(i);
             String description = String.format(descriptionFormat, row.first, row.second, row.third);

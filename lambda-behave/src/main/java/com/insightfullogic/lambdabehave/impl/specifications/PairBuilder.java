@@ -1,6 +1,5 @@
 package com.insightfullogic.lambdabehave.impl.specifications;
 
-import com.insightfullogic.lambdabehave.generators.CompleteTwoColumns;
 import com.insightfullogic.lambdabehave.impl.Specifier;
 import com.insightfullogic.lambdabehave.specifications.TwoColumnDataSpecification;
 import com.insightfullogic.lambdabehave.specifications.TwoColumns;
@@ -49,7 +48,7 @@ public final class PairBuilder<F, S> implements TwoColumns<F,S> {
     }
 
     @Override
-    public CompleteTwoColumns<F, S> toShow(String descriptionFormat, TwoColumnDataSpecification<F, S> specification) {
+    public TwoColumns<F, S> toShow(String descriptionFormat, TwoColumnDataSpecification<F, S> specification) {
         for (int i = 0; i < values.size(); i++) {
             Row row = values.get(i);
             String description = String.format(descriptionFormat, row.first, row.second);

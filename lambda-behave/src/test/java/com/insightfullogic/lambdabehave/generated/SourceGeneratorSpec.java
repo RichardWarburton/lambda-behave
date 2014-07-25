@@ -1,4 +1,4 @@
-package com.insightfullogic.lambdabehave.testcases.generated;
+package com.insightfullogic.lambdabehave.generated;
 
 import com.insightfullogic.lambdabehave.JunitSuiteRunner;
 import com.insightfullogic.lambdabehave.generators.SourceGenerator;

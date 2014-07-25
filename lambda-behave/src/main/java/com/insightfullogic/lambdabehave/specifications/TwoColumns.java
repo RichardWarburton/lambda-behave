@@ -1,11 +1,18 @@
 package com.insightfullogic.lambdabehave.specifications;
 
-import com.insightfullogic.lambdabehave.generators.CompleteTwoColumns;
-
 /**
  * TwoColumns represents a two column table of data.
  */
-public interface TwoColumns<F, S> extends CompleteTwoColumns<F, S> {
+public interface TwoColumns<F, S> {
+
+    /**
+     * Specify the actual behaviour.
+     *
+     * @param description a human readable description of the behaviour you're expecting.
+     * @param specification a function which describes in code the expected behaviour.
+     * @return this
+     */
+    TwoColumns<F, S> toShow(String description, TwoColumnDataSpecification<F, S> specification);
 
     /**
      * Add another pair of elements to the column.

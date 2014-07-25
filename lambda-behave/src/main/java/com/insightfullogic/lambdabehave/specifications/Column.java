@@ -1,11 +1,18 @@
 package com.insightfullogic.lambdabehave.specifications;
 
-import com.insightfullogic.lambdabehave.generators.CompleteColumn;
-
 /**
  * A column represents a single series of data values.
  */
-public interface Column<T> extends CompleteColumn<T> {
+public interface Column<T> {
+
+    /**
+     * Specify the actual behaviour.
+     *
+     * @param description a human readable description of the behaviour you're expecting.
+     * @param specification a function which describes in code the expected behaviour.
+     * @return this
+     */
+    Column<T> toShow(String description, ColumnDataSpecification<T> specification);
 
     /**
      * Add another element to the column.

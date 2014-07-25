@@ -1,11 +1,18 @@
 package com.insightfullogic.lambdabehave.specifications;
 
-import com.insightfullogic.lambdabehave.generators.CompleteThreeColumns;
-
 /**
  * ThreeColumns represents a three column table of data.
  */
-public interface ThreeColumns<F, S, T> extends CompleteThreeColumns<F, S, T> {
+public interface ThreeColumns<F, S, T> {
+
+    /**
+     * Specify the actual behaviour.
+     *
+     * @param description a human readable description of the behaviour you're expecting.
+     * @param specification a function which describes in code the expected behaviour.
+     * @return this
+     */
+    ThreeColumns<F, S, T> toShow(String description, ThreeColumnDataSpecification<F, S, T> specification);
 
     /**
      * Add another triple of elements to the column.

@@ -1,5 +1,9 @@
 package com.insightfullogic.lambdabehave.generators;
 
+import com.insightfullogic.lambdabehave.specifications.Column;
+import com.insightfullogic.lambdabehave.specifications.ThreeColumns;
+import com.insightfullogic.lambdabehave.specifications.TwoColumns;
+
 /**
  * A fluent builder interface for describing how test cases get generated.
  */
@@ -25,7 +29,7 @@ public interface GeneratedDescription {
      * @param <T> the type of the values in column
      * @return this
      */
-    <T> CompleteColumn<T> example(Generator<T> generator);
+    <T> Column<T> example(Generator<T> generator);
 
     /**
      * Use these generators to produce two columns of example testcases.
@@ -36,7 +40,7 @@ public interface GeneratedDescription {
      * @param <S> the type of the values in the second column
      * @return this
      */
-    <F, S> CompleteTwoColumns<F, S> example(
+    <F, S> TwoColumns<F, S> example(
             Generator<F> firstGenerator,
             Generator<S> secondGenerator);
 
@@ -51,7 +55,7 @@ public interface GeneratedDescription {
      * @param <T> the type of the values in the third column
      * @return this
      */
-    <F, S, T> CompleteThreeColumns<F, S, T> example(
+    <F, S, T> ThreeColumns<F, S, T> example(
             Generator<F> firstGenerator,
             Generator<S> secondGenerator,
             Generator<T> thirdGenerator);
