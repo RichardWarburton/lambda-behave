@@ -55,6 +55,7 @@ public final class PairBuilder<F, S> implements TwoColumns<F,S> {
             if (description.equals(descriptionFormat)) {
                 description += String.format("(%s, %s)", row.first, row.second);
             }
+            description += " (seed: " + specifier.getSeed() + ")";
             specifier.specifyBehaviour(String.valueOf(i) + ": " + description, row.first, row.second, specification);
         }
         return this;

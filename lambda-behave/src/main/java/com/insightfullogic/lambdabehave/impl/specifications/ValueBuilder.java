@@ -37,6 +37,7 @@ public final class ValueBuilder<T> implements Column<T> {
             if (description.equals(descriptionFormat)) {
                 description += String.format("(%s)", value);
             }
+            description += " (seed: " + specifier.getSeed() + ")";
             specifier.specifyBehaviour(String.valueOf(i) + ": " + description, value, specification);
         }
         return this;

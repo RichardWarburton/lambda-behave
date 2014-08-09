@@ -187,4 +187,12 @@ public class Specifier implements Description {
         return suiteName;
     }
 
+    private SourceGenerator getSourceGenerator() {
+        return sourceGenerator;
+    }
+
+    public long getSeed() {
+        return getSourceGenerator().getSeed();
+    }
+
 }
