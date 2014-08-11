@@ -8,14 +8,19 @@ import com.insightfullogic.lambdabehave.generators.SourceGenerator;
 import com.insightfullogic.lambdabehave.impl.generators.GeneratedDescriptionBuilder;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
 import com.insightfullogic.lambdabehave.impl.specifications.PairBuilder;
+import com.insightfullogic.lambdabehave.impl.specifications.TitledTable;
 import com.insightfullogic.lambdabehave.impl.specifications.TripletBuilder;
 import com.insightfullogic.lambdabehave.impl.specifications.ValueBuilder;
 import com.insightfullogic.lambdabehave.specifications.*;
 import org.mockito.Mockito;
+import org.mockito.cglib.proxy.Enhancer;
+import org.mockito.cglib.proxy.MethodInterceptor;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
@@ -90,6 +95,17 @@ public class Specifier implements Description {
     @Override
     public <T> Column<T> uses(Stream<T> values) {
         return uses(values.collect(toList()));
+    }
+
+    public <T, F, S> TitledTable<T, F, S> usesTable(Class<T> clazz, Function<T, F> first, Function<T, S> second) {
+        List<Method> m = new ArrayList<>();
+        final T mock = (T) Enhancer.create(clazz, (MethodInterceptor) (o, method, objects, methodProxy) -> {
+            m.add(method);
+            return null;
+        });
+        first.apply(mock);
+        second.apply(mock);
+        return new TitledTable<>(m, this, clazz);
     }
 
     @Override
