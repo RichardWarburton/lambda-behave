@@ -19,9 +19,9 @@ public class StackSpec {{
 
     describe("a stack", it -> {
 
-        it.shouldSetup(stack::clear);
+        it.isSetupWith(stack::clear);
 
-        it.shouldTearDown(stack::clear);
+        it.isConcludedWith(stack::clear);
 
         it.should("be empty when created", expect -> {
             expect.that(stack).isEmpty();
@@ -97,7 +97,7 @@ If you're using a maven project then you can download Lambda Behave using the fo
 <dependency>
     <groupId>com.insightfullogic</groupId>
     <artifactId>lambda-behave</artifactId>
-    <version>0.2</version>
+    <version>0.3</version>
     <scope>test</scope>
 </dependency>
 ```
@@ -105,10 +105,10 @@ If you're using a maven project then you can download Lambda Behave using the fo
 If you're using a gradle project then you can use:
 
 ```
-testCompile group: 'com.insightfullogic', name: 'lambda-behave', version: '0.2'
+testCompile group: 'com.insightfullogic', name: 'lambda-behave', version: '0.3'
 ```
 
-There's also an [example project](https://github.com/RichardWarburton/lambda-behave-examples).
+There's also an [example project](https://github.com/RichardWarburton/lambda-behave/tree/lambda-behave-parent-0.3/lambda-behave-examples).
 
 ### Junit Integration
 
@@ -119,23 +119,11 @@ and it can be run through your normal tooling.
 @RunWith(JunitSuiteRunner.class)
 public class StackSpec {{
 ```
-
 ### Lambdas - what the hell are they?
 
 Conveniently I've written a [book](http://shop.oreilly.com/product/0636920030713.do?cmp=af-prog-books-videos-product_cj_9781491900154_%25zp') on Lambda expressions in Java 8 and the cleaner code they enable!
 
-### More Details
+### More Details and How to contribute
 
-Over time [The wiki](https://github.com/RichardWarburton/lambda-behave/wiki) will be fleshed out with more information including how-tos and guides.
+[The wiki](https://github.com/RichardWarburton/lambda-behave/wiki) has more information.
 
-### How to contribute
-
-Contributions are welcome and appreciated.
-
- * Patches should be submitted as [github pull requests](https://github.com/RichardWarburton/lambda-behave/pulls)
- * Issues should be filed via [the github project](https://github.com/RichardWarburton/lambda-behave/issues)
- * CI Build status: ![Build Status](https://travis-ci.org/RichardWarburton/lambda-behave.svg?branch=master)
- * If you want a task to pickup then you can just look at [issues labelled simple](https://github.com/RichardWarburton/lambda-behave/issues?labels=Simple)
- * A list of key authors and contributors can be found in [the authors file](https://raw.githubusercontent.com/RichardWarburton/lambda-behave/master/AUTHORS.md)
-
-Have fun!
