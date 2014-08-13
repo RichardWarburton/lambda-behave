@@ -35,7 +35,9 @@ import java.util.stream.Stream;
 public interface Description {
 
     /**
-     * Specify a behaviour.
+     * <p>
+     *     Specify a behaviour.
+     * </p>
      *
      * @param description a human readable description of the behaviour you're expecting.
      * @param specification a function which describes in code the expected behaviour.
@@ -43,7 +45,9 @@ public interface Description {
     void should(String description, Specification specification);
 
     /**
-     * Specify a single value data driven behaviour.
+     * <p>
+     *     Specify a single value data driven behaviour.
+     * </p>
      *
      * @param value the only value to parameterise by
      * @param <T> the type of the value
@@ -52,7 +56,9 @@ public interface Description {
     <T> Column<T> uses(T value);
 
     /**
-     * Specify a single value data driven behaviour.
+     * <p>
+     *     Specify a single value data driven behaviour.
+     * </p>
      *
      * @param values a list of values to wrap as a Column
      * @param <T> the type of the value
@@ -61,7 +67,9 @@ public interface Description {
     <T> Column<T> uses(List<T> values);
 
     /**
-     * Specify a single value data driven behaviour.
+     * <p>
+     *     Specify a single value data driven behaviour.
+     * </p>
      *
      * @param values a Stream of values to wrap as a Column
      * @param <T> the type of the value
@@ -70,7 +78,9 @@ public interface Description {
     <T> Column<T> uses(Stream<T> values);
 
     /**
-     * Specify a two value data driven behaviour.
+     * <p>
+     *     Specify a two value data driven behaviour.
+     * </p>
      *
      * @param first the first value to parameterise by
      * @param second the second value to parameterise by
@@ -81,7 +91,9 @@ public interface Description {
     <F, S> TwoColumns<F, S> uses(F first, S second);
 
     /**
-     * Specify a two value data driven behaviour using Lists.
+     * <p>
+     *     Specify a two value data driven behaviour using Lists.
+     * </p>
      *
      * @param first the list of values to wrap as the first column
      * @param second the list of values to wrap as the second column
@@ -92,7 +104,9 @@ public interface Description {
     <F, S> TwoColumns<F, S> uses(List<F> first, List<S> second);
 
     /**
-     * Specify a two value data driven behaviour using Streams.
+     * <p>
+     *     Specify a two value data driven behaviour using Streams.
+     * </p>
      *
      * @param first the Stream of values to wrap as the first column
      * @param second the Stream of values to wrap as the second column
@@ -103,7 +117,9 @@ public interface Description {
     <F, S> TwoColumns<F, S> uses(Stream<F> first, Stream<S> second);
 
     /**
-     * Specify a three value data driven behaviour.
+     * <p>
+     *     Specify a three value data driven behaviour.
+     * </p>
      *
      * @param first the first value to parameterise by
      * @param second the second value to parameterise by
@@ -116,7 +132,9 @@ public interface Description {
     <F, S, T> ThreeColumns<F, S, T> uses(F first, S second, T third);
 
     /**
-     * Specify a three value data driven behaviour using Lists.
+     * <p>
+     *     Specify a three value data driven behaviour using Lists.
+     * </p>
      *
      * @param first the list of values to wrap as the first column
      * @param second the list of values to wrap as the second column
@@ -129,7 +147,9 @@ public interface Description {
     <F, S, T> ThreeColumns<F, S, T> uses(List<F> first, List<S> second, List<T> third);
 
     /**
-     * Specify a three value data driven behaviour using streams.
+     * <p>
+     *     Specify a three value data driven behaviour using streams.
+     * </p>
      *
      * @param first the Stream of values to wrap as the first column
      * @param second the Stream of values to wrap as the second column
@@ -142,7 +162,9 @@ public interface Description {
     <F, S, T> ThreeColumns<F, S, T> uses(Stream<F> first, Stream<S> second, Stream<T> third);
 
     /**
-     * Create a fluent builder to do automatic testcase generation.
+     * <p>
+     *     Create a fluent builder to do automatic testcase generation.
+     * </p>
      *
      * @param exampleCount the number of example test cases to be generated
      * @return the description builder
@@ -150,35 +172,70 @@ public interface Description {
     GeneratedDescription requires(int exampleCount);
 
     /**
-     * Run some code before each of the specifications.
+     * <p>
+     *     Run some code before each of the specifications.
+     * </p>
+     *
+     * <p>
+     *     This performs the same role as the <code>@Before</code> annotation
+     * in Junit.
+     * </p>
      *
      * @param block the code to run.
      */
     void isSetupWith(Block block);
 
     /**
-     * Run some code before all of the specifications.
+     * <p>
+     *     Run some code before all of the specifications in the suite.
+     * </p>
+     *
+     * <p>
+     *     This performs the same role as the <code>@BeforeClass</code> annotation
+     * in Junit.
+     * </p>
      *
      * @param block the code to run.
      */
     void initializesWith(Block block);
 
     /**
-     * Run some code after each of the specifications.
+     * <p>
+     *     Run some code after each of the specifications.
+     * </p>
+     *
+     * <p>
+     *     This performs the same role as the <code>@After</code> annotation
+     *     in Junit.
+     * </p>
      *
      * @param block the code to run.
      */
     void isConcludedWith(Block block);
 
     /**
-     * Run some code after all of the specifications.
+     * <p>
+     *  Run some code after all of the specifications in the suite.
+     * </p>
+     *
+     * <p>
+     *  This performs the same role as the <code>@AfterClass</code> annotation
+     *  in Junit.
+     * </p>
      *
      * @param block the code to run.
      */
     void completesWith(Block block);
 
     /**
-     * Creates a mock similar to Mockito.mock which gets reset between tests.
+     * <p>
+     *  Creates a mock similar to Mockito.mock but which gets reset between tests. This can literally just
+     *  be used like Mockito.mock. For example:
+     * </p>
+     *
+     * <pre>
+     *     Foo foo = it.usesMock(Foo.class);
+     * </pre>
      *
      * @param classToMock the class of the mock object
      * @param <T> the type parameter of the mock object's type
