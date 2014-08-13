@@ -17,6 +17,6 @@ public interface ThreeColumnDataSpecification<F, S, T> {
      * @param second the second parameter value
      * @param third the third parameter value
      */
-    public void specifyBehaviour(Expect expect, F first, S second, T third);
+    public void specifyBehaviour(Expect expect, F first, S second, T third) throws Exception;
 
 }

@@ -3,17 +3,14 @@ package com.insightfullogic.lambdabehave;
 import com.insightfullogic.lambdabehave.expectations.Expect;
 import com.insightfullogic.lambdabehave.impl.reports.Report;
 import com.insightfullogic.lambdabehave.impl.reports.SpecificationReport;
-import com.insightfullogic.lambdabehave.testcases.exceptions.ExceptionInCompleter;
-import com.insightfullogic.lambdabehave.testcases.exceptions.ExceptionInInitializer;
-import com.insightfullogic.lambdabehave.testcases.exceptions.ExceptionInSetup;
-import com.insightfullogic.lambdabehave.testcases.exceptions.ExceptionInTearDown;
-import com.insightfullogic.lambdabehave.testcases.running.ExceptionHandling;
+import com.insightfullogic.lambdabehave.testcases.exceptions.*;
 import org.junit.runner.RunWith;
 
 import java.util.List;
 
 import static com.insightfullogic.lambdabehave.BehaveRunner.runOnly;
 import static com.insightfullogic.lambdabehave.Suite.describe;
+import static com.insightfullogic.lambdabehave.impl.reports.Result.SUCCESS;
 import static com.insightfullogic.lambdabehave.impl.reports.SpecificationReport.*;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
@@ -66,6 +63,14 @@ public class ExceptionSpec {{
                 .hasItem(success("pass if an AssertionError is expected"))
                 .hasItem(success("pass if exceptions of a sub class are expected"))
                 .hasItem(failure("fail if exceptions of a different type are expected", wrongException));
+        });
+
+        it.should("support expect.exception being used in data driven testing", expect -> {
+            Report report = runOnly(0L, DataDrivenExceptionHandling.class);
+
+            SpecificationReport spec = report.getSuite().getSpecifications().get(0);
+
+            expect.that(spec.getResult()).is(SUCCESS);
         });
     });
 }

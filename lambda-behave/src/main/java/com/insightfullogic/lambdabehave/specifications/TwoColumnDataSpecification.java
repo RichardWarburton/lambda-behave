@@ -16,6 +16,6 @@ public interface TwoColumnDataSpecification<F, S> {
      * @param first the first parameter value
      * @param second the second parameter value
      */
-    public void specifyBehaviour(Expect expect, F first, S second);
+    public void specifyBehaviour(Expect expect, F first, S second) throws Exception;
 
 }
