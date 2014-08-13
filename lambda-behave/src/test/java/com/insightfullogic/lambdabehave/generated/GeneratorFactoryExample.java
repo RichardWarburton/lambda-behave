@@ -17,7 +17,6 @@ public class GeneratorFactoryExample {{
               expect.that(value).isLessThan(10)
                                 .isGreaterThanOrEqualTo(0);
           });
-
     });
 
 }}

@@ -45,6 +45,10 @@ public final class BehaveRunner {
         return new BehaveRunner().run(specClass).getReport();
     }
 
+    public static Report runOnly(long seed, Class<?> specClass) {
+        return new BehaveRunner(SourceGenerator.randomNumbers(seed)).run(specClass).getReport();
+    }
+
     public static Specifier declareOnly(Class<?> specClass) {
         return new BehaveRunner().declare(specClass);
     }
