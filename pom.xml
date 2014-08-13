@@ -3,7 +3,7 @@
     <groupId>com.insightfullogic</groupId>
     <artifactId>lambda-behave-parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.3-SNAPSHOT</version>
+    <version>0.3</version>
     <name>Lambda Behave Parent</name>
     <description>
         A modern testing and behavioural specification framework for Java 8
@@ -200,7 +200,7 @@
         <connection>scm:git:git@github.com:RichardWarburton/lambda-behave.git</connection>
         <developerConnection>scm:git:git@github.com:RichardWarburton/lambda-behave.git</developerConnection>
         <url>git@github.com:RichardWarburton/lambda-behave.git</url>
-        <tag>HEAD</tag>
+        <tag>lambda-behave-parent-0.3</tag>
     </scm>
 
     <distributionManagement>
