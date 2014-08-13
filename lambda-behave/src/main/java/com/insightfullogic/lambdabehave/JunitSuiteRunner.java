@@ -1,8 +1,7 @@
 package com.insightfullogic.lambdabehave;
 
-import org.junit.runners.model.InitializationError;
-
 import com.insightfullogic.lambdabehave.impl.AbstractSuiteRunner;
+import org.junit.runners.model.InitializationError;
 
 /**
  * This runner can be used to run a specification suite with a junit runner,

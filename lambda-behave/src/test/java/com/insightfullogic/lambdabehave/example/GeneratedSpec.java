@@ -4,9 +4,7 @@ import com.insightfullogic.lambdabehave.JunitSuiteRunner;
 import org.junit.runner.RunWith;
 
 import static com.insightfullogic.lambdabehave.Suite.describe;
-import static com.insightfullogic.lambdabehave.generators.Generator.asciiStrings;
-import static com.insightfullogic.lambdabehave.generators.Generator.integersUpTo;
-import static com.insightfullogic.lambdabehave.generators.Generator.strings;
+import static com.insightfullogic.lambdabehave.generators.Generator.*;
 
 @RunWith(JunitSuiteRunner.class)
 public class GeneratedSpec {{
