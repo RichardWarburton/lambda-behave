@@ -56,6 +56,7 @@ public final class TripletBuilder<F, S, T> implements ThreeColumns<F,S,T> {
             if (description.equals(descriptionFormat)) {
                 description += String.format("(%s, %s, %s)", row.first, row.second, row.third);
             }
+            description += " (seed: " + specifier.getSeed() + ")";
             specifier.specifyBehaviour(String.valueOf(i) + ": " + description, row.first, row.second, row.third, specification);
         }
         return this;
