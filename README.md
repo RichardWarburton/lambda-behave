@@ -108,7 +108,8 @@ If you're using a gradle project then you can use:
 testCompile group: 'com.insightfullogic', name: 'lambda-behave', version: '0.3'
 ```
 
-There's also an [example project](https://github.com/RichardWarburton/lambda-behave/tree/lambda-behave-parent-0.3/lambda-behave-examples).
+There's also an [example project](https://github.com/RichardWarburton/lambda-behave/tree/lambda-behave-parent-0.3/lambda-behave-examples)
+and there's published [Javadoc](http://javadoc.insightfullogic.com).
 
 ### Junit Integration
 
