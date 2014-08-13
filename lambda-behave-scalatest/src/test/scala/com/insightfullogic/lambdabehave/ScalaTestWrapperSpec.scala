@@ -28,7 +28,7 @@ class ScalaTestWrapperSpec extends FunSpec {
       assert(sTestNames.size == 3)
       assert(sTestNames.contains("be empty when created"))
       assert(sTestNames.contains("push new elements onto the top of the stack"))
-      assert(sTestNames.contains("pop the last element pushed onto the stack"))
+      assert(sTestNames.contains("popSince the last element pushed onto the stack"))
     }
 
     it("should run tests when run method is called") {
@@ -40,13 +40,13 @@ class ScalaTestWrapperSpec extends FunSpec {
       assert(testStartingEvents.length == 3)
       assert(testStartingEvents(0).testName == "be empty when created")
       assert(testStartingEvents(1).testName == "push new elements onto the top of the stack")
-      assert(testStartingEvents(2).testName == "pop the last element pushed onto the stack")
+      assert(testStartingEvents(2).testName == "popSince the last element pushed onto the stack")
 
       val testSucceededEvents = rep.testSucceededEventsReceived
       assert(testSucceededEvents.length == 3)
       assert(testSucceededEvents(0).testName == "be empty when created")
       assert(testSucceededEvents(1).testName == "push new elements onto the top of the stack")
-      assert(testSucceededEvents(2).testName == "pop the last element pushed onto the stack")
+      assert(testSucceededEvents(2).testName == "popSince the last element pushed onto the stack")
     }
 
     it("should return com.insightfullogic.lambdabehave.Suite as style spec") {

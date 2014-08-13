@@ -25,9 +25,11 @@ public abstract class AbstractSuiteRunner extends ParentRunner<CompleteBehaviour
 
     public AbstractSuiteRunner(final Class<?> testClass) throws InitializationError {
         super(testClass);
-        Specifier specifier = BehaveRunner.declareOnly(testClass);
-        name = specifier.getSuiteName();
-        children = specifier.completeBehaviours().collect(toList());
+        List<Specifier> specifiers = BehaveRunner.declareOnly(testClass);
+        name = specifiers.get(0).getSuiteName();
+        children = specifiers.stream()
+                             .flatMap(Specifier::completeBehaviours)
+                             .collect(toList());
     }
 
     @Override
@@ -42,7 +44,7 @@ public abstract class AbstractSuiteRunner extends ParentRunner<CompleteBehaviour
 
     @Override
     protected Description describeChild(final CompleteBehaviour child) {
-        return Description.createTestDescription(getName(), child.getDescription());
+        return Description.createTestDescription(child.getSuiteName(), child.getDescription());
     }
 
     @Override
@@ -70,4 +72,5 @@ public abstract class AbstractSuiteRunner extends ParentRunner<CompleteBehaviour
                 throw new SpecificationError(spec.getMessage(), spec.getCause());
         }
     }
+
 }

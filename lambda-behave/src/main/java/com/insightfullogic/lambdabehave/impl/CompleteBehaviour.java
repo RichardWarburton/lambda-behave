@@ -6,4 +6,6 @@ public interface CompleteBehaviour {
     SpecificationReport checkCompleteBehaviour();
 
     String getDescription();
+
+    String getSuiteName();
 }

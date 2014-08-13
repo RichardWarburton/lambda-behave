@@ -30,7 +30,7 @@ public class StackSpec {{
             expect.that(stack.get(0)).isEqualTo(1);
         });
 
-        it.should("pop the last element pushed onto the stack", expect -> {
+        it.should("popSince the last element pushed onto the stack", expect -> {
             expect.that(stack).isEmpty();
 
             stack.push(2);

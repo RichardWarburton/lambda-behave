@@ -10,9 +10,11 @@ import java.util.stream.Stream;
 
 public class Blocks {
 
+    private final String suiteName;
     private final List<Block> blocks;
 
-    public Blocks() {
+    public Blocks(final String suiteName) {
+        this.suiteName = suiteName;
         blocks = new ArrayList<>();
     }
 
@@ -33,6 +35,6 @@ public class Blocks {
 
     public Stream<CompleteBehaviour> completeFixtures(final String description) {
         return blocks.stream()
-                     .map(block -> new CompleteFixture(description, block));
+                     .map(block -> new CompleteFixture(suiteName, description, block));
     }
 }

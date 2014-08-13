@@ -12,10 +12,12 @@ import collection.mutable.ListBuffer
 
 class ScalaTestWrapper(clazz: Class[_]) extends org.scalatest.Suite { thisSuite =>
 
-  val specifier = BehaveRunner.declareOnly(clazz)
-  val children = specifier.completeBehaviours.collect(toList()).asScala
+  val specifiers = BehaveRunner.declareOnly(clazz)
+  val children = specifiers.asScala
+                           .flatMap(_.completeBehaviours.collect(toList()).asScala)
+                           .toList
 
-  override def suiteName: String = specifier.getSuiteName
+  override def suiteName: String = specifiers.get(0).getSuiteName
 
   override def suiteId: String = clazz.getName
 

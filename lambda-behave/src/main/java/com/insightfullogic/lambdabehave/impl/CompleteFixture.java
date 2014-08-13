@@ -5,10 +5,12 @@ import com.insightfullogic.lambdabehave.impl.reports.SpecificationReport;
 
 final class CompleteFixture implements CompleteBehaviour {
 
+    private final String suiteName;
     private final String description;
     private final Block block;
 
-    public CompleteFixture(final String description, final Block block) {
+    public CompleteFixture(final String suiteName, final String description, final Block block) {
+        this.suiteName = suiteName;
         this.description = description;
         this.block = block;
     }
@@ -26,6 +28,11 @@ final class CompleteFixture implements CompleteBehaviour {
     @Override
     public String getDescription() {
         return description;
+    }
+
+    @Override
+    public String getSuiteName() {
+        return suiteName;
     }
 
 }

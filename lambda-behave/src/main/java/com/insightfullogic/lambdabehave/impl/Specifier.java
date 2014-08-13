@@ -44,11 +44,11 @@ public class Specifier implements Description {
         this.suiteName = suite;
         this.sourceGenerator = sourceGenerator;
 
-        initializers = new Blocks();
-        prefixes = new Blocks();
+        initializers = new Blocks(suiteName);
+        prefixes = new Blocks(suiteName);
         behaviours = new ArrayList<>();
-        postfixes = new Blocks();
-        completers = new Blocks();
+        postfixes = new Blocks(suiteName);
+        completers = new Blocks(suiteName);
     }
 
     public <T> void specifyBehaviour(final String description, final T value, final ColumnDataSpecification<T> specification) {

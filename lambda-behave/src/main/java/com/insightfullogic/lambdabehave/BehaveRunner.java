@@ -49,7 +49,7 @@ public final class BehaveRunner {
         return new BehaveRunner(SourceGenerator.randomNumbers(seed)).run(specClass).getReport();
     }
 
-    public static Specifier declareOnly(final Class<?> specClass) {
+    public static List<Specifier> declareOnly(final Class<?> specClass) {
         return new BehaveRunner().declare(specClass);
     }
 
@@ -93,13 +93,14 @@ public final class BehaveRunner {
         return this;
     }
 
-    private BehaveRunner run(final Class<?> specification) {
-        declare(specification).checkSpecifications(report);
+    private BehaveRunner run(final Class<?> suiteClass) {
+        declare(suiteClass).forEach(suite -> suite.checkSpecifications(report));
         return this;
     }
 
-    private Specifier declare(final Class<?> specification) {
+    private List<Specifier> declare(final Class<?> specification) {
         NumberGenerators.push(generator);
+        final int mark = Specifiers.mark();
         try {
             specification.newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
@@ -108,7 +109,7 @@ public final class BehaveRunner {
         }
         NumberGenerators.pop();
 
-        return Specifiers.pop();
+        return Specifiers.popSince(mark);
     }
 
     public BehaveRunner printReport() {

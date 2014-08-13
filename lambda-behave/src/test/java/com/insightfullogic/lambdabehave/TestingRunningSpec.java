@@ -63,12 +63,18 @@ public class TestingRunningSpec {{
         });
 
         it.should("disallow tests with duplicate names", expect -> {
-            Report report = runOnly(DuplicateNamedSpec.class);
+            Report report = runOnly(DuplicateName.class);
 
             List<SpecificationReport> specifications = report.getSuite().getSpecifications();
 
             expect.that(specifications).hasSize(1);
             expect.that(specifications.get(0).getResult()).is(ERROR);
+        });
+
+        it.should("allow multiple describe calls within a test class", expect -> {
+            List<SuiteReport> suites = runOnly(MultipleDescribesInAClass.class).getSuites();
+
+            expect.that(suites).hasSize(2);
         });
     });
 

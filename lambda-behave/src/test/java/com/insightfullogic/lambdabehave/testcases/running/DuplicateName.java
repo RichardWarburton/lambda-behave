@@ -2,7 +2,7 @@ package com.insightfullogic.lambdabehave.testcases.running;
 
 import static com.insightfullogic.lambdabehave.Suite.describe;
 
-public class DuplicateNamedSpec {{
+public class DuplicateName {{
 
     describe("a suite with duplicate names", it -> {
 

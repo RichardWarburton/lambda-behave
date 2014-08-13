@@ -58,6 +58,7 @@ final class CompleteSpecification implements CompleteBehaviour {
         return behaviour.getDescription();
     }
 
+    @Override
     public String getSuiteName() {
         return suiteName;
     }
