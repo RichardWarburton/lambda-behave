@@ -70,6 +70,15 @@ public interface Generator<T> {
         return source -> source.generateInt(maxValue);
     }
 
+    /**
+     * Create a generator for your domain class with one argument.
+     *
+     * @param constructor the constructor, or a factory function, for your domain class
+     * @param firstArgumentGenerator the generator for its first argument
+     * @param <V> The type of your domain class
+     * @param <F> The type of its first argument
+     * @return the generator
+     */
     public static <V, F> Generator<V> of(final Function<F, V> constructor, final Generator<F> firstArgumentGenerator) {
         return source -> {
             F argument = firstArgumentGenerator.generate(source);
@@ -77,6 +86,17 @@ public interface Generator<T> {
         };
     }
 
+    /**
+     * Create a generator for your domain class with two arguments.
+     *
+     * @param constructor the constructor, or a factory function, for your domain class.
+     * @param firstArgumentGenerator the generator for its first argument
+     * @param secondArgumentGenerator the generator for its second argument
+     * @param <V> The type of your domain class
+     * @param <F> The type of its first argument
+     * @param <S> The type of its second argument
+     * @return the generator
+     */
     public static <V, F, S> Generator<V> of(
         final BiFunction<F, S, V> constructor,
         final Generator<F> firstArgumentGenerator,
@@ -89,6 +109,19 @@ public interface Generator<T> {
         };
     }
 
+    /**
+     * Create a generator for your domain class with two arguments.
+     *
+     * @param constructor the constructor, or a factory function, for your domain class.
+     * @param firstArgumentGenerator the generator for its first argument
+     * @param secondArgumentGenerator the generator for its second argument
+     * @param thirdArgumentGenerator the generator for its third argument
+     * @param <V> The type of your domain class
+     * @param <F> The type of its first argument
+     * @param <S> The type of its second argument
+     * @param <T> The type of its third argument
+     * @return the generator
+     */
     public static <V, F, S, T> Generator<V> of(
         final TriFunction<F, S, T, V> constructor,
         final Generator<F> firstArgumentGenerator,
