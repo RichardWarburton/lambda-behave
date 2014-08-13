@@ -50,8 +50,10 @@ public abstract class AbstractSuiteRunner extends ParentRunner<CompleteBehaviour
     @Override
     protected void runChild(final CompleteBehaviour child, final RunNotifier notifier) {
         try {
+            Description childDescription = describeChild(child);
+            notifier.fireTestStarted(childDescription);
             SpecificationReport report = child.checkCompleteBehaviour();
-            reportResults(notifier, report, describeChild(child));
+            reportResults(notifier, report, childDescription);
         } catch (final Exception e) {
             notifier.fireTestFailure(new Failure(getDescription(), e));
             log.error(e.getMessage(), e);
@@ -59,7 +61,6 @@ public abstract class AbstractSuiteRunner extends ParentRunner<CompleteBehaviour
     }
 
     protected void reportResults(final RunNotifier notifier, final SpecificationReport spec, final Description test) {
-        notifier.fireTestStarted(test);
         switch (spec.getResult()) {
             case SUCCESS:
                 notifier.fireTestFinished(test);

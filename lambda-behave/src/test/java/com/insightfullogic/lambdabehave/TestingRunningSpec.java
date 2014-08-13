@@ -21,6 +21,8 @@ public class TestingRunningSpec {{
         it.should("run a suite that it is specified to run", expect -> {
             Report report = runOnly(EmptyExample.class);
 
+            System.out.println("Print something out");
+
             expect.that(report.getSuites()).contains(new SuiteReport("An empty suite"));
         });
 
