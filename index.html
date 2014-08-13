@@ -2,9 +2,9 @@
 <html>
 
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Lambda Behave : A modern testing and behavioural specification framework for Java 8" />
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Lambda Behave : A modern testing and behavioural specification framework for Java 8">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
@@ -53,9 +53,9 @@
 
     describe("a stack", it -&gt; {
 
-        it.shouldSetup(stack::clear);
+        it.isSetupWith(stack::clear);
 
-        it.shouldTearDown(stack::clear);
+        it.isConcludedWith(stack::clear);
 
         it.should("be empty when created", expect -&gt; {
             expect.that(stack).isEmpty();
@@ -131,17 +131,18 @@ So in the above example the paramter <code>str</code> will have had its type cor
 <pre><code>&lt;dependency&gt;
     &lt;groupId&gt;com.insightfullogic&lt;/groupId&gt;
     &lt;artifactId&gt;lambda-behave&lt;/artifactId&gt;
-    &lt;version&gt;0.2&lt;/version&gt;
+    &lt;version&gt;0.3&lt;/version&gt;
     &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 </code></pre>
 
 <p>If you're using a gradle project then you can use:</p>
 
-<pre><code>testCompile group: 'com.insightfullogic', name: 'lambda-behave', version: '0.2'
+<pre><code>testCompile group: 'com.insightfullogic', name: 'lambda-behave', version: '0.3'
 </code></pre>
 
-<p>There's also an <a href="https://github.com/RichardWarburton/lambda-behave-examples">example project</a>.</p>
+<p>There's also an <a href="https://github.com/RichardWarburton/lambda-behave/tree/lambda-behave-parent-0.3/lambda-behave-examples">example project</a>
+and there's published <a href="http://javadoc.insightfullogic.com">Javadoc</a>.</p>
 
 <h3>
 <a name="junit-integration" class="anchor" href="#junit-integration"><span class="octicon octicon-link"></span></a>Junit Integration</h3>
@@ -159,25 +160,9 @@ public class StackSpec {{
 <p>Conveniently I've written a <a href="http://shop.oreilly.com/product/0636920030713.do?cmp=af-prog-books-videos-product_cj_9781491900154_%25zp'">book</a> on Lambda expressions in Java 8 and the cleaner code they enable!</p>
 
 <h3>
-<a name="more-details" class="anchor" href="#more-details"><span class="octicon octicon-link"></span></a>More Details</h3>
+<a name="more-details-and-how-to-contribute" class="anchor" href="#more-details-and-how-to-contribute"><span class="octicon octicon-link"></span></a>More Details and How to contribute</h3>
 
-<p>Over time <a href="https://github.com/RichardWarburton/lambda-behave/wiki">The wiki</a> will be fleshed out with more information including how-tos and guides.</p>
-
-<h3>
-<a name="how-to-contribute" class="anchor" href="#how-to-contribute"><span class="octicon octicon-link"></span></a>How to contribute</h3>
-
-<p>Contributions are welcome and appreciated.</p>
-
-<ul>
-<li>Patches should be submitted as <a href="https://github.com/RichardWarburton/lambda-behave/pulls">github pull requests</a>
-</li>
-<li>Issues should be filed via <a href="https://github.com/RichardWarburton/lambda-behave/issues">the github project</a>
-</li>
-<li>CI Build status: <img src="https://travis-ci.org/RichardWarburton/lambda-behave.svg?branch=master" alt="Build Status">
-</li>
-<li>A list of key authors and contributors can be found in <a href="https://raw.githubusercontent.com/RichardWarburton/lambda-behave/master/AUTHORS.md">the authors file</a>
-</li>
-</ul><p>Have fun!</p>
+<p><a href="https://github.com/RichardWarburton/lambda-behave/wiki">The wiki</a> has more information.</p>
       </section>
     </div>
 
