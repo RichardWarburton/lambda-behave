@@ -58,11 +58,19 @@
                         <include>**/*.scala</include>
                     </includes>
                 </configuration>
+                <!-- Generate the scaladoc directory -->
                 <executions>
                     <execution>
                         <goals>
                             <goal>compile</goal>
                             <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>generate scaladoc</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>doc</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -85,21 +93,33 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!--
+            Create a "javadoc" jar which contains the scaladoc.
+            Maven central requires a documentation jar and assumes
+            it will be called foo-javadoc.jar
+            -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>javadoc-file</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/assembly/javadoc.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
