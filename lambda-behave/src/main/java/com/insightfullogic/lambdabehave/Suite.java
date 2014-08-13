@@ -22,7 +22,7 @@ public interface Suite {
      * @param name the name of the concept you're specifying.
      * @param behaviours the suite of behaviours you're specifying.
      */
-    public static void describe(String name, Suite behaviours) {
+    public static void describe(final String name, final Suite behaviours) {
         SourceGenerator generator = NumberGenerators.peek();
         Specifier specifier = new Specifier(name, generator);
         behaviours.specifySuite(specifier);

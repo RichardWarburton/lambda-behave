@@ -16,22 +16,22 @@ public class Blocks {
         blocks = new ArrayList<>();
     }
 
-    public void add(Block block) {
+    public void add(final Block block) {
         blocks.add(block);
     }
 
-    public Optional<SpecificationReport> runAll(String description) {
+    public Optional<SpecificationReport> runAll(final String description) {
         try {
             for (Block block : blocks) {
                 block.run();
             }
             return Optional.empty();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             return Optional.of(SpecificationReport.error(description, e));
         }
     }
 
-    public Stream<CompleteBehaviour> completeFixtures(String description) {
+    public Stream<CompleteBehaviour> completeFixtures(final String description) {
         return blocks.stream()
                      .map(block -> new CompleteFixture(description, block));
     }

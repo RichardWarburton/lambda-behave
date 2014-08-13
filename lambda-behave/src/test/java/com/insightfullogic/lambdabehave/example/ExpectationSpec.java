@@ -83,7 +83,7 @@ class House {
     private final String owner;
     private final boolean isFictional;
 
-    House(String name, String owner, boolean isFictional) {
+    House(final String name, final String owner, final boolean isFictional) {
         this.name = name;
         this.owner = owner;
         this.isFictional = isFictional;

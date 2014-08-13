@@ -35,28 +35,28 @@ import static java.util.stream.Collectors.toList;
  */
 public final class BehaveRunner {
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         new BehaveRunner(args)
                 .runAll()
                 .printReport();
     }
 
-    public static Report runOnly(Class<?> specClass) {
+    public static Report runOnly(final Class<?> specClass) {
         return new BehaveRunner().run(specClass).getReport();
     }
 
-    public static Report runOnly(long seed, Class<?> specClass) {
+    public static Report runOnly(final long seed, final Class<?> specClass) {
         return new BehaveRunner(SourceGenerator.randomNumbers(seed)).run(specClass).getReport();
     }
 
-    public static Specifier declareOnly(Class<?> specClass) {
+    public static Specifier declareOnly(final Class<?> specClass) {
         return new BehaveRunner().declare(specClass);
     }
 
-    private static Stream<Class<?>> loadClassOrPackage(String name) {
+    private static Stream<Class<?>> loadClassOrPackage(final String name) {
         try {
             return Stream.of(Class.forName(name));
-        } catch (ClassNotFoundException e) {
+        } catch (final ClassNotFoundException e) {
             throw new SpecificationDeclarationException("Unable to create suite from: " + name, e);
         }
     }
@@ -69,21 +69,21 @@ public final class BehaveRunner {
         this(new RandomNumberGenerator());
     }
 
-    public BehaveRunner(SourceGenerator generator) {
+    public BehaveRunner(final SourceGenerator generator) {
         this(Collections.emptyList(), generator);
     }
 
-    public BehaveRunner(String ... specifications) {
+    public BehaveRunner(final String ... specifications) {
         this(Stream.of(specifications)
                 .flatMap(BehaveRunner::loadClassOrPackage)
                 .collect(toList()));
     }
 
-    public BehaveRunner(List<Class<?>> specifications) {
+    public BehaveRunner(final List<Class<?>> specifications) {
         this(specifications, new RandomNumberGenerator());
     }
 
-    public BehaveRunner(List<Class<?>> specifications, SourceGenerator generator) {
+    public BehaveRunner(final List<Class<?>> specifications, final SourceGenerator generator) {
         this.specifications = specifications;
         this.generator = generator;
     }
@@ -93,12 +93,12 @@ public final class BehaveRunner {
         return this;
     }
 
-    private BehaveRunner run(Class<?> specification) {
+    private BehaveRunner run(final Class<?> specification) {
         declare(specification).checkSpecifications(report);
         return this;
     }
 
-    private Specifier declare(Class<?> specification) {
+    private Specifier declare(final Class<?> specification) {
         NumberGenerators.push(generator);
         try {
             specification.newInstance();

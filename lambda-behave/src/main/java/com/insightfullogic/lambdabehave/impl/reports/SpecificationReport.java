@@ -14,23 +14,23 @@ public final class SpecificationReport {
     private final String message;
     private final Throwable cause;
 
-    public static SpecificationReport success(String description) {
+    public static SpecificationReport success(final String description) {
         // TODO: remove this logging - causes coupling
         log.info(description + " has succeeded");
         return new SpecificationReport(description, Result.SUCCESS, null, null);
     }
 
-    public static SpecificationReport failure(String description, AssertionError cause) {
+    public static SpecificationReport failure(final String description, final AssertionError cause) {
         log.warn(description + " has failed");
         return new SpecificationReport(description, Result.FAILURE, cause.getMessage(), cause);
     }
 
-    public static SpecificationReport error(String specification, Throwable cause) {
+    public static SpecificationReport error(final String specification, final Throwable cause) {
         log.warn(specification + " has finished in error");
         return new SpecificationReport(specification, Result.ERROR, cause.getMessage(), cause);
     }
 
-    public SpecificationReport(String description, Result result, String message, Throwable cause) {
+    public SpecificationReport(final String description, final Result result, final String message, final Throwable cause) {
         Objects.requireNonNull(description);
         Objects.requireNonNull(result);
 
@@ -61,7 +61,7 @@ public final class SpecificationReport {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 

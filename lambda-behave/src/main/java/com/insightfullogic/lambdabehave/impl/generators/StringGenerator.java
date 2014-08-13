@@ -12,13 +12,13 @@ public class StringGenerator implements Generator<String> {
     private final int minValue;
     private final int range;
 
-    public StringGenerator(int minCharacter, int maxCharacter) {
+    public StringGenerator(final int minCharacter, final int maxCharacter) {
         this.minValue = minCharacter;
         range = maxCharacter - minCharacter;
     }
 
     @Override
-    public String generate(SourceGenerator source) {
+    public String generate(final SourceGenerator source) {
         final int length = source.generateInt(MAX_STRING_LENGTH);
 
         int[] characters = new int[length];
@@ -29,7 +29,7 @@ public class StringGenerator implements Generator<String> {
         return new String(characters, 0, length);
     }
     
-    private int nextCodePoint(SourceGenerator source) {
+    private int nextCodePoint(final SourceGenerator source) {
         return IntStream.range(0, MAX_TRIES)
                         .map(i -> minValue + source.generateInt(range))
                         .filter(Character::isDefined)

@@ -9,7 +9,7 @@ import static org.junit.Assert.assertThat;
  * .
  */
 public final class StringExpectation extends BoundExpectation<String> {
-    public StringExpectation(String str, boolean positive) {
+    public StringExpectation(final String str, final boolean positive) {
         super(str, positive);
     }
 
@@ -21,27 +21,27 @@ public final class StringExpectation extends BoundExpectation<String> {
         return matches(Matchers.isEmptyOrNullString());
     }
 
-    public StringExpectation equalToIgnoringCase(String expectedString) {
+    public StringExpectation equalToIgnoringCase(final String expectedString) {
         return matches(Matchers.equalToIgnoringCase(expectedString));
     }
 
-    public StringExpectation equalToIgnoringWhiteSpace(String expectedString) {
+    public StringExpectation equalToIgnoringWhiteSpace(final String expectedString) {
         return matches(Matchers.equalToIgnoringWhiteSpace(expectedString));
     }
 
-    public StringExpectation containsString(String substring) {
+    public StringExpectation containsString(final String substring) {
         return matches(Matchers.containsString(substring));
     }
 
-    public StringExpectation endsWith(String suffix) {
+    public StringExpectation endsWith(final String suffix) {
         return matches(Matchers.endsWith(suffix));
     }
 
-    public StringExpectation startsWith(String prefix) {
+    public StringExpectation startsWith(final String prefix) {
         return matches(Matchers.startsWith(prefix));
     }
 
-    private StringExpectation matches(Matcher<String> matcher) {
+    private StringExpectation matches(final Matcher<String> matcher) {
         assertThat(objectUnderTest, matcher);
         return this;
     }

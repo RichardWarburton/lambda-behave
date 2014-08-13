@@ -9,7 +9,7 @@ import com.insightfullogic.lambdabehave.impl.AbstractSuiteRunner;
  */
 public final class JunitSuiteRunner extends AbstractSuiteRunner {
 
-	public JunitSuiteRunner(Class<?> testClass) throws InitializationError {
+	public JunitSuiteRunner(final Class<?> testClass) throws InitializationError {
 		super(testClass);
 	}
 	

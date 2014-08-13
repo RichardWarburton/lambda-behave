@@ -9,7 +9,7 @@ import java.io.PrintStream;
 public final class ConsoleFormatter implements ReportFormatter {
 
     @Override
-    public void format(Report report) {
+    public void format(final Report report) {
         report.suites().forEach(suite -> {
             System.out.print(suite.getName());
             System.out.println();
@@ -17,7 +17,7 @@ public final class ConsoleFormatter implements ReportFormatter {
         });
     }
 
-    private void printSpecification(SpecificationReport specification) {
+    private void printSpecification(final SpecificationReport specification) {
         boolean isSuccess = specification.getResult() == Result.SUCCESS;
         
         PrintStream out = isSuccess ? System.out : System.err;

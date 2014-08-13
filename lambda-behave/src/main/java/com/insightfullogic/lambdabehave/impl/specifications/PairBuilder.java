@@ -16,19 +16,19 @@ public final class PairBuilder<F, S> implements TwoColumns<F,S> {
         private final F first;
         private final S second;
 
-        public Row(F first, S second) {
+        public Row(final F first, final S second) {
             this.first = first;
             this.second = second;
         }
     }
 
-    public PairBuilder(F first, S second, Specifier specifier) {
+    public PairBuilder(final F first, final S second, final Specifier specifier) {
         this.specifier = specifier;
         values = new ArrayList<>();
         and(first, second);
     }
 
-    public PairBuilder(List<F> first, List<S> second, Specifier specifier) {
+    public PairBuilder(final List<F> first, final List<S> second, final Specifier specifier) {
         this.specifier = specifier;
         final int size = first.size();
         if (size != second.size()) {
@@ -42,13 +42,13 @@ public final class PairBuilder<F, S> implements TwoColumns<F,S> {
     }
 
     @Override
-    public PairBuilder<F, S> and(F first, S second) {
+    public PairBuilder<F, S> and(final F first, final S second) {
         values.add(new Row(first, second));
         return this;
     }
 
     @Override
-    public TwoColumns<F, S> toShow(String descriptionFormat, TwoColumnDataSpecification<F, S> specification) {
+    public TwoColumns<F, S> toShow(final String descriptionFormat, final TwoColumnDataSpecification<F, S> specification) {
         for (int i = 0; i < values.size(); i++) {
             Row row = values.get(i);
             String description = String.format(descriptionFormat, row.first, row.second);

@@ -11,7 +11,7 @@ import static org.junit.Assert.assertThat;
 
 public final class CollectionExpectation<T> extends BoundExpectation<Collection<T>> {
 
-    CollectionExpectation(Collection<T> objectUnderTest, boolean positive) {
+    CollectionExpectation(final Collection<T> objectUnderTest, final boolean positive) {
         super(objectUnderTest, positive);
     }
 
@@ -19,59 +19,59 @@ public final class CollectionExpectation<T> extends BoundExpectation<Collection<
         return matches(empty());
     }
 
-    public CollectionExpectation<T> hasItem(T item) {
+    public CollectionExpectation<T> hasItem(final T item) {
         return matches(Matchers.hasItem(item));
     }
 
-    public CollectionExpectation<T> hasItem(Matcher<? super T> item) {
+    public CollectionExpectation<T> hasItem(final Matcher<? super T> item) {
         return matches(Matchers.hasItem(item));
     }
 
-    public CollectionExpectation<T> hasItems(T ... items) {
+    public CollectionExpectation<T> hasItems(final T ... items) {
         return matches(Matchers.hasItems(items));
     }
 
-    public CollectionExpectation<T> contains(T ... items) {
+    public CollectionExpectation<T> contains(final T ... items) {
         return matches(Matchers.contains(items));
     }
 
-    public CollectionExpectation<T> contains(Matcher<? super  T> ... items) {
+    public CollectionExpectation<T> contains(final Matcher<? super  T> ... items) {
         return matches(Matchers.contains(items));
     }
 
-    public CollectionExpectation<T> contains(List<Matcher<? super  T>> items) {
+    public CollectionExpectation<T> contains(final List<Matcher<? super  T>> items) {
         return matches(Matchers.contains(items));
     }
 
-    public CollectionExpectation<T> containsInAnyOrder(T ... items) {
+    public CollectionExpectation<T> containsInAnyOrder(final T ... items) {
         return matches(Matchers.containsInAnyOrder(items));
     }
 
-    public CollectionExpectation<T> containsInAnyOrder(Matcher<? super  T> ... items) {
+    public CollectionExpectation<T> containsInAnyOrder(final Matcher<? super  T> ... items) {
         return matches(Matchers.containsInAnyOrder(items));
     }
 
-    public CollectionExpectation<T> containsInAnyOrder(Collection<Matcher<? super  T>> items) {
+    public CollectionExpectation<T> containsInAnyOrder(final Collection<Matcher<? super  T>> items) {
         return matches(Matchers.containsInAnyOrder(items));
     }
 
-    public CollectionExpectation<T> emptyCollectionOf(Class<T> type) {
+    public CollectionExpectation<T> emptyCollectionOf(final Class<T> type) {
         return matches(Matchers.emptyCollectionOf(type));
     }
 
-    public CollectionExpectation<T> hasSize(int size) {
+    public CollectionExpectation<T> hasSize(final int size) {
         return matches(Matchers.hasSize(size));
     }
 
-    public CollectionExpectation<T> hasSize(Matcher<? super Integer> size) {
+    public CollectionExpectation<T> hasSize(final Matcher<? super Integer> size) {
         return matches(Matchers.hasSize(size));
     }
 
-    public CollectionExpectation<T> hasItems(Matcher<? super T> ... items) {
+    public CollectionExpectation<T> hasItems(final Matcher<? super T> ... items) {
         return matches(Matchers.hasItems(items));
     }
 
-    private CollectionExpectation<T> matches(Matcher<? super Collection<T>> matcher) {
+    private CollectionExpectation<T> matches(final Matcher<? super Collection<T>> matcher) {
         assertThat(objectUnderTest, negatedIfNeeded(matcher));
         return this;
     }

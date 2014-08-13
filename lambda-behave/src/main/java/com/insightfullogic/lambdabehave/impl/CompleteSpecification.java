@@ -19,7 +19,7 @@ final class CompleteSpecification implements CompleteBehaviour {
     private final Blocks postfixes;
     private final String suiteName;
 
-    public CompleteSpecification(Blocks prefixes, Behaviour behaviour, Blocks postfixes, String suiteName) {
+    public CompleteSpecification(final Blocks prefixes, final Behaviour behaviour, final Blocks postfixes, final String suiteName) {
         this.prefixes = prefixes;
         this.behaviour = behaviour;
         this.postfixes = postfixes;
@@ -46,9 +46,9 @@ final class CompleteSpecification implements CompleteBehaviour {
             Expect expect = new Expect();
             specification.specifyBehaviour(expect);
             return success(description);
-        } catch (AssertionError cause) {
+        } catch (final AssertionError cause) {
             return failure(description, cause);
-        } catch (Throwable cause) {
+        } catch (final Throwable cause) {
             return error(description, cause);
         }
     }

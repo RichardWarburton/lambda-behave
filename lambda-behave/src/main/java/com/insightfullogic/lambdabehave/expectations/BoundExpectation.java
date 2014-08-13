@@ -13,36 +13,36 @@ public class BoundExpectation<T> {
     protected final boolean positive;
     protected final T objectUnderTest;
 
-    BoundExpectation(T value, boolean positive) {
+    BoundExpectation(final T value, final boolean positive) {
         this.objectUnderTest = value;
         this.positive = positive;
     }
 
-    public <O> BoundExpectation<O> and(O value) {
+    public <O> BoundExpectation<O> and(final O value) {
         return new BoundExpectation<O>(value, true);
     }
 
-    public <O> CollectionExpectation<O> and(Collection<O> collection) {
+    public <O> CollectionExpectation<O> and(final Collection<O> collection) {
         return new CollectionExpectation<O>(collection, true);
     }
 
-    public StringExpectation and(String str) {
+    public StringExpectation and(final String str) {
         return new StringExpectation(str, true);
     }
 
-    public BoundExpectation<T> isEqualTo(T expected) {
+    public BoundExpectation<T> isEqualTo(final T expected) {
         return matches(equalTo(expected));
     }
 
-    public BoundExpectation<T> hasToString(Matcher<? super String> str) {
+    public BoundExpectation<T> hasToString(final Matcher<? super String> str) {
         return matches(Matchers.hasToString(str));
     }
 
-    public BoundExpectation<T> hasToString(String str) {
+    public BoundExpectation<T> hasToString(final String str) {
         return matches(Matchers.hasToString(str));
     }
 
-    public BoundExpectation<T> instanceOf(Class<?> type) {
+    public BoundExpectation<T> instanceOf(final Class<?> type) {
         return matches(Matchers.instanceOf(type));
     }
 
@@ -54,7 +54,7 @@ public class BoundExpectation<T> {
         return matches(Matchers.nullValue());
     }
 
-    public BoundExpectation<T> sameInstance(T target) {
+    public BoundExpectation<T> sameInstance(final T target) {
         return matches(Matchers.sameInstance(target));
     }
 
@@ -62,23 +62,23 @@ public class BoundExpectation<T> {
         return matches(Matchers.any(getWrappedClass()));
     }
 
-    public BoundExpectation<T> hasProperty(String propertyName, Matcher<?> propertyValue) {
+    public BoundExpectation<T> hasProperty(final String propertyName, final Matcher<?> propertyValue) {
         return matches(Matchers.hasProperty(propertyName, propertyValue));
     }
 
-    public BoundExpectation<T> is(Matcher<? super T> matcher) {
+    public BoundExpectation<T> is(final Matcher<? super T> matcher) {
         return matches(matcher);
     }
 
-    public BoundExpectation<T> is(T value) {
+    public BoundExpectation<T> is(final T value) {
         return matches(Matchers.is(value));
     }
 
-    public BoundExpectation<T> isIn(Collection<T> values) {
+    public BoundExpectation<T> isIn(final Collection<T> values) {
         return matches(Matchers.isIn(values));
     }
 
-    public BoundExpectation<T> isIn(T ... values) {
+    public BoundExpectation<T> isIn(final T ... values) {
         return matches(Matchers.isIn(values));
     }
 
@@ -86,12 +86,12 @@ public class BoundExpectation<T> {
         return new BoundExpectation<>(objectUnderTest, !positive);
     }
 
-    private BoundExpectation<T> matches(Matcher<? super T> matcher) {
+    private BoundExpectation<T> matches(final Matcher<? super T> matcher) {
         assertThat(objectUnderTest, negatedIfNeeded(matcher));
         return this;
     }
 
-    protected Matcher<? super T> negatedIfNeeded(Matcher<? super T> matcher) {
+    protected Matcher<? super T> negatedIfNeeded(final Matcher<? super T> matcher) {
         return positive ? matcher : Matchers.not(matcher);
     }
 

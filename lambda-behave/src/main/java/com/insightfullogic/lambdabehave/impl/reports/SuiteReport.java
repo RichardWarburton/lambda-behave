@@ -10,13 +10,13 @@ public final class SuiteReport {
     private final String name;
     private final List<SpecificationReport> specifications;
 
-    public SuiteReport(String name) {
+    public SuiteReport(final String name) {
         Objects.requireNonNull(name);
         this.name = name;
         specifications = new ArrayList<>();
     }
 
-    public SuiteReport with(SpecificationReport specification) {
+    public SuiteReport with(final SpecificationReport specification) {
         specifications.add(specification);
         return this;
     }
@@ -34,7 +34,7 @@ public final class SuiteReport {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 

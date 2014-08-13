@@ -16,7 +16,7 @@ public final class Specifiers {
         specifiers = ThreadLocal.withInitial(ArrayDeque::new);
     }
 
-    public static void push(Specifier specifier) {
+    public static void push(final Specifier specifier) {
         specifiers().push(specifier);
     }
 

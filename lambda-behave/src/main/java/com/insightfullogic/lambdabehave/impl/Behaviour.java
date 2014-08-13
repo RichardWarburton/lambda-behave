@@ -10,7 +10,7 @@ public final class Behaviour {
     private final String description;
     private final Specification specification;
 
-    public Behaviour(String description, Specification specification) {
+    public Behaviour(final String description, final Specification specification) {
         this.description = description;
         this.specification = specification;
     }
@@ -19,7 +19,7 @@ public final class Behaviour {
         return description;
     }
 
-    public boolean hasDescription(String description) {
+    public boolean hasDescription(final String description) {
         return this.description.equals(description);
     }
 

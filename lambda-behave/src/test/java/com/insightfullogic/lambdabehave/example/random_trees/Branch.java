@@ -5,7 +5,7 @@ public class Branch<T> extends Node<T> {
     private final Node<T> left;
     private final Node<T> right;
 
-    public Branch(T value, Node<T> left, Node<T> right) {
+    public Branch(final T value, final Node<T> left, final Node<T> right) {
         super(value);
         this.left = left;
         this.right = right;

@@ -66,11 +66,11 @@ public interface Generator<T> {
      * @param maxValue the upper bound on produced integers
      * @return a generator that generates integers that are &lt;= maxValue
      */
-    public static Generator<Integer> integersUpTo(int maxValue) {
+    public static Generator<Integer> integersUpTo(final int maxValue) {
         return source -> source.generateInt(maxValue);
     }
 
-    public static <V, F> Generator<V> of(Function<F, V> constructor, Generator<F> firstArgumentGenerator) {
+    public static <V, F> Generator<V> of(final Function<F, V> constructor, final Generator<F> firstArgumentGenerator) {
         return source -> {
             F argument = firstArgumentGenerator.generate(source);
             return constructor.apply(argument);
@@ -78,9 +78,9 @@ public interface Generator<T> {
     }
 
     public static <V, F, S> Generator<V> of(
-        BiFunction<F, S, V> constructor,
-        Generator<F> firstArgumentGenerator,
-        Generator<S> secondArgumentGenerator) {
+        final BiFunction<F, S, V> constructor,
+        final Generator<F> firstArgumentGenerator,
+        final Generator<S> secondArgumentGenerator) {
         
         return source -> {
             F first = firstArgumentGenerator.generate(source);
@@ -90,10 +90,10 @@ public interface Generator<T> {
     }
 
     public static <V, F, S, T> Generator<V> of(
-        TriFunction<F, S, T, V> constructor,
-        Generator<F> firstArgumentGenerator,
-        Generator<S> secondArgumentGenerator,
-        Generator<T> thirdArgumentGenerator) {
+        final TriFunction<F, S, T, V> constructor,
+        final Generator<F> firstArgumentGenerator,
+        final Generator<S> secondArgumentGenerator,
+        final Generator<T> thirdArgumentGenerator) {
 
         return source -> {
             F first = firstArgumentGenerator.generate(source);
@@ -140,7 +140,7 @@ public interface Generator<T> {
      */
     public T generate(SourceGenerator source);
 
-    public default Generator<T> matching(Predicate<T> predicate) {
+    public default Generator<T> matching(final Predicate<T> predicate) {
         return rng -> {
             Optional<T> candidate = IntStream.range(0, MAX_TRIES)
                                              .mapToObj(i -> generate(rng))

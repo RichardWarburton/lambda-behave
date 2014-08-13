@@ -8,7 +8,7 @@ final class CompleteFixture implements CompleteBehaviour {
     private final String description;
     private final Block block;
 
-    public CompleteFixture(String description, Block block) {
+    public CompleteFixture(final String description, final Block block) {
         this.description = description;
         this.block = block;
     }
@@ -18,7 +18,7 @@ final class CompleteFixture implements CompleteBehaviour {
         try {
             block.run();
             return SpecificationReport.success(getDescription());
-        } catch (Exception e) {
+        } catch (final Exception e) {
             return SpecificationReport.error(getDescription(), e);
         }
     }

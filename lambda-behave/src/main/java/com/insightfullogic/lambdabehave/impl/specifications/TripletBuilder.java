@@ -16,20 +16,20 @@ public final class TripletBuilder<F, S, T> implements ThreeColumns<F,S,T> {
         private final F first;
         private final S second;
         private final T third;
-        private Row(F first, S second, T third) {
+        private Row(final F first, final S second, final T third) {
             this.first = first;
             this.second = second;
             this.third = third;
         }
     }
 
-    public TripletBuilder(F first, S second, T third, Specifier specifier) {
+    public TripletBuilder(final F first, final S second, final T third, final Specifier specifier) {
         this.specifier = specifier;
         values = new ArrayList<>();
         and(first, second, third);
     }
 
-    public TripletBuilder(List<F> first, List<S> second, List<T> third, Specifier specifier) {
+    public TripletBuilder(final List<F> first, final List<S> second, final List<T> third, final Specifier specifier) {
         this.specifier = specifier;
         final int size = first.size();
         if (size != second.size() || size != third.size()) {
@@ -43,13 +43,13 @@ public final class TripletBuilder<F, S, T> implements ThreeColumns<F,S,T> {
     }
 
     @Override
-    public TripletBuilder<F, S, T> and(F first, S second, T third) {
+    public TripletBuilder<F, S, T> and(final F first, final S second, final T third) {
         values.add(new Row(first, second, third));
         return this;
     }
 
     @Override
-    public ThreeColumns<F, S, T> toShow(String descriptionFormat, ThreeColumnDataSpecification<F, S, T> specification) {
+    public ThreeColumns<F, S, T> toShow(final String descriptionFormat, final ThreeColumnDataSpecification<F, S, T> specification) {
         for (int i = 0; i < values.size(); i++) {
             Row row = values.get(i);
             String description = String.format(descriptionFormat, row.first, row.second, row.third);

@@ -27,7 +27,7 @@ public interface SourceGenerator {
      * @param seed the seed for the random number generator
      * @return the source generator
      */
-    public static SourceGenerator randomNumbers(long seed) {
+    public static SourceGenerator randomNumbers(final long seed) {
         return new RandomNumberGenerator(seed);
     }
 
@@ -37,7 +37,7 @@ public interface SourceGenerator {
      * @param values the values to use
      * @return the source generator
      */
-    public static SourceGenerator values(int ... values) {
+    public static SourceGenerator values(final int ... values) {
         return new ValueSourceGenerator(values);
     }
 

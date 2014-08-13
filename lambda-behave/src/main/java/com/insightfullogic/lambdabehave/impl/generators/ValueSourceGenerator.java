@@ -8,13 +8,13 @@ public final class ValueSourceGenerator implements SourceGenerator {
 
     private int index;
 
-    public ValueSourceGenerator(int[] values) {
+    public ValueSourceGenerator(final int[] values) {
         this.values = values;
         index = 0;
     }
 
     @Override
-    public int generateInt(int maxValue) {
+    public int generateInt(final int maxValue) {
         try {
             final int candidate = values[index];
             if (candidate > maxValue)

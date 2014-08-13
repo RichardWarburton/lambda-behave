@@ -30,7 +30,7 @@ public class GeneratedDescriptionBuilder implements GeneratedDescription {
     }
 
     @Override
-    public GeneratedDescription withSource(SourceGenerator sourceGenerator) {
+    public GeneratedDescription withSource(final SourceGenerator sourceGenerator) {
         this.sourceGenerator = sourceGenerator;
         return this;
     }
@@ -42,8 +42,8 @@ public class GeneratedDescriptionBuilder implements GeneratedDescription {
 
     @Override
     public <F, S> TwoColumns<F, S> example(
-            Generator<F> firstGenerator,
-            Generator<S> secondGenerator) {
+            final Generator<F> firstGenerator,
+            final Generator<S> secondGenerator) {
 
         return new PairBuilder<F, S>(
                 generateValues(firstGenerator),
@@ -53,9 +53,9 @@ public class GeneratedDescriptionBuilder implements GeneratedDescription {
 
     @Override
     public <F, S, T> ThreeColumns<F, S, T> example(
-            Generator<F> firstGenerator,
-            Generator<S> secondGenerator,
-            Generator<T> thirdGenerator) {
+            final Generator<F> firstGenerator,
+            final Generator<S> secondGenerator,
+            final Generator<T> thirdGenerator) {
 
         return new TripletBuilder<F, S, T>(
                 generateValues(firstGenerator),
@@ -65,7 +65,7 @@ public class GeneratedDescriptionBuilder implements GeneratedDescription {
         );
     }
 
-    private <T> List<T> generateValues(Generator<T> generator) {
+    private <T> List<T> generateValues(final Generator<T> generator) {
         return Stream.generate(() -> generator.generate(sourceGenerator))
                      .limit(numberOfInstances)
                      .collect(toList());

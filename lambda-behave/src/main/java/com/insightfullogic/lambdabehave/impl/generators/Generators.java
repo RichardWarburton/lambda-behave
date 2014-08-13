@@ -13,7 +13,7 @@ public final class Generators {
 
     private Generators() {}
 
-    public static long longs(SourceGenerator ng) {
+    public static long longs(final SourceGenerator ng) {
         return ((long) ng.generateInt(MAX_VALUE)) << 32 + ng.generateInt(MAX_VALUE);
     }
 

@@ -11,35 +11,35 @@ import java.util.function.Consumer;
 
 public final class Expect {
 
-    public <T> BoundExpectation<T> that(T value) {
+    public <T> BoundExpectation<T> that(final T value) {
         return new BoundExpectation<T>(value, true);
     }
 
-    public <T> CollectionExpectation<T> that(Collection<T> collection) {
+    public <T> CollectionExpectation<T> that(final Collection<T> collection) {
         return new CollectionExpectation<>(collection, true);
     }
 
-    public <T extends Comparable<T>> ComparableExpectation<T> that(T comparable) {
+    public <T extends Comparable<T>> ComparableExpectation<T> that(final T comparable) {
         return new ComparableExpectation<T>(comparable, true);
     }
 
-    public StringExpectation that(String str) {
+    public StringExpectation that(final String str) {
         return new StringExpectation(str, true);
     }
 
-    public DoubleExpectation that(Double value) {
+    public DoubleExpectation that(final Double value) {
         return new DoubleExpectation(value, true);
     }
 
-    public <T> ArrayExpectation<T> that(T[] array) {
+    public <T> ArrayExpectation<T> that(final T[] array) {
         return new ArrayExpectation<>(array, true);
     }
 
-    public void exception(Class<? extends Throwable> expectedException, Block block) throws Exception {
+    public void exception(final Class<? extends Throwable> expectedException, final Block block) throws Exception {
         String expectedName = expectedException.getName();
         try {
             block.run();
-        } catch (Throwable throwable) {
+        } catch (final Throwable throwable) {
             if (!expectedException.isInstance(throwable)) {
                 String name = throwable.getClass().getName();
                 failure("Expected exception: " + expectedName + ", but " + name + " was thrown");
@@ -55,7 +55,7 @@ public final class Expect {
     }
 
     @SuppressWarnings("unchecked")
-    public <T> Stubber toAnswer(Runnable method) {
+    public <T> Stubber toAnswer(final Runnable method) {
         return Mockito.doAnswer(invocation -> {
             Object[] arguments = invocation.getArguments();
             method.run();
@@ -64,23 +64,23 @@ public final class Expect {
     }
 
     @SuppressWarnings("unchecked")
-    public <T> Stubber toAnswer(Consumer<T> method) {
+    public <T> Stubber toAnswer(final Consumer<T> method) {
         return doAnswer(arguments -> method.accept((T) arguments[0]), 1);
     }
 
     @SuppressWarnings("unchecked")
-    public <F, S> Stubber toAnswer(BiConsumer<F, S> method) {
+    public <F, S> Stubber toAnswer(final BiConsumer<F, S> method) {
         return doAnswer(arguments ->
             method.accept((F) arguments[0], (S) arguments[1]), 2);
     }
 
     @SuppressWarnings("unchecked")
-    public <F, S, T> Stubber toAnswer(TriConsumer<F, S, T> method) {
+    public <F, S, T> Stubber toAnswer(final TriConsumer<F, S, T> method) {
         return doAnswer(arguments ->
                 method.accept((F) arguments[0], (S) arguments[1], (T) arguments[2]), 3);
     }
 
-    private  Stubber doAnswer(Consumer<Object[]> method, int argumentCount) {
+    private  Stubber doAnswer(final Consumer<Object[]> method, final int argumentCount) {
         return Mockito.doAnswer(invocation -> {
             Object[] arguments = invocation.getArguments();
             if (arguments.length >= argumentCount) {

@@ -40,7 +40,7 @@ public class Specifier implements Description {
     private final Blocks completers;
     private final SourceGenerator sourceGenerator;
 
-    public Specifier(String suite, SourceGenerator sourceGenerator) {
+    public Specifier(final String suite, final SourceGenerator sourceGenerator) {
         this.suiteName = suite;
         this.sourceGenerator = sourceGenerator;
 
@@ -51,20 +51,20 @@ public class Specifier implements Description {
         completers = new Blocks();
     }
 
-    public <T> void specifyBehaviour(String description, T value, ColumnDataSpecification<T> specification) {
+    public <T> void specifyBehaviour(final String description, final T value, final ColumnDataSpecification<T> specification) {
         should(description, expect -> specification.specifyBehaviour(expect, value));
     }
 
-    public <F, S> void specifyBehaviour(String description, F first, S second, TwoColumnDataSpecification<F, S> specification) {
+    public <F, S> void specifyBehaviour(final String description, final F first, final S second, final TwoColumnDataSpecification<F, S> specification) {
         should(description, expect -> specification.specifyBehaviour(expect, first, second));
     }
 
-    public <F, S, T> void specifyBehaviour(String description, F first, S second, T third, ThreeColumnDataSpecification<F, S, T> specification) {
+    public <F, S, T> void specifyBehaviour(final String description, final F first, final S second, final T third, final ThreeColumnDataSpecification<F, S, T> specification) {
         should(description, expect -> specification.specifyBehaviour(expect, first, second, third));
     }
 
     @Override
-    public void should(String description, Specification specification) {
+    public void should(final String description, final Specification specification) {
         Objects.nonNull(description);
         Objects.nonNull(specification);
 
@@ -81,23 +81,23 @@ public class Specifier implements Description {
     }
 
     @Override
-    public <T> Column<T> uses(T value) {
+    public <T> Column<T> uses(final T value) {
         return new ValueBuilder<>(value, this);
     }
 
     @Override
-    public <T> Column<T> uses(List<T> values) {
+    public <T> Column<T> uses(final List<T> values) {
         // Additional arraylist required to ensure
         // we can with more values
         return new ValueBuilder<>(new ArrayList<>(values), this);
     }
 
     @Override
-    public <T> Column<T> uses(Stream<T> values) {
+    public <T> Column<T> uses(final Stream<T> values) {
         return uses(values.collect(toList()));
     }
 
-    public <T, F, S> TitledTable<T, F, S> usesTable(Class<T> clazz, Function<T, F> first, Function<T, S> second) {
+    public <T, F, S> TitledTable<T, F, S> usesTable(final Class<T> clazz, final Function<T, F> first, final Function<T, S> second) {
         List<Method> m = new ArrayList<>();
         final T mock = (T) Enhancer.create(clazz, (MethodInterceptor) (o, method, objects, methodProxy) -> {
             m.add(method);
@@ -109,27 +109,27 @@ public class Specifier implements Description {
     }
 
     @Override
-    public <F, S> TwoColumns<F, S> uses(F first, S second) {
+    public <F, S> TwoColumns<F, S> uses(final F first, final S second) {
         return new PairBuilder<>(first, second, this);
     }
 
     @Override
-    public <F, S> TwoColumns<F, S> uses(List<F> first, List<S> second) {
+    public <F, S> TwoColumns<F, S> uses(final List<F> first, final List<S> second) {
         return new PairBuilder<F, S>(new ArrayList<>(first), new ArrayList<>(second), this);
     }
 
     @Override
-    public <F, S> TwoColumns<F, S> uses(Stream<F> first, Stream<S> second) {
+    public <F, S> TwoColumns<F, S> uses(final Stream<F> first, final Stream<S> second) {
         return new PairBuilder<F, S>(first.collect(toList()), second.collect(toList()), this);
     }
 
     @Override
-    public <F, S, T> ThreeColumns<F, S, T> uses(F first, S second, T third) {
+    public <F, S, T> ThreeColumns<F, S, T> uses(final F first, final S second, final T third) {
         return new TripletBuilder<>(first, second, third, this);
     }
 
     @Override
-    public <F, S, T> ThreeColumns<F, S, T> uses(List<F> first, List<S> second, List<T> third) {
+    public <F, S, T> ThreeColumns<F, S, T> uses(final List<F> first, final List<S> second, final List<T> third) {
         return new TripletBuilder<F, S, T>(new ArrayList<>(first),
                                            new ArrayList<>(second),
                                            new ArrayList<>(third),
@@ -137,7 +137,7 @@ public class Specifier implements Description {
     }
 
     @Override
-    public <F, S, T> ThreeColumns<F, S, T> uses(Stream<F> first, Stream<S> second, Stream<T> third) {
+    public <F, S, T> ThreeColumns<F, S, T> uses(final Stream<F> first, final Stream<S> second, final Stream<T> third) {
         return new TripletBuilder<F, S, T>(first.collect(toList()),
                                            second.collect(toList()),
                                            third.collect(toList()),
@@ -145,32 +145,32 @@ public class Specifier implements Description {
     }
 
     @Override
-    public GeneratedDescription requires(int exampleCount) {
+    public GeneratedDescription requires(final int exampleCount) {
         return new GeneratedDescriptionBuilder(sourceGenerator, exampleCount, this);
     }
 
     @Override
-    public void isSetupWith(Block block) {
+    public void isSetupWith(final Block block) {
         prefixes.add(block);
     }
 
     @Override
-    public void initializesWith(Block block) {
+    public void initializesWith(final Block block) {
         initializers.add(block);
     }
 
     @Override
-    public void isConcludedWith(Block block) {
+    public void isConcludedWith(final Block block) {
         postfixes.add(block);
     }
 
     @Override
-    public void completesWith(Block block) {
+    public void completesWith(final Block block) {
         completers.add(block);
     }
 
     @Override
-    public <T> T usesMock(Class<T> classToMock) {
+    public <T> T usesMock(final Class<T> classToMock) {
         final T mockObject = Mockito.mock(classToMock);
         postfixes.add(() -> {
             Mockito.reset(mockObject);
@@ -179,7 +179,7 @@ public class Specifier implements Description {
         return mockObject;
     }
 
-    public void checkSpecifications(Report report) {
+    public void checkSpecifications(final Report report) {
         report.onSuiteName(suiteName);
         completeBehaviours().forEach(behaviour -> report.recordSpecification(suiteName, behaviour.checkCompleteBehaviour()));
     }

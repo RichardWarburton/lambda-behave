@@ -19,13 +19,13 @@ public class TitledTable<T, F, S> {
     private final List<F> firsts = new ArrayList<>();
     private final List<S> seconds = new ArrayList<>();
 
-    public TitledTable(List<Method> methods, Specifier specifier, Class clazz) {
+    public TitledTable(final List<Method> methods, final Specifier specifier, final Class clazz) {
         this.methods = methods;
         this.specifier = specifier;
         this.clazz = clazz;
     }
 
-    public TitledTable<T, F, S> toShow(String description, ColumnDataSpecification<T> specification) {
+    public TitledTable<T, F, S> toShow(final String description, final ColumnDataSpecification<T> specification) {
         final Iterator<F> fit = firsts.iterator();
         final Iterator<S> sit = seconds.iterator();
         while (fit.hasNext()) {
@@ -39,7 +39,7 @@ public class TitledTable<T, F, S> {
         return this;
     }
 
-    public TitledTable<T, F, S> withRow(F first, S second) {
+    public TitledTable<T, F, S> withRow(final F first, final S second) {
         firsts.add(first);
         seconds.add(second);
         return this;

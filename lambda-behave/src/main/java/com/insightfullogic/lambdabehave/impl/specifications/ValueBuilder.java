@@ -12,25 +12,25 @@ public final class ValueBuilder<T> implements Column<T> {
     private final List<T> values;
     private final Specifier specifier;
 
-    public ValueBuilder(T value, Specifier specifier) {
+    public ValueBuilder(final T value, final Specifier specifier) {
         this.specifier = specifier;
         values = new ArrayList<>();
         values.add(value);
     }
 
-    public ValueBuilder(List<T> values, Specifier specifier) {
+    public ValueBuilder(final List<T> values, final Specifier specifier) {
         this.specifier = specifier;
         this.values = values;
     }
 
     @Override
-    public ValueBuilder<T> and(T value) {
+    public ValueBuilder<T> and(final T value) {
         values.add(value);
         return this;
     }
 
     @Override
-    public Column<T> toShow(String descriptionFormat, ColumnDataSpecification<T> specification) {
+    public Column<T> toShow(final String descriptionFormat, final ColumnDataSpecification<T> specification) {
         for (int i = 0; i < values.size(); i++) {
             T value = values.get(i);
             String description = String.format(descriptionFormat, value);

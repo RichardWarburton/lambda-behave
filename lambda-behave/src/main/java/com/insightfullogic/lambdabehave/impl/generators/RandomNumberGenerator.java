@@ -20,7 +20,7 @@ public class RandomNumberGenerator implements SourceGenerator {
     }
 
     @Override
-    public int generateInt(int maxValue) {
+    public int generateInt(final int maxValue) {
         return random.nextInt(maxValue);
     }
 

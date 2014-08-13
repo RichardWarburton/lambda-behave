@@ -14,23 +14,23 @@ public final class Report {
         suites = new ArrayList<>();
     }
 
-    private void newSuite(String name) {
+    private void newSuite(final String name) {
         currentSuite = new SuiteReport(name);
         suites.add(currentSuite);
     }
 
-    public void recordSpecification(String suiteName, SpecificationReport report) {
+    public void recordSpecification(final String suiteName, final SpecificationReport report) {
         onSuiteName(suiteName);
         currentSuite.with(report);
     }
 
-    public void onSuiteName(String suiteName) {
+    public void onSuiteName(final String suiteName) {
         if (noSuite() || seenNewSuite(suiteName)) {
             newSuite(suiteName);
         }
     }
 
-    private boolean seenNewSuite(String suite) {
+    private boolean seenNewSuite(final String suite) {
         return !currentSuite.getName().equals(suite);
     }
 

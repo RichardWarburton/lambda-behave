@@ -10,43 +10,43 @@ import static org.junit.Assert.assertThat;
 
 public final class ArrayExpectation<T> extends BoundExpectation<T[]> {
 
-    ArrayExpectation(T[] array, boolean positive) {
+    ArrayExpectation(final T[] array, final boolean positive) {
         super(array, positive);
     }
 
-    public ArrayExpectation<T> isArrayWithSize(int size) {
+    public ArrayExpectation<T> isArrayWithSize(final int size) {
         return matches(arrayWithSize(size));
     }
 
-    public ArrayExpectation<T> isArrayWithSize(Matcher<? super Integer> matcher) {
+    public ArrayExpectation<T> isArrayWithSize(final Matcher<? super Integer> matcher) {
         return matches(arrayWithSize(matcher));
     }
 
-    public ArrayExpectation<T> isArray(Matcher<? super T> ... elementMatchers) {
+    public ArrayExpectation<T> isArray(final Matcher<? super T> ... elementMatchers) {
         return matches(array(elementMatchers));
     }
 
-    public ArrayExpectation<T> isArrayContaining(T ... items) {
+    public ArrayExpectation<T> isArrayContaining(final T ... items) {
         return matches(arrayContaining(items));
     }
 
-    public ArrayExpectation<T> isArrayContaining(Matcher<? super T> ... elements) {
+    public ArrayExpectation<T> isArrayContaining(final Matcher<? super T> ... elements) {
         return matches(arrayContaining(elements));
     }
 
-    public ArrayExpectation<T> isArrayContaining(List<Matcher<? super T>> elements) {
+    public ArrayExpectation<T> isArrayContaining(final List<Matcher<? super T>> elements) {
         return matches(arrayContaining(elements));
     }
 
-    public ArrayExpectation<T> isArrayContainingInAnyOrder(T ... items) {
+    public ArrayExpectation<T> isArrayContainingInAnyOrder(final T ... items) {
         return matches(arrayContainingInAnyOrder(items));
     }
 
-    public ArrayExpectation<T> isArrayContainingInAnyOrder(Matcher<? super T> ... elements) {
+    public ArrayExpectation<T> isArrayContainingInAnyOrder(final Matcher<? super T> ... elements) {
         return matches(arrayContainingInAnyOrder(elements));
     }
 
-    public ArrayExpectation<T> isArrayContainingInAnyOrder(Collection<Matcher<? super T>> elements) {
+    public ArrayExpectation<T> isArrayContainingInAnyOrder(final Collection<Matcher<? super T>> elements) {
         return matches(arrayContainingInAnyOrder(elements));
     }
 
@@ -54,34 +54,34 @@ public final class ArrayExpectation<T> extends BoundExpectation<T[]> {
         return matches(emptyArray());
     }
 
-    public ArrayExpectation<T> isArrayWithItem(T item) {
+    public ArrayExpectation<T> isArrayWithItem(final T item) {
         return matches(hasItemInArray(item));
     }
 
-    public ArrayExpectation<T> isArrayWithItem(Matcher<? super T> itemMatcher) {
+    public ArrayExpectation<T> isArrayWithItem(final Matcher<? super T> itemMatcher) {
         return matches(hasItemInArray(itemMatcher));
     }
 
     @Override
-    public ArrayExpectation<T> isEqualTo(T[] expected) {
+    public ArrayExpectation<T> isEqualTo(final T[] expected) {
         super.isEqualTo(expected);
         return this;
     }
 
     @Override
-    public ArrayExpectation<T> hasToString(Matcher<? super String> str) {
+    public ArrayExpectation<T> hasToString(final Matcher<? super String> str) {
         super.hasToString(str);
         return this;
     }
 
     @Override
-    public ArrayExpectation<T> hasToString(String arg) {
+    public ArrayExpectation<T> hasToString(final String arg) {
         super.hasToString(arg);
         return this;
     }
 
     @Override
-    public ArrayExpectation<T> instanceOf(Class<?> arg) {
+    public ArrayExpectation<T> instanceOf(final Class<?> arg) {
         super.instanceOf(arg);
         return this;
     }
@@ -99,7 +99,7 @@ public final class ArrayExpectation<T> extends BoundExpectation<T[]> {
     }
 
     @Override
-    public ArrayExpectation<T> sameInstance(T[] target) {
+    public ArrayExpectation<T> sameInstance(final T[] target) {
         super.sameInstance(target);
         return this;
     }
@@ -111,31 +111,31 @@ public final class ArrayExpectation<T> extends BoundExpectation<T[]> {
     }
 
     @Override
-    public ArrayExpectation<T> hasProperty(String propertyName, Matcher<?> propertyValue) {
+    public ArrayExpectation<T> hasProperty(final String propertyName, final Matcher<?> propertyValue) {
         super.hasProperty(propertyName, propertyValue);
         return this;
     }
 
     @Override
-    public ArrayExpectation<T> is(T[] value) {
+    public ArrayExpectation<T> is(final T[] value) {
         super.is(value);
         return this;
     }
 
     @Override
-    public ArrayExpectation<T> is(Matcher<? super T[]> matcher) {
+    public ArrayExpectation<T> is(final Matcher<? super T[]> matcher) {
         super.is(matcher);
         return this;
     }
 
     @Override
-    public ArrayExpectation<T> isIn(Collection<T[]> values) {
+    public ArrayExpectation<T> isIn(final Collection<T[]> values) {
         super.isIn(values);
         return this;
     }
 
     @Override
-    public ArrayExpectation<T> isIn(T[] ... values) {
+    public ArrayExpectation<T> isIn(final T[] ... values) {
         super.isIn(values);
         return this;
     }
@@ -146,7 +146,7 @@ public final class ArrayExpectation<T> extends BoundExpectation<T[]> {
         return this;
     }
 
-    private ArrayExpectation<T> matches(Matcher<? super T[]> matcher) {
+    private ArrayExpectation<T> matches(final Matcher<? super T[]> matcher) {
         assertThat(objectUnderTest, matcher);
         return this;
     }

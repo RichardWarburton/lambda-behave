@@ -13,7 +13,7 @@ public final class NumberGenerators {
         return generators.peek();
     }
 
-    public static void push(SourceGenerator generator) {
+    public static void push(final SourceGenerator generator) {
         generators.push(generator);
     }
 

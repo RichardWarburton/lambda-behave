@@ -6,11 +6,11 @@ public class AnswerObject {
 
     }
 
-    public void oneArgMethod(String arg) {
+    public void oneArgMethod(final String arg) {
 
     }
 
-    public void twoArgMethod(String arg1, Integer arg2) {
+    public void twoArgMethod(final String arg1, final Integer arg2) {
 
     }
 }

@@ -70,7 +70,7 @@ public class ExceptionSpec {{
     });
 }
 
-    private void expectSingleSpecErrored(Expect expect, Report report) {
+    private void expectSingleSpecErrored(final Expect expect, final Report report) {
         List<SpecificationReport> specifications = report.getSuite().getSpecifications();
         expect.that(specifications).contains(error("have a single spec1", new RuntimeException()));
     }
