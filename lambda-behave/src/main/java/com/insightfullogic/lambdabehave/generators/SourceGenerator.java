@@ -15,6 +15,10 @@ public interface SourceGenerator {
     /**
      * creates a source generator that returns random numbers.
      *
+     * If you want to reproduce this sequence of numbers from a given seed
+     * then see the {@link #deterministicNumbers(long) deterministicNumbers}
+     * method.
+     *
      * @return the source generator
      */
     public static SourceGenerator randomNumbers() {
@@ -22,12 +26,17 @@ public interface SourceGenerator {
     }
 
     /**
-     * creates a source generator that returns random numbers.
+     * creates a source generator that returns numbers deterministically from a seed.
+     *
+     * The number generation mechanism is guaranteed to reproduce the same sequence of numbers as
+     * {@link #randomNumbers() randomNumbers} given a seed. This means that you can reproduce
+     * errors in property based tests by looking at the generated seed in the log and using this
+     * source generator.
      *
      * @param seed the seed for the random number generator
      * @return the source generator
      */
-    public static SourceGenerator randomNumbers(final long seed) {
+    public static SourceGenerator deterministicNumbers(final long seed) {
         return new RandomNumberGenerator(seed);
     }
 

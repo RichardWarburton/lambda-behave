@@ -1,6 +1,7 @@
 package com.insightfullogic.lambdabehave.example;
 
 import com.insightfullogic.lambdabehave.JunitSuiteRunner;
+import com.insightfullogic.lambdabehave.generators.SourceGenerator;
 import org.junit.runner.RunWith;
 
 import static com.insightfullogic.lambdabehave.Suite.describe;
@@ -23,6 +24,15 @@ public class GeneratedSpec {{
           .toShow("adding a digit to the end of the String increments its length by one", (expect, str, x) -> {
               String result = str + x;
               expect.that(result.length()).is(str.length() + 1);
+          });
+
+
+        it.requires(10)
+          .withSource(SourceGenerator.deterministicNumbers(101L))
+          .example(asciiStrings())
+          .toShow("reversing a String twice returns the original String with deterministic seed", (expect, str) -> {
+              String same = new StringBuilder(str).reverse().reverse().toString();
+              expect.that(same).isEqualTo(str);
           });
 
     });
