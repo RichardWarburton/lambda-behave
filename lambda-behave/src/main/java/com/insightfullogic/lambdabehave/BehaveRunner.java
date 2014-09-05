@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static com.insightfullogic.lambdabehave.generators.SourceGenerator.deterministicNumbers;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -46,7 +47,7 @@ public final class BehaveRunner {
     }
 
     public static Report runOnly(final long seed, final Class<?> specClass) {
-        return new BehaveRunner(SourceGenerator.randomNumbers(seed)).run(specClass).getReport();
+        return new BehaveRunner(deterministicNumbers(seed)).run(specClass).getReport();
     }
 
     public static List<Specifier> declareOnly(final Class<?> specClass) {

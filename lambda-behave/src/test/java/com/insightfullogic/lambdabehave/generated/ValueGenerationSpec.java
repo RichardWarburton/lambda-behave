@@ -10,7 +10,7 @@ import java.util.List;
 
 import static com.insightfullogic.lambdabehave.Suite.describe;
 import static com.insightfullogic.lambdabehave.generators.Generator.*;
-import static com.insightfullogic.lambdabehave.generators.SourceGenerator.randomNumbers;
+import static com.insightfullogic.lambdabehave.generators.SourceGenerator.deterministicNumbers;
 
 @RunWith(JunitSuiteRunner.class)
 public class ValueGenerationSpec {{
@@ -30,8 +30,8 @@ public class ValueGenerationSpec {{
           .example(integersUpTo(100))
           .toShow("value generation is deterministic", (expect, source) -> {
               long seed = source + System.currentTimeMillis();
-              SourceGenerator generator1 = randomNumbers(seed);
-              SourceGenerator generator2 = randomNumbers(seed);
+              SourceGenerator generator1 = deterministicNumbers(seed);
+              SourceGenerator generator2 = deterministicNumbers(seed);
 
               generators.forEach(gen -> {
                   Object value1 = gen.generate(generator1);
