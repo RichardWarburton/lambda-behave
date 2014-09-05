@@ -1,9 +1,11 @@
 package com.insightfullogic.lambdabehave.expectations;
 
+import com.insightfullogic.lambdabehave.impl.HasTypesafeProperty;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 
 import java.util.Collection;
+import java.util.function.Function;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
@@ -84,6 +86,14 @@ public class BoundExpectation<T> {
 
     public BoundExpectation<T> never() {
         return new BoundExpectation<>(objectUnderTest, !positive);
+    }
+
+    public <P> BoundExpectation<T> hasPropertyOf(final Function<T, P> getter, final Matcher<P> propertymatcher) {
+        return matches(new HasTypesafeProperty<>(getter, propertymatcher));
+    }
+
+    public <P> BoundExpectation<T> hasProperty(final Function<T, P> getter, P property) {
+        return hasPropertyOf(getter, Matchers.is(property));
     }
 
     private BoundExpectation<T> matches(final Matcher<? super T> matcher) {

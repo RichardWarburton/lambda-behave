@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.insightfullogic.lambdabehave.Suite.describe;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.is;
 
 /**
  * This example specification is designed more as a way of testing out the API and
@@ -31,6 +33,8 @@ public class ExpectationSpec {{
                   .isIn(greenGables)
                   .isNotNull()
                   .sameInstance(greenGables)
+                  .hasProperty(House::isFictional, true)
+                  .hasPropertyOf(House::getName, containsString("Green "))
                   .and(nothing).toBeNull();
         });
 
