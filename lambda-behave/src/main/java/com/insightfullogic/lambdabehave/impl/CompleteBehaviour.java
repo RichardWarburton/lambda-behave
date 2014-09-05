@@ -5,6 +5,7 @@ import com.insightfullogic.lambdabehave.impl.reports.SpecificationReport;
 import java.util.Objects;
 
 public interface CompleteBehaviour {
+
     SpecificationReport playbackBehaviour();
 
     String getDescription();

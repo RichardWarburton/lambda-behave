@@ -102,7 +102,7 @@ class ScalaTestWrapper(clazz: Class[_]) extends org.scalatest.Suite { thisSuite 
 
         val documenterForThisTest = createMessageRecordingDocumenter(thisSuite, reporter, tracker, testName, messageRecorderForThisTest)
 
-        val report = child.checkCompleteBehaviour()
+        val report = child.playbackBehaviour()
         report.getResult match {
           case Result.SUCCESS =>
             val duration = System.currentTimeMillis - testStartTime
