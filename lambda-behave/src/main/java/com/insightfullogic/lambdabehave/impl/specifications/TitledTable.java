@@ -33,7 +33,7 @@ public class TitledTable<T, F, S> {
             final String describe = String.format(description,
                     values[0], values[1],
                     methods.get(0).getName(), methods.get(1).getName());
-            specifier.specifyBehaviour(describe, mock, specification);
+            specifier.should(describe, expect -> specification.specifyBehaviour(expect, mock));
         }
         return this;
     }

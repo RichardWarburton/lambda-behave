@@ -54,4 +54,5 @@ public final class Report {
 
         return suites.get(0);
     }
+
 }

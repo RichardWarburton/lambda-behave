@@ -3,10 +3,8 @@ package com.insightfullogic.lambdabehave.impl.generators;
 import com.insightfullogic.lambdabehave.generators.GeneratedDescription;
 import com.insightfullogic.lambdabehave.generators.Generator;
 import com.insightfullogic.lambdabehave.generators.SourceGenerator;
-import com.insightfullogic.lambdabehave.impl.Specifier;
-import com.insightfullogic.lambdabehave.impl.specifications.PairRecorder;
-import com.insightfullogic.lambdabehave.impl.specifications.TripletRecorder;
-import com.insightfullogic.lambdabehave.impl.specifications.ValueRecorder;
+import com.insightfullogic.lambdabehave.impl.DescriptionRecorder;
+import com.insightfullogic.lambdabehave.impl.specifications.*;
 import com.insightfullogic.lambdabehave.specifications.Column;
 import com.insightfullogic.lambdabehave.specifications.ThreeColumns;
 import com.insightfullogic.lambdabehave.specifications.TwoColumns;
@@ -16,17 +14,17 @@ import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
-public class GeneratedDescriptionBuilder implements GeneratedDescription {
+public class GeneratedDescriptionSpecBuilder implements GeneratedDescription {
 
     private final int numberOfInstances;
-    private final Specifier specifier;
+    private final DescriptionRecorder description;
 
     private SourceGenerator sourceGenerator;
 
-    public GeneratedDescriptionBuilder(final SourceGenerator sourceGenerator, final int numberOfInstances, final Specifier specifier) {
+    public GeneratedDescriptionSpecBuilder(final SourceGenerator sourceGenerator, final int numberOfInstances, final DescriptionRecorder description) {
         this.sourceGenerator = sourceGenerator;
         this.numberOfInstances = numberOfInstances;
-        this.specifier = specifier;
+        this.description = description;
     }
 
     @Override
@@ -37,7 +35,7 @@ public class GeneratedDescriptionBuilder implements GeneratedDescription {
 
     @Override
     public <T> Column<T> example(final Generator<T> generator) {
-        return new ValueRecorder<T>(generateValues(generator), specifier);
+        return new ValueSpecRecorder<>(description);
     }
 
     @Override
@@ -45,10 +43,7 @@ public class GeneratedDescriptionBuilder implements GeneratedDescription {
             final Generator<F> firstGenerator,
             final Generator<S> secondGenerator) {
 
-        return new PairRecorder<F, S>(
-                generateValues(firstGenerator),
-                generateValues(secondGenerator),
-                specifier);
+        return new PairSpecRecorder<>(description);
     }
 
     @Override
@@ -57,12 +52,7 @@ public class GeneratedDescriptionBuilder implements GeneratedDescription {
             final Generator<S> secondGenerator,
             final Generator<T> thirdGenerator) {
 
-        return new TripletRecorder<F, S, T>(
-                generateValues(firstGenerator),
-                generateValues(secondGenerator),
-                generateValues(thirdGenerator),
-                specifier
-        );
+        return new TripletSpecRecorder<F, S, T>(description);
     }
 
     private <T> List<T> generateValues(final Generator<T> generator) {

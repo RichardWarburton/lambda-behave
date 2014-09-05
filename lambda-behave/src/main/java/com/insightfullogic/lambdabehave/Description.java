@@ -171,6 +171,8 @@ public interface Description {
      */
     GeneratedDescription requires(int exampleCount);
 
+    long getSeed();
+
     /**
      * <p>
      *     Run some code before each of the specifications.
@@ -226,21 +228,5 @@ public interface Description {
      * @param block the code to run.
      */
     void completesWith(Block block);
-
-    /**
-     * <p>
-     *  Creates a mock similar to Mockito.mock but which gets reset between tests. This can literally just
-     *  be used like Mockito.mock. For example:
-     * </p>
-     *
-     * <pre>
-     *     Foo foo = it.usesMock(Foo.class);
-     * </pre>
-     *
-     * @param classToMock the class of the mock object
-     * @param <T> the type parameter of the mock object's type
-     * @return the mock object
-     */
-    <T> T usesMock(Class<T> classToMock);
 
 }

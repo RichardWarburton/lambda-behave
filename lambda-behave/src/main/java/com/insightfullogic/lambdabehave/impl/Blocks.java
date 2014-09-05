@@ -37,4 +37,8 @@ public class Blocks {
         return blocks.stream()
                      .map(block -> new CompleteFixture(suiteName, description, block));
     }
+
+    public int size() {
+        return blocks.size();
+    }
 }

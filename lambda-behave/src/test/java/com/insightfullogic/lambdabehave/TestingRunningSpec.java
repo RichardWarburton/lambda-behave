@@ -1,6 +1,7 @@
 package com.insightfullogic.lambdabehave;
 
 import com.insightfullogic.lambdabehave.impl.reports.Report;
+import com.insightfullogic.lambdabehave.impl.reports.Result;
 import com.insightfullogic.lambdabehave.impl.reports.SpecificationReport;
 import com.insightfullogic.lambdabehave.impl.reports.SuiteReport;
 import com.insightfullogic.lambdabehave.testcases.running.*;
@@ -12,6 +13,7 @@ import static com.insightfullogic.lambdabehave.BehaveRunner.runOnly;
 import static com.insightfullogic.lambdabehave.Suite.describe;
 import static com.insightfullogic.lambdabehave.impl.reports.Result.ERROR;
 import static com.insightfullogic.lambdabehave.impl.reports.Result.FAILURE;
+import static com.insightfullogic.lambdabehave.impl.reports.Result.SUCCESS;
 
 @RunWith(JunitSuiteRunner.class)
 public class TestingRunningSpec {{
@@ -78,6 +80,15 @@ public class TestingRunningSpec {{
 
             expect.that(suites).hasSize(2);
         });
+
+        it.should("reinstantiate classes every time in order to ensure clean state", expect -> {
+            SuiteReport suite = runOnly(Reinstantiation.class).getSuite();
+
+            List<SpecificationReport> specifications = suite.getSpecifications();
+            expect.that(specifications.get(0).getResult()).is(SUCCESS);
+            expect.that(specifications.get(1).getResult()).is(SUCCESS);
+        });
+
     });
 
 }}

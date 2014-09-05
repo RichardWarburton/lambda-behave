@@ -17,6 +17,15 @@ public class GeneratorFactoryExample {{
               expect.that(value).isLessThan(10)
                                 .isGreaterThanOrEqualTo(0);
           });
+
+        // For comparison
+        it.requires(5)
+          .example(integersUpTo(5), integersUpTo(5))
+          .toShow("%d %d", (expect, x, y) -> {
+              int value = x + y;
+              expect.that(value).isLessThan(10)
+                    .isGreaterThanOrEqualTo(0);
+          });
     });
 
 }}

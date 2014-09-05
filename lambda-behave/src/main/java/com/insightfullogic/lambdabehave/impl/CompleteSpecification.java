@@ -15,19 +15,25 @@ import static com.insightfullogic.lambdabehave.impl.reports.SpecificationReport.
 final class CompleteSpecification implements CompleteBehaviour {
 
     private final Blocks prefixes;
-    private final Behaviour behaviour;
+    private final Specification specification;
+    private final String description;
     private final Blocks postfixes;
     private final String suiteName;
 
-    public CompleteSpecification(final Blocks prefixes, final Behaviour behaviour, final Blocks postfixes, final String suiteName) {
+    public CompleteSpecification(final Specification specification, final String description, final String suiteName) {
+        this(new Blocks(suiteName), specification, description, new Blocks(suiteName), suiteName);
+    }
+
+    public CompleteSpecification(final Blocks prefixes, final Specification specification, final String description, final Blocks postfixes, final String suiteName) {
         this.prefixes = prefixes;
-        this.behaviour = behaviour;
+        this.specification = specification;
+        this.description = description;
         this.postfixes = postfixes;
         this.suiteName = suiteName;
     }
 
     @Override
-    public SpecificationReport checkCompleteBehaviour() {
+    public SpecificationReport playbackBehaviour() {
         SpecificationReport report = prefixes.runAll(getDescription())
                                     .orElseGet(this::checkBehaviour);
 
@@ -40,8 +46,6 @@ final class CompleteSpecification implements CompleteBehaviour {
     }
 
     private SpecificationReport checkBehaviour() {
-        Specification specification = behaviour.getSpecification();
-        String description = behaviour.getDescription();
         try {
             Expect expect = new Expect();
             specification.specifyBehaviour(expect);
@@ -55,7 +59,7 @@ final class CompleteSpecification implements CompleteBehaviour {
 
     @Override
     public String getDescription() {
-        return behaviour.getDescription();
+        return description;
     }
 
     @Override

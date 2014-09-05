@@ -52,7 +52,7 @@ public abstract class AbstractSuiteRunner extends ParentRunner<CompleteBehaviour
         try {
             Description childDescription = describeChild(child);
             notifier.fireTestStarted(childDescription);
-            SpecificationReport report = child.checkCompleteBehaviour();
+            SpecificationReport report = child.playbackBehaviour();
             reportResults(notifier, report, childDescription);
         } catch (final Exception e) {
             notifier.fireTestFailure(new Failure(getDescription(), e));

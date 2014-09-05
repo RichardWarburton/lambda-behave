@@ -94,13 +94,13 @@ public final class BehaveRunner {
     }
 
     private BehaveRunner run(final Class<?> suiteClass) {
-        declare(suiteClass).forEach(suite -> suite.checkSpecifications(report));
+        declare(suiteClass).forEach(suite -> suite.playbackSpecifications(report));
         return this;
     }
 
     private List<Specifier> declare(final Class<?> specification) {
         NumberGenerators.push(generator);
-        final int mark = Specifiers.mark();
+        final int mark = Specifiers.startSpecifying(specification);
         try {
             specification.newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
@@ -109,7 +109,7 @@ public final class BehaveRunner {
         }
         NumberGenerators.pop();
 
-        return Specifiers.popSince(mark);
+        return Specifiers.finishSpecifying(mark);
     }
 
     public BehaveRunner printReport() {

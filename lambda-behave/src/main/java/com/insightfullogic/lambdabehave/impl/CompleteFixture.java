@@ -16,7 +16,7 @@ final class CompleteFixture implements CompleteBehaviour {
     }
 
     @Override
-    public SpecificationReport checkCompleteBehaviour() {
+    public SpecificationReport playbackBehaviour() {
         try {
             block.run();
             return SpecificationReport.success(getDescription());
