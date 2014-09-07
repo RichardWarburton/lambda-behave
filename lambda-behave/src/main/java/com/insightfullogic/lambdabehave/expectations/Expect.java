@@ -35,7 +35,7 @@ public final class Expect {
         return new ArrayExpectation<>(array, true);
     }
 
-    public void exception(final Class<? extends Throwable> expectedException, final Block block) throws Exception {
+    public BoundExpectation<? extends Throwable> exception(final Class<? extends Throwable> expectedException, final Block block) throws Exception {
         String expectedName = expectedException.getName();
         try {
             block.run();
@@ -44,9 +44,10 @@ public final class Expect {
                 String name = throwable.getClass().getName();
                 failure("Expected exception: " + expectedName + ", but " + name + " was thrown");
             }
-            return;
+            return new BoundExpectation<>(throwable, true);
         }
         failure("Expected exception: " + expectedName + ", but no exception was thrown");
+        return null;
     }
 
     // NB: no failure without a message because its a bad idea to not have test failure diagnostics

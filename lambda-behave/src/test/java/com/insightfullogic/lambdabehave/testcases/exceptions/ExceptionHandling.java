@@ -1,6 +1,7 @@
 package com.insightfullogic.lambdabehave.testcases.exceptions;
 
 import static com.insightfullogic.lambdabehave.Suite.describe;
+import static org.hamcrest.Matchers.is;
 
 public class ExceptionHandling {{
     describe("a suite full of exceptions", it -> {
@@ -32,6 +33,18 @@ public class ExceptionHandling {{
             expect.exception(RuntimeException.class, () -> {
                 throw new Exception();
             });
+        });
+
+        it.should("pass if exception message is the same as expected", expect -> {
+            expect.exception(Exception.class, () -> {
+                throw new Exception("exception message");
+            }).hasProperty("message", is("exception message"));
+        });
+
+        it.should("fail if exception message is different than expected", expect -> {
+            expect.exception(Exception.class, () -> {
+                throw new Exception("exception message");
+            }).hasProperty("message", is("different message"));
         });
     });
 }}
