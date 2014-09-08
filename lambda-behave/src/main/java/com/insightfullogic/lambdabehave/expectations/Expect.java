@@ -35,7 +35,8 @@ public final class Expect {
         return new ArrayExpectation<>(array, true);
     }
 
-    public BoundExpectation<? extends Throwable> exception(final Class<? extends Throwable> expectedException, final Block block) throws Exception {
+    @SuppressWarnings("unchecked")
+    public <T extends Throwable> BoundExpectation<T> exception(final Class<T> expectedException, final Block block) throws Exception {
         String expectedName = expectedException.getName();
         try {
             block.run();
@@ -44,7 +45,7 @@ public final class Expect {
                 String name = throwable.getClass().getName();
                 failure("Expected exception: " + expectedName + ", but " + name + " was thrown");
             }
-            return new BoundExpectation<>(throwable, true);
+            return new BoundExpectation<>((T)throwable, true);
         }
         failure("Expected exception: " + expectedName + ", but no exception was thrown");
         return null;
