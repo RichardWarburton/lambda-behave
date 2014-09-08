@@ -1,9 +1,7 @@
 package com.insightfullogic.lambdabehave.impl;
 
-import com.insightfullogic.lambdabehave.BehaveRunner;
-import com.insightfullogic.lambdabehave.SpecificationError;
-import com.insightfullogic.lambdabehave.TestFailure;
-import com.insightfullogic.lambdabehave.impl.reports.SpecificationReport;
+import java.util.List;
+
 import org.junit.runner.Description;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunNotifier;
@@ -12,9 +10,9 @@ import org.junit.runners.model.InitializationError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
-
-import static java.util.stream.Collectors.toList;
+import com.insightfullogic.lambdabehave.SpecificationError;
+import com.insightfullogic.lambdabehave.TestFailure;
+import com.insightfullogic.lambdabehave.impl.reports.SpecificationReport;
 
 public abstract class AbstractSuiteRunner extends ParentRunner<CompleteBehaviour> {
 
@@ -23,13 +21,10 @@ public abstract class AbstractSuiteRunner extends ParentRunner<CompleteBehaviour
     protected final List<CompleteBehaviour> children;
     protected final String name;
 
-    public AbstractSuiteRunner(final Class<?> testClass) throws InitializationError {
+    public AbstractSuiteRunner(final Class<?> testClass, String name, List<CompleteBehaviour> children) throws InitializationError {
         super(testClass);
-        List<Specifier> specifiers = BehaveRunner.declareOnly(testClass);
-        name = specifiers.get(0).getSuiteName();
-        children = specifiers.stream()
-                             .flatMap(Specifier::completeBehaviours)
-                             .collect(toList());
+        this.name = name;
+        this.children = children;
     }
 
     @Override
