@@ -57,12 +57,18 @@ public class ExceptionSpec {{
             AssertionError wrongException = new AssertionError(
                 "Expected exception: java.lang.RuntimeException, but java.lang.Exception was thrown");
 
+            AssertionError wrongExceptionMessage = new AssertionError("\n" +
+                    "Expected: hasProperty(\"message\", is \"different message\")\n" +
+                    "     but: property 'message' was \"exception message\"");
+
             expect.that(specifications)
                 .hasItem(success("pass if exceptions thrown are expected"))
                 .hasItem(failure("fail if exceptions are expected but not thrown", noException))
                 .hasItem(success("pass if an AssertionError is expected"))
                 .hasItem(success("pass if exceptions of a sub class are expected"))
-                .hasItem(failure("fail if exceptions of a different type are expected", wrongException));
+                .hasItem(failure("fail if exceptions of a different type are expected", wrongException))
+                .hasItem(success("pass if exception message is the same as expected"))
+                .hasItem(failure("fail if exception message is different than expected", wrongExceptionMessage));
         });
 
         it.should("support expect.exception being used in data driven testing", expect -> {
