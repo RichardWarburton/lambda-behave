@@ -28,21 +28,21 @@ public class StackSpec {{
         });
 ```
 
-There are many, many, expectations builtin to the framework - not just `isEmpty()`. 
+There are many, many, expectations builtin to the framework - not just `isEmpty()`.
 
 Every specification suite starts its declaration using the `Suite.describe` method. From that point onwards your IDE should be able to auto-complete the domain specific language for declaring specifications, but just in case you want more information, here's the details.
 
 * If you want to specify a property about your system use `it.should`.
 * If you want describe an expectation of that property, use `expect.that`. This will get you to a fluent API restricted to the type of value that you're making the expectation about. The expectation system is based upon hamcrest. Lambda Behave doesn't compromise the ability to compose matchers in favour of fluency - if you want to compose in more complex flavours simply use `expect.that(value).is()` and then you can use regular Hamcrest matchers. In my experience this is a rare, albeit useful, breakout option.
-* If you want to setup or teardown data before or after each specification use `it.shouldSetup` and `it.shouldTearDown`.
-* If you want to setup or teardown data before or after each suite use `it.shouldInitialize` and `it.shouldComplete`.
+* If you want to setup or teardown data before or after each specification use `it.isSetupWith` and `it.isConcludedWith`.
+* If you want to setup or teardown data before or after each suite use `it.initializesWith` and `it.completesWith`.
 * Don't worry - I know some Java 8 lambdafied APIs don't deal with exceptions very well but you can throw exceptions in all our callbacks and the appropriate error will be reported, not just break the library.
 
 ### Data Driven Specifications
 
 The ability to parametrise specifications by different data inputs.
-Data driven tests in TestNG or the `@Parameterized` junit annotation perform a similar task. 
-`@Parameterized` only parameterises at the level of a class, whereas Lambda Behave parameterises at the level of a specification. 
+Data driven tests in TestNG or the `@Parameterized` junit annotation perform a similar task.
+`@Parameterized` only parameterises at the level of a class, whereas Lambda Behave parameterises at the level of a specification.
 
 ```
 describe("a pair of numbers", it -> {
@@ -58,7 +58,7 @@ The API in Lambda Behave is both fluent and also type safe and doesn't rely on r
 The `uses` method is overloaded to allow a different number of columns of data to be used. It also supports taking
 streams or lists of data as its inputs, rather than explicitly chaining individual values.
 
-Not only is the specification parameterised by the data, but the description is also parameterised, its name being interpreted as a format `String`. 
+Not only is the specification parameterised by the data, but the description is also parameterised, its name being interpreted as a format `String`.
 The aforementioned test would output the following:
 
 ```
@@ -87,7 +87,7 @@ All generated specifications follow this common pattern where;
  * The `require` clause expresses how many values to generate,
  * The `example` clause states what type of objects to generate and how to generate them, This is overloaded to allow multiple columns of testcase values to be generated.
  * The `toShow` clause behaves like a `toShow` clause for a data drive spec. It is type safe against the the different columns.
- So in the above example the paramter `str` will have had its type correctly inferred as `String`. 
+ So in the above example the paramter `str` will have had its type correctly inferred as `String`.
 
 ### Downloading Lambda Behave
 
@@ -127,4 +127,3 @@ Conveniently I've written a [book](http://shop.oreilly.com/product/0636920030713
 ### More Details and How to contribute
 
 [The wiki](https://github.com/RichardWarburton/lambda-behave/wiki) has more information.
-
