@@ -4,6 +4,7 @@ import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * .
@@ -45,4 +46,10 @@ public final class StringExpectation extends BoundExpectation<String> {
         assertThat(objectUnderTest, matcher);
         return this;
     }
+
+    public StringExpectation matches(String regex) {
+        assertTrue(objectUnderTest.matches(regex));
+        return this;
+    }
+
 }
