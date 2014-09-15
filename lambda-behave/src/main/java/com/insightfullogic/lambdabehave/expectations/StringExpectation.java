@@ -48,7 +48,7 @@ public final class StringExpectation extends BoundExpectation<String> {
     }
 
     public StringExpectation matches(String regex) {
-        assertTrue(objectUnderTest.matches(regex));
+        assertTrue("String " + objectUnderTest + " does not match regex " + regex, objectUnderTest.matches(regex));
         return this;
     }
 
