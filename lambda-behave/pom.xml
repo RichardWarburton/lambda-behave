@@ -73,6 +73,7 @@
             <groupId>com.insightfullogic</groupId>
             <artifactId>lambda-behave-codegen</artifactId>
             <version>${project.version}</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
