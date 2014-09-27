@@ -17,6 +17,7 @@
     </properties>
 
     <modules>
+        <module>lambda-behave-codegen</module>
         <module>lambda-behave</module>
         <module>lambda-behave-examples</module>
         <module>lambda-behave-scalatest</module>
@@ -98,6 +99,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

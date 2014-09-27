@@ -1,8 +1,11 @@
 package com.insightfullogic.lambdabehave.specifications;
 
+//import com.insightfullogic.lambdabehave.codegen.Templated;
+
 /**
  * A column represents a single series of data values.
  */
+//@Templated
 public interface Column<T> {
 
     /**
