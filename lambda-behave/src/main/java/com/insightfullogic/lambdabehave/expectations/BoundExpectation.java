@@ -72,6 +72,10 @@ public class BoundExpectation<T> {
         return matches(matcher);
     }
 
+    public BoundExpectation<T> has(final Matcher<? super T> matcher) {
+        return is(matcher);
+    }
+
     public BoundExpectation<T> is(final T value) {
         return matches(Matchers.is(value));
     }
