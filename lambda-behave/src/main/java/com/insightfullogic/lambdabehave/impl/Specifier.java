@@ -10,8 +10,8 @@ import com.insightfullogic.lambdabehave.impl.reports.Report;
 import com.insightfullogic.lambdabehave.impl.reports.Specifiers;
 import com.insightfullogic.lambdabehave.impl.specifications.*;
 import com.insightfullogic.lambdabehave.specifications.*;
-import org.mockito.cglib.proxy.Enhancer;
-import org.mockito.cglib.proxy.MethodInterceptor;
+import net.sf.cglib.proxy.Enhancer;
+import net.sf.cglib.proxy.MethodInterceptor;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -26,6 +26,7 @@ import static java.util.stream.Stream.concat;
 /**
  * A Specifier defines how .
  */
+@SuppressWarnings("unchecked")
 public class Specifier implements Description {
 
     private final String suiteName;

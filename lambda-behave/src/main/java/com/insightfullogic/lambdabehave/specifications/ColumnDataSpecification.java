@@ -15,6 +15,6 @@ public interface ColumnDataSpecification<T> {
      * @param expect the callback object used to describe expectations
      * @param value the parameter value
      */
-    public void specifyBehaviour(Expect expect, T value) throws Exception;
+    void specifyBehaviour(Expect expect, T value) throws Exception;
 
 }
