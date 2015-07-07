@@ -124,6 +124,11 @@ public class StackSpec {{
 
 Conveniently I've written a [book](http://shop.oreilly.com/product/0636920030713.do?cmp=af-prog-books-videos-product_cj_9781491900154_%25zp') on Lambda expressions in Java 8 and the cleaner code they enable!
 
+### Licensing
+
+This library is licensed under the liberal MIT license - see LICENSE for the
+full details. This means that it's free for any use.
+
 ### More Details and How to contribute
 
 [The wiki](https://github.com/RichardWarburton/lambda-behave/wiki) has more information.
