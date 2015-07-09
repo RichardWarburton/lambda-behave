@@ -97,7 +97,7 @@ If you're using a maven project then you can download Lambda Behave using the fo
 <dependency>
     <groupId>com.insightfullogic</groupId>
     <artifactId>lambda-behave</artifactId>
-    <version>0.3</version>
+    <version>0.4</version>
     <scope>test</scope>
 </dependency>
 ```
