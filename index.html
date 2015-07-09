@@ -1,45 +1,42 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Lambda Behave : A modern testing and behavioural specification framework for Java 8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-    <title>Lambda Behave</title>
+    <title>Lambda Behave by RichardWarburton</title>
   </head>
 
   <body>
+    <header>
+      <div class="inner">
+        <h1>Lambda Behave</h1>
+        <h2>A modern testing and behavioural specification framework for Java 8</h2>
+        <a href="https://github.com/RichardWarburton/lambda-behave" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/RichardWarburton/lambda-behave">View on GitHub</a>
-
-          <h1 id="project_title">Lambda Behave</h1>
-          <h2 id="project_tagline">A modern testing and behavioural specification framework for Java 8</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/RichardWarburton/lambda-behave/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/RichardWarburton/lambda-behave/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h3>
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h3>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h3>
 
 <p>If you're a Java developer and you've seen the fluent, modern specification frameworks available in other programming languages such as spock or jasmine then Lambda Behave is for you. Its goal is to make testing a more pleasant experience than it currently is with junit.</p>
 
 <p>The <a href="https://raw.githubusercontent.com/RichardWarburton/lambda-behave/master/CHANGELOG.md">changelog</a> explains what features have been added in each release.</p>
 
 <h3>
-<a name="fluent-specifications" class="anchor" href="#fluent-specifications"><span class="octicon octicon-link"></span></a>Fluent Specifications</h3>
+<a id="fluent-specifications" class="anchor" href="#fluent-specifications" aria-hidden="true"><span class="octicon octicon-link"></span></a>Fluent Specifications</h3>
 
 <p>The Lambda Behave Specification design has several goals in mind:</p>
 
@@ -47,7 +44,9 @@
 <li>To read like plain English.</li>
 <li>To encourage describing tests using long and descriptive sentences, rather than a few words.</li>
 <li>An API that is fluent and discoverable nearly entirely through IDE auto-completion.</li>
-</ul><pre><code>public class StackSpec {{
+</ul>
+
+<pre><code>public class StackSpec {{
 
     Stack&lt;Integer&gt; stack = new Stack&lt;&gt;();
 
@@ -72,8 +71,10 @@
 <li>If you want to setup or teardown data before or after each specification use <code>it.shouldSetup</code> and <code>it.shouldTearDown</code>.</li>
 <li>If you want to setup or teardown data before or after each suite use <code>it.shouldInitialize</code> and <code>it.shouldComplete</code>.</li>
 <li>Don't worry - I know some Java 8 lambdafied APIs don't deal with exceptions very well but you can throw exceptions in all our callbacks and the appropriate error will be reported, not just break the library.</li>
-</ul><h3>
-<a name="data-driven-specifications" class="anchor" href="#data-driven-specifications"><span class="octicon octicon-link"></span></a>Data Driven Specifications</h3>
+</ul>
+
+<h3>
+<a id="data-driven-specifications" class="anchor" href="#data-driven-specifications" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Driven Specifications</h3>
 
 <p>The ability to parametrise specifications by different data inputs.
 Data driven tests in TestNG or the <code>@Parameterized</code> junit annotation perform a similar task. 
@@ -101,7 +102,7 @@ The aforementioned test would output the following:</p>
 </code></pre>
 
 <h3>
-<a name="generated-specifications" class="anchor" href="#generated-specifications"><span class="octicon octicon-link"></span></a>Generated Specifications</h3>
+<a id="generated-specifications" class="anchor" href="#generated-specifications" aria-hidden="true"><span class="octicon octicon-link"></span></a>Generated Specifications</h3>
 
 <p>Lambda Behave can automatically generate testcases for your to test your code with, similar to quick check or scala check.
 The Fluent API for this is similar to data driven specifications allows for control over the way that the values are generated
@@ -123,29 +124,31 @@ using randomly generated test case values.</p>
 <li>The <code>example</code> clause states what type of objects to generate and how to generate them, This is overloaded to allow multiple columns of testcase values to be generated.</li>
 <li>The <code>toShow</code> clause behaves like a <code>toShow</code> clause for a data drive spec. It is type safe against the the different columns.
 So in the above example the paramter <code>str</code> will have had its type correctly inferred as <code>String</code>. </li>
-</ul><h3>
-<a name="downloading-lambda-behave" class="anchor" href="#downloading-lambda-behave"><span class="octicon octicon-link"></span></a>Downloading Lambda Behave</h3>
+</ul>
+
+<h3>
+<a id="downloading-lambda-behave" class="anchor" href="#downloading-lambda-behave" aria-hidden="true"><span class="octicon octicon-link"></span></a>Downloading Lambda Behave</h3>
 
 <p>If you're using a maven project then you can download Lambda Behave using the following pom entry.</p>
 
 <pre><code>&lt;dependency&gt;
     &lt;groupId&gt;com.insightfullogic&lt;/groupId&gt;
     &lt;artifactId&gt;lambda-behave&lt;/artifactId&gt;
-    &lt;version&gt;0.3&lt;/version&gt;
+    &lt;version&gt;0.4&lt;/version&gt;
     &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 </code></pre>
 
 <p>If you're using a gradle project then you can use:</p>
 
-<pre><code>testCompile group: 'com.insightfullogic', name: 'lambda-behave', version: '0.3'
+<pre><code>testCompile group: 'com.insightfullogic', name: 'lambda-behave', version: '0.4'
 </code></pre>
 
 <p>There's also an <a href="https://github.com/RichardWarburton/lambda-behave/tree/lambda-behave-parent-0.3/lambda-behave-examples">example project</a>
 and there's published <a href="http://javadoc.insightfullogic.com/lambda-behave">Javadoc</a>.</p>
 
 <h3>
-<a name="junit-integration" class="anchor" href="#junit-integration"><span class="octicon octicon-link"></span></a>Junit Integration</h3>
+<a id="junit-integration" class="anchor" href="#junit-integration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Junit Integration</h3>
 
 <p>Lambda Behave also offers a junit runner. This lets you easily integrate into existing your existing test suite, or the tests via an Eclipse, Intellij, Netbeans, Maven, Gradle or Ant. You just add an annotation to enable this,
 and it can be run through your normal tooling.</p>
@@ -155,26 +158,34 @@ public class StackSpec {{
 </code></pre>
 
 <h3>
-<a name="lambdas---what-the-hell-are-they" class="anchor" href="#lambdas---what-the-hell-are-they"><span class="octicon octicon-link"></span></a>Lambdas - what the hell are they?</h3>
+<a id="lambdas---what-the-hell-are-they" class="anchor" href="#lambdas---what-the-hell-are-they" aria-hidden="true"><span class="octicon octicon-link"></span></a>Lambdas - what the hell are they?</h3>
 
 <p>Conveniently I've written a <a href="http://shop.oreilly.com/product/0636920030713.do?cmp=af-prog-books-videos-product_cj_9781491900154_%25zp'">book</a> on Lambda expressions in Java 8 and the cleaner code they enable!</p>
 
 <h3>
-<a name="more-details-and-how-to-contribute" class="anchor" href="#more-details-and-how-to-contribute"><span class="octicon octicon-link"></span></a>More Details and How to contribute</h3>
+<a id="more-details-and-how-to-contribute" class="anchor" href="#more-details-and-how-to-contribute" aria-hidden="true"><span class="octicon octicon-link"></span></a>More Details and How to contribute</h3>
 
 <p><a href="https://github.com/RichardWarburton/lambda-behave/wiki">The wiki</a> has more information.</p>
-      </section>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/RichardWarburton/lambda-behave/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/RichardWarburton/lambda-behave/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/RichardWarburton/lambda-behave"></a> is maintained by <a href="https://github.com/RichardWarburton">RichardWarburton</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
     </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Lambda Behave maintained by <a href="https://github.com/RichardWarburton">RichardWarburton</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-              <script type="text/javascript">
+            <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -184,7 +195,6 @@ public class StackSpec {{
             pageTracker._trackPageview();
             } catch(err) {}
           </script>
-
 
   </body>
 </html>
