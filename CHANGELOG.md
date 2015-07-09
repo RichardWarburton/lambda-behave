@@ -1,6 +1,18 @@
 Lambda Behave Release Changelog
 ===============================
 
+0.4 - 09/07/2014
+----------------
+
+ * Move to the Junit 4 model of re-initialising objects before each test to improve test isolation.
+ * Fix a dependency issue with cglib that was blocked usage of Mockito 2.2
+ * Added more power to exception expectation matching (thanks Robert Firek)
+ * and syntactic sugar to bounded expectations on (thanks Colin Vipurs)
+ * Improved String matchin (thanks Ross Binden)
+ * Fix README errors. (thanks Ross Binden)
+ * Clarify the license in the Readme.
+ * rename randomNumbers(long) to deterministicNumbers(long)
+
 0.3 - 13/08/2014
 ----------------
 

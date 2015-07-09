@@ -9,6 +9,7 @@ The following people have commited code to Lambda Behave (usernames refer to git
  * Bill Venners (@bvenners)
  * Robert Firek (@robertfirek)
  * Henry Coles (@hcoles)
+ * Colin Vipurs (@tddmonkey)
 
 Thanks also to anyone who has filed an issue or contributed feedback to the project.
 
