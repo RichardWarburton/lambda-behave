@@ -17,10 +17,10 @@ public class DataDrivenSpec {{
     });
 
     describe("a pair of numbers", it -> {
-        it.uses(2, 4)
-          .and(4, 8)
+        it.uses(4, 2)
+          .and(6, 3)
           .toShow("%d / %d is two", (expect, x, y) -> {
-              expect.that(y / x).is(2);
+              expect.that(x / y).is(2);
           });
     });
 
