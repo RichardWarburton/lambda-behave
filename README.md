@@ -46,10 +46,10 @@ Data driven tests in TestNG or the `@Parameterized` junit annotation perform a s
 
 ```
 describe("a pair of numbers", it -> {
-    it.uses(2, 4)
-      .and(4, 8)
+    it.uses(4, 2)
+      .and(6, 3)
       .toShow("%d / %d is two", (expect, x, y) -> {
-          expect.that(y / x).is(2);
+          expect.that(x / y).is(2);
       });
 });
 ```
@@ -63,8 +63,8 @@ The aforementioned test would output the following:
 
 ```
 a pair of numbers
-  2 / 4 is two
-  8 / 4 is two
+  4 / 2 is two
+  6 / 3 is two
 ```
 ### Generated Specifications
 
