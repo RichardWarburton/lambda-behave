@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.insightfullogic.lambdabehave.SpecificationError;
-import com.insightfullogic.lambdabehave.TestFailure;
 import com.insightfullogic.lambdabehave.impl.reports.SpecificationReport;
 
 public abstract class AbstractSuiteRunner extends ParentRunner<CompleteBehaviour> {
@@ -61,7 +60,7 @@ public abstract class AbstractSuiteRunner extends ParentRunner<CompleteBehaviour
                 notifier.fireTestFinished(test);
                 return;
             case FAILURE:
-                notifier.fireTestFailure(new Failure(test, new TestFailure(spec.getMessage())));
+                notifier.fireTestFailure(new Failure(test, spec.getCause()));
                 return;
             case ERROR:
             default:
