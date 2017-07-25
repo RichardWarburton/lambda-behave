@@ -26,9 +26,20 @@ public class GeneratedSpec {{
               expect.that(result.length()).is(str.length() + 1);
           });
 
+         it.requires(10)
+          .example(evenIntegersUpTo(9))
+          .toShow("Remainder 0 when dividing even integer by 2", (expect, x) -> {
+              expect.that(x%2).is(0);
+          });
+         
+         it.requires(10)
+          .example(oddIntegersUpTo(19))
+          .toShow("Remainder 1 when dividing even integer by 2", (expect, x) -> {
+              expect.that(x%2).is(1);
+          });
 
         it.requires(10)
-          .withSource(SourceGenerator.deterministicNumbers(101L))
+          .withSource(SourceGenerator.deterministicNumbers(15534348740971L))
           .example(asciiStrings())
           .toShow("reversing a String twice returns the original String with deterministic seed", (expect, str) -> {
               String same = new StringBuilder(str).reverse().reverse().toString();

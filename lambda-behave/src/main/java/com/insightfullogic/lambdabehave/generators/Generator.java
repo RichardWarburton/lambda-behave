@@ -69,6 +69,26 @@ public interface Generator<T> {
     public static Generator<Integer> integersUpTo(final int maxValue) {
         return source -> source.generateInt(maxValue);
     }
+    
+    /**
+     * Creates a generator that generates positive even integers that are &lt;= maxValue.
+     *
+     * @param maxValue the upper bound on produced integers
+     * @return a generator that generates integers that are &lt;= maxValue
+     */
+    public static Generator<Integer> evenIntegersUpTo(final int maxValue) {
+        return source -> source.generateInt(maxValue, 0);
+    }
+    
+    /**
+     * Creates a generator that generates positive odd integers that are &lt;= maxValue.
+     *
+     * @param maxValue the upper bound on produced integers
+     * @return a generator that generates integers that are &lt;= maxValue
+     */
+    public static Generator<Integer> oddIntegersUpTo(final int maxValue) {
+        return source -> source.generateInt(maxValue, 1);
+    }
 
     /**
      * Create a generator for your domain class with one argument.

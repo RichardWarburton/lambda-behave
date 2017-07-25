@@ -57,6 +57,15 @@ public interface SourceGenerator {
      * @return the generated int
      */
     int generateInt(int maxValue);
+    
+    /**
+     * Generate an odd/even int which is &lt;= maxValue.
+     *
+     * @param maxValue the maximum value of the int
+     * @param mod2 suggests whether generated value should be odd/even
+     * @return the generated int
+     */
+    int generateInt(int maxValue, int mod2);
 
     /**
      * Gets the seed state required to generate the sequence of numbers.

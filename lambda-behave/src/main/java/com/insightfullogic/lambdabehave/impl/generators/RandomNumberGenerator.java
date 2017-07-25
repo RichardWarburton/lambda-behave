@@ -25,6 +25,14 @@ public class RandomNumberGenerator implements SourceGenerator {
     }
 
     @Override
+    public int generateInt(int maxValue, int mod2) {
+        if (mod2 == 0) {
+            return random.nextInt(maxValue / 2) * 2;
+        }
+        return random.nextInt(maxValue / 2) * 2 + 1;
+    }
+
+    @Override
     public long getSeed() {
         return seed;
     }
