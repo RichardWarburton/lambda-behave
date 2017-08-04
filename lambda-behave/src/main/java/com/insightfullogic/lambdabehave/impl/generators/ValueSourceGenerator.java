@@ -17,8 +17,9 @@ public final class ValueSourceGenerator implements SourceGenerator {
     public int generateInt(final int maxValue) {
         try {
             final int candidate = values[index];
-            if (candidate > maxValue)
+            if (candidate > maxValue) {
                 return candidate & maxValue;
+            }
 
             return candidate;
         } finally {
@@ -34,5 +35,13 @@ public final class ValueSourceGenerator implements SourceGenerator {
     @Override
     public long getSeed() {
         return 0;
+    }
+
+    @Override
+    public int generateInt(int maxValue, int mod2) {
+        if (mod2 == 0) {
+            return 2 + generateInt(maxValue / 2) * 2;
+        }
+        return generateInt(maxValue / 2) * 2 + 1;
     }
 }
