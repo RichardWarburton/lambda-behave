@@ -39,7 +39,7 @@ public class GeneratedSpec {{
           });
 
         it.requires(10)
-          .withSource(SourceGenerator.deterministicNumbers(15534348740971L))
+          .withSource(SourceGenerator.deterministicNumbers(101L))
           .example(asciiStrings())
           .toShow("reversing a String twice returns the original String with deterministic seed", (expect, str) -> {
               String same = new StringBuilder(str).reverse().reverse().toString();
