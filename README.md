@@ -12,7 +12,7 @@ The Lambda Behave Specification design has several goals in mind:
 * To encourage describing tests using long and descriptive sentences, rather than a few words.
 * An API that is fluent and discoverable nearly entirely through IDE auto-completion.
 
-```
+```java
 public class StackSpec {{
 
     Stack<Integer> stack = new Stack<>();
@@ -44,7 +44,7 @@ The ability to parametrise specifications by different data inputs.
 Data driven tests in TestNG or the `@Parameterized` junit annotation perform a similar task.
 `@Parameterized` only parameterises at the level of a class, whereas Lambda Behave parameterises at the level of a specification.
 
-```
+```java
 describe("a pair of numbers", it -> {
     it.uses(4, 2)
       .and(6, 3)
@@ -73,7 +73,7 @@ The Fluent API for this is similar to data driven specifications allows for cont
 and how many need to be generated. Here is an example of how to show that reversing a `String` twice returns the same `String`
 using randomly generated test case values.
 
-```
+```java
 it.requires(10)
   .example(asciiStrings())
   .toShow("reversing a String twice returns the original String", (expect, str) -> {
@@ -93,7 +93,7 @@ All generated specifications follow this common pattern where;
 
 If you're using a maven project then you can download Lambda Behave using the following pom entry.
 
-```
+```xml
 <dependency>
     <groupId>com.insightfullogic</groupId>
     <artifactId>lambda-behave</artifactId>
@@ -104,7 +104,7 @@ If you're using a maven project then you can download Lambda Behave using the fo
 
 If you're using a gradle project then you can use:
 
-```
+```gradle
 testCompile group: 'com.insightfullogic', name: 'lambda-behave', version: '0.3'
 ```
 
@@ -116,7 +116,7 @@ and there's published [Javadoc](http://javadoc.insightfullogic.com/lambda-behave
 Lambda Behave also offers a junit runner. This lets you easily integrate into existing your existing test suite, or the tests via an Eclipse, Intellij, Netbeans, Maven, Gradle or Ant. You just add an annotation to enable this,
 and it can be run through your normal tooling.
 
-```
+```java
 @RunWith(JunitSuiteRunner.class)
 public class StackSpec {{
 ```
